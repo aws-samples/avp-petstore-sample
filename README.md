@@ -1,5 +1,7 @@
 ## My Project
 
+[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/aws-samples/avp-petstore-sample)
+
 TODO: Fill this README out!
 
 Be sure to:
