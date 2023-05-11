@@ -1,0 +1,1119 @@
+{
+  "version":"2.0",
+  "metadata":{
+    "apiVersion":"2021-12-01",
+    "endpointPrefix":"verifiedpermissions",
+    "jsonVersion":"1.1",
+    "protocol":"rest-json",
+    "serviceFullName":"Amazon Verified Permissions",
+    "serviceId":"Verified Permissions",
+    "signatureVersion":"v4",
+    "signingName":"verifiedpermissions",
+    "uid":"verified-permissions-2021-12-01"
+  },
+  "operations":{
+    "CreatePolicy":{
+      "name":"CreatePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/policy-stores/{PolicyStoreIdentifier}/policies",
+        "responseCode":200
+      },
+      "input":{"shape":"CreatePolicyInput"},
+      "output":{"shape":"CreatePolicyOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "documentation":"<p>Creates a policy in the specified PolicyStore.</p>",
+      "endpoint":{"hostPrefix":"admin-"},
+      "idempotent":true
+    },
+    "CreatePolicyStore":{
+      "name":"CreatePolicyStore",
+      "http":{
+        "method":"POST",
+        "requestUri":"/policy-stores",
+        "responseCode":200
+      },
+      "input":{"shape":"CreatePolicyStoreInput"},
+      "output":{"shape":"CreatePolicyStoreOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "documentation":"<p>Creates a PolicyStore. A PolicyStore is a container for policy resources.</p> <p>You can create one PolicyStore per AWS account.</p>",
+      "endpoint":{"hostPrefix":"admin-"},
+      "idempotent":true
+    },
+    "DeletePolicy":{
+      "name":"DeletePolicy",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/policy-stores/{PolicyStoreIdentifier}/policies/{PolicyIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeletePolicyInput"},
+      "output":{"shape":"DeletePolicyOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "documentation":"<p>Deletes the specified policy.</p> <p>If you specify a policy that does not exist, the request response will still return a successful HTTP 200 status code. If you specify a PolicyStore that does not exit, the request response will return a client error HTTP 404 status code.</p>",
+      "endpoint":{"hostPrefix":"admin-"},
+      "idempotent":true
+    },
+    "DeletePolicyStore":{
+      "name":"DeletePolicyStore",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/policy-stores/{PolicyStoreIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeletePolicyStoreInput"},
+      "output":{"shape":"DeletePolicyStoreOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "documentation":"<p>Deletes the specified PolicyStore.</p> <p>If you specify a PolicyStore that does not exist, the request response will still return a successful HTTP 200 status code.</p>",
+      "endpoint":{"hostPrefix":"admin-"},
+      "idempotent":true
+    },
+    "GetPolicy":{
+      "name":"GetPolicy",
+      "http":{
+        "method":"GET",
+        "requestUri":"/policy-stores/{PolicyStoreIdentifier}/policies/{PolicyIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetPolicyInput"},
+      "output":{"shape":"GetPolicyOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "documentation":"<p>Retrieves information about the specified policy, including the policy Id and the Id of the PolicyStore where the policy you want information about is stored.</p>",
+      "endpoint":{"hostPrefix":"admin-"}
+    },
+    "IsAuthorized":{
+      "name":"IsAuthorized",
+      "http":{
+        "method":"POST",
+        "requestUri":"/policy-stores/{PolicyStoreIdentifier}/is-authorized",
+        "responseCode":200
+      },
+      "input":{"shape":"IsAuthorizedInput"},
+      "output":{"shape":"IsAuthorizedOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "documentation":"<p>An API operation that makes an authorization decision using both input and preconfigured policies. All determining policies will be used to make the authorization decision.</p>",
+      "endpoint":{"hostPrefix":"authz-"},
+      "idempotent":true
+    },
+    "ListPolicies":{
+      "name":"ListPolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/list/policy-stores/{PolicyStoreIdentifier}/policies",
+        "responseCode":200
+      },
+      "input":{"shape":"ListPoliciesInput"},
+      "output":{"shape":"ListPoliciesOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "documentation":"<p>Lists all policies stored in the specified PolicyStore.</p>",
+      "endpoint":{"hostPrefix":"admin-"}
+    },
+    "ListPolicyStores":{
+      "name":"ListPolicyStores",
+      "http":{
+        "method":"POST",
+        "requestUri":"/list/policy-stores",
+        "responseCode":200
+      },
+      "input":{"shape":"ListPolicyStoresInput"},
+      "output":{"shape":"ListPolicyStoresOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "documentation":"<p>Lists all PolicyStores.</p>",
+      "endpoint":{"hostPrefix":"admin-"}
+    }
+  },
+  "shapes":{
+    "AccessDeniedException":{
+      "type":"structure",
+      "required":["Message"],
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "documentation":"<p>You don't have sufficient access to perform this action.</p>",
+      "error":{
+        "httpStatusCode":403,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ActionId":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^.*$"
+    },
+    "ActionIdentifier":{
+      "type":"structure",
+      "required":[
+        "ActionId",
+        "ActionType"
+      ],
+      "members":{
+        "ActionId":{
+          "shape":"ActionId",
+          "documentation":"<p>The Id of an Action.</p>"
+        },
+        "ActionType":{
+          "shape":"ActionType",
+          "documentation":"<p>The type of an Action.</p>"
+        }
+      },
+      "documentation":"<p>Contains information about the action for which the authorization decision is made, including the action Id and action type.</p> <p>This data type is used as a request parameter in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_IsAuthorized.html\">IsAuthorized</a> operation.</p>"
+    },
+    "ActionType":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^Action$|^.+::Action$"
+    },
+    "AttributeValue":{
+      "type":"structure",
+      "members":{
+        "Boolean":{
+          "shape":"BooleanAttribute",
+          "documentation":"<p>An attribute value of Boolean type.</p>"
+        },
+        "EntityIdentifier":{
+          "shape":"EntityIdentifier",
+          "documentation":"<p>An attribute value of EntityIdentifier type.</p>"
+        },
+        "Long":{
+          "shape":"LongAttribute",
+          "documentation":"<p>An attribute value of Long type.</p>"
+        },
+        "Record":{
+          "shape":"RecordAttribute",
+          "documentation":"<p>An attribute value of Record type.</p>"
+        },
+        "Set":{
+          "shape":"SetAttribute",
+          "documentation":"<p>An attribute value of Set type.</p>"
+        },
+        "String":{
+          "shape":"StringAttribute",
+          "documentation":"<p>An attribute value of String type.</p>"
+        }
+      },
+      "documentation":"<p>The value of an attribute.</p> <p>Contains information about the runtime context for which the authorization decision is made, including attribute values of different value types. The following attribute value types are supported:</p> <ul> <li> <p>Boolean</p> </li> <li> <p>EntityIdentifier</p> </li> <li> <p>Long</p> </li> <li> <p>Record</p> </li> <li> <p>Set</p> </li> <li> <p>String</p> </li> </ul> <p>This data type is used as a request parameter in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_IsAuthorized.html\">IsAuthorized</a> operation.</p>",
+      "union":true
+    },
+    "Boolean":{
+      "type":"boolean",
+      "box":true
+    },
+    "BooleanAttribute":{
+      "type":"boolean",
+      "box":true
+    },
+    "Context":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"AttributeValue"},
+      "max":50,
+      "min":1
+    },
+    "CreatePolicyInput":{
+      "type":"structure",
+      "required":[
+        "PolicyDefinition",
+        "PolicyStoreIdentifier"
+      ],
+      "members":{
+        "ClientToken":{
+          "shape":"IdempotencyToken",
+          "documentation":"<p>The <code>ClientToken</code> is used for idempotency control. Idempotency ensures that an API request completes no more than one time. With an idempotent request, if the original request completes successfully, any subsequent retries complete successfully without performing any further actions. However, the result might contain updated information, such as the current creation status.</p> <p>To make an idempotent API request, specify a client token in the request. You shouldn't reuse the same client token for other API requests. If you retry a request that completed successfully using the same client token and the same parameters, the retry succeeds without performing any further actions. If you retry a successful request using the same client token, but one or more of the parameters are different, the retry fails with an <code>IdempotentParameterMismatch</code> error.</p>",
+          "idempotencyToken":true
+        },
+        "PolicyDefinition":{
+          "shape":"PolicyDefinition",
+          "documentation":"<p>The policy type and content you want to use for the new policy. The policy content is written in Cedar language. The following policy type is supported:</p> <ul> <li> <p>InlinePolicy</p> </li> </ul>"
+        },
+        "PolicyStoreIdentifier":{
+          "shape":"PolicyStoreId",
+          "documentation":"<p>The <code>PolicyStoreId</code> of the PolicyStore you want to create the policy in.</p>",
+          "location":"uri",
+          "locationName":"PolicyStoreIdentifier"
+        }
+      }
+    },
+    "CreatePolicyOutput":{
+      "type":"structure",
+      "required":[
+        "Arn",
+        "CreatedDate",
+        "LastUpdatedDate",
+        "PolicyId",
+        "PolicyStoreId",
+        "PolicyType"
+      ],
+      "members":{
+        "Arn":{
+          "shape":"ResourceArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the policy.</p>"
+        },
+        "CreatedDate":{
+          "shape":"TimestampFormat",
+          "documentation":"<p>The date and time the policy was created.</p>"
+        },
+        "LastUpdatedDate":{
+          "shape":"TimestampFormat",
+          "documentation":"<p>The date and time the policy was last updated.</p>"
+        },
+        "PolicyId":{
+          "shape":"PolicyId",
+          "documentation":"<p>The identifier of the created policy.</p>"
+        },
+        "PolicyStoreId":{
+          "shape":"PolicyStoreId",
+          "documentation":"<p>The identifier of the PolicyStore that the policy was created in.</p>"
+        },
+        "PolicyType":{
+          "shape":"PolicyType",
+          "documentation":"<p>The policy type of the created policy.</p>"
+        },
+        "Principal":{
+          "shape":"EntityIdentifier",
+          "documentation":"<p>The principal specified in the policy scope. This is an optional response element when the <code>Principal</code> is unspecified.</p>"
+        },
+        "Resource":{
+          "shape":"EntityIdentifier",
+          "documentation":"<p>The resource specified in the policy scope. This is an optional response element when the <code>Resource</code> is unspecified.</p>"
+        }
+      }
+    },
+    "CreatePolicyStoreInput":{
+      "type":"structure",
+      "members":{
+        "ClientToken":{
+          "shape":"IdempotencyToken",
+          "documentation":"<p>The <code>ClientToken</code> is used for idempotency control. Idempotency ensures that an API request completes no more than one time. With an idempotent request, if the original request completes successfully, any subsequent retries complete successfully without performing any further actions. However, the result might contain updated information, such as the current creation status.</p> <p>To make an idempotent API request, specify a client token in the request. You shouldn't reuse the same client token for other API requests. If you retry a request that completed successfully using the same client token and the same parameters, the retry succeeds without performing any further actions. If you retry a successful request using the same client token, but one or more of the parameters are different, the retry fails with an <code>IdempotentParameterMismatch</code> error.</p>",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreatePolicyStoreOutput":{
+      "type":"structure",
+      "required":[
+        "Arn",
+        "CreatedDate",
+        "PolicyStoreId"
+      ],
+      "members":{
+        "Arn":{
+          "shape":"ResourceArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the PolicyStore.</p>"
+        },
+        "CreatedDate":{
+          "shape":"TimestampFormat",
+          "documentation":"<p>The date and time the PolicyStore was created.</p>"
+        },
+        "PolicyStoreId":{
+          "shape":"PolicyStoreId",
+          "documentation":"<p>The identifier of the created PolicyStore.</p>"
+        }
+      }
+    },
+    "Decision":{
+      "type":"string",
+      "enum":[
+        "Allow",
+        "Deny"
+      ]
+    },
+    "DeletePolicyInput":{
+      "type":"structure",
+      "required":[
+        "PolicyIdentifier",
+        "PolicyStoreIdentifier"
+      ],
+      "members":{
+        "PolicyIdentifier":{
+          "shape":"PolicyId",
+          "documentation":"<p>The identifier of the policy you want to delete.</p>",
+          "location":"uri",
+          "locationName":"PolicyIdentifier"
+        },
+        "PolicyStoreIdentifier":{
+          "shape":"PolicyStoreId",
+          "documentation":"<p>The identifier of the PolicyStore where the policy you want to delete is stored.</p>",
+          "location":"uri",
+          "locationName":"PolicyStoreIdentifier"
+        }
+      }
+    },
+    "DeletePolicyOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeletePolicyStoreInput":{
+      "type":"structure",
+      "required":["PolicyStoreIdentifier"],
+      "members":{
+        "PolicyStoreIdentifier":{
+          "shape":"PolicyStoreId",
+          "documentation":"<p>The identifier of the PolicyStore you want to delete.</p>",
+          "location":"uri",
+          "locationName":"PolicyStoreIdentifier"
+        }
+      }
+    },
+    "DeletePolicyStoreOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeterminingPolicyItem":{
+      "type":"structure",
+      "members":{
+        "DeterminingPolicyIdentifier":{
+          "shape":"PolicyId",
+          "documentation":"<p>The identifier of a policy that determined to an authorization decision.</p>"
+        }
+      },
+      "documentation":"<p>An item representing one of the policies that determined an authorization decision.</p> <p>This data type is used as a response parameter in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_IsAuthorized.html\">IsAuthorized</a> operation.</p>"
+    },
+    "DeterminingPolicyList":{
+      "type":"list",
+      "member":{"shape":"DeterminingPolicyItem"}
+    },
+    "EntitiesList":{
+      "type":"list",
+      "member":{"shape":"EntityItem"},
+      "max":100,
+      "min":1
+    },
+    "EntityAttributes":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"AttributeValue"},
+      "max":50,
+      "min":1
+    },
+    "EntityId":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^.*$"
+    },
+    "EntityIdentifier":{
+      "type":"structure",
+      "required":[
+        "EntityId",
+        "EntityType"
+      ],
+      "members":{
+        "EntityId":{
+          "shape":"EntityId",
+          "documentation":"<p>The identifier of an entity.</p>"
+        },
+        "EntityType":{
+          "shape":"EntityType",
+          "documentation":"<p>The type of an entity.</p>"
+        }
+      },
+      "documentation":"<p>Contains the identifier of an entity, including the entity Id and entity type.</p> <p>This data type is used as a request parameter in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_CreatePolicy.html\">CreatePolicy</a>, <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_GetPolicy.html\">GetPolicy</a>, and <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_IsAuthorized.html\">IsAuthorized</a> operations.</p>"
+    },
+    "EntityItem":{
+      "type":"structure",
+      "required":["Identifier"],
+      "members":{
+        "Attributes":{
+          "shape":"EntityAttributes",
+          "documentation":"<p>A list of attributes for an EntityItem.</p>"
+        },
+        "Identifier":{
+          "shape":"EntityIdentifier",
+          "documentation":"<p>The identifier of an entity item.</p>"
+        },
+        "Parents":{
+          "shape":"ParentList",
+          "documentation":"<p>The parents of an entity item</p>"
+        }
+      },
+      "documentation":"<p>An item representing an entity in the list of entities sent to the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_IsAuthorized.html\">IsAuthorized</a> operation.</p>"
+    },
+    "EntityReference":{
+      "type":"structure",
+      "members":{
+        "Identifier":{
+          "shape":"EntityIdentifier",
+          "documentation":"<p>The identifier, which consists of an EntityType and EntityId, of a principal or resource.</p>"
+        },
+        "Unspecified":{
+          "shape":"Boolean",
+          "documentation":"<p>Used to indicate that a principal or resource is not specified. This can be used to search for policies that are not associated with a specific principal or resource.</p>"
+        }
+      },
+      "documentation":"<p>Contains the reference to a principal or resource.</p>",
+      "union":true
+    },
+    "EntityType":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^.*$"
+    },
+    "EvaluationErrorList":{
+      "type":"list",
+      "member":{"shape":"EvaluationErrorListItem"}
+    },
+    "EvaluationErrorListItem":{
+      "type":"structure",
+      "members":{
+        "ErrorDescription":{
+          "shape":"String",
+          "documentation":"<p>The error description.</p>"
+        }
+      },
+      "documentation":"<p>Contains an item representing an evaluation error, including the error description.</p>"
+    },
+    "GetPolicyInput":{
+      "type":"structure",
+      "required":[
+        "PolicyIdentifier",
+        "PolicyStoreIdentifier"
+      ],
+      "members":{
+        "PolicyIdentifier":{
+          "shape":"PolicyId",
+          "documentation":"<p>The identifier of the policy you want information about.</p>",
+          "location":"uri",
+          "locationName":"PolicyIdentifier"
+        },
+        "PolicyStoreIdentifier":{
+          "shape":"PolicyStoreId",
+          "documentation":"<p>The identifier of the PolicyStore where the policy you want information about is stored.</p>",
+          "location":"uri",
+          "locationName":"PolicyStoreIdentifier"
+        }
+      }
+    },
+    "GetPolicyOutput":{
+      "type":"structure",
+      "required":[
+        "Arn",
+        "CreatedDate",
+        "LastUpdatedDate",
+        "PolicyDefinition",
+        "PolicyId",
+        "PolicyStoreId",
+        "PolicyType"
+      ],
+      "members":{
+        "Arn":{
+          "shape":"ResourceArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the policy.</p>"
+        },
+        "CreatedDate":{
+          "shape":"TimestampFormat",
+          "documentation":"<p>The date and time the policy was created.</p>"
+        },
+        "LastUpdatedDate":{
+          "shape":"TimestampFormat",
+          "documentation":"<p>The date and time the policy was last updated.</p>"
+        },
+        "PolicyDefinition":{
+          "shape":"PolicyDefinitionDetail",
+          "documentation":"<p>The definition of the policy requested.</p>"
+        },
+        "PolicyId":{
+          "shape":"PolicyId",
+          "documentation":"<p>The identifier of the policy you want information about.</p>"
+        },
+        "PolicyStoreId":{
+          "shape":"PolicyStoreId",
+          "documentation":"<p>The identifier of the PolicyStore where the policy you want information about is stored.</p>"
+        },
+        "PolicyType":{
+          "shape":"PolicyType",
+          "documentation":"<p>The policy type of the policy.</p>"
+        },
+        "Principal":{
+          "shape":"EntityIdentifier",
+          "documentation":"<p>The principal specified in the policy. This is an optional response element when the <code>Principal</code> is unspecified.</p>"
+        },
+        "Resource":{
+          "shape":"EntityIdentifier",
+          "documentation":"<p>The resource specified in the policy. This is an optional response element when the <code>Resource</code> is unspecified.</p>"
+        }
+      }
+    },
+    "IdempotencyToken":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^.*$"
+    },
+    "InlinePolicy":{
+      "type":"structure",
+      "required":["PolicyBody"],
+      "members":{
+        "Description":{
+          "shape":"InlinePolicyDescription",
+          "documentation":"<p>A description of the inline policy.</p>"
+        },
+        "PolicyBody":{
+          "shape":"PolicyBody",
+          "documentation":"<p>The content of policy written in Cedar language.</p>"
+        }
+      },
+      "documentation":"<p>Contains information about an inline policy, including the description and policy body.</p> <p>This data type is used with top level data type <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_PolicyDefinition.html\">PolicyDefinition</a>, a request parameter in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_CreatePolicy.html\">CreatePolicy</a> operation.</p>"
+    },
+    "InlinePolicyDescription":{
+      "type":"string",
+      "max":150,
+      "min":0,
+      "pattern":"[.  ]*"
+    },
+    "InlinePolicyDetail":{
+      "type":"structure",
+      "required":["PolicyBody"],
+      "members":{
+        "Description":{
+          "shape":"InlinePolicyDescription",
+          "documentation":"<p>The description of the inline policy.</p>"
+        },
+        "PolicyBody":{
+          "shape":"PolicyBody",
+          "documentation":"<p>The policy content of the inline policy.</p>"
+        }
+      },
+      "documentation":"<p>Contains information about an inline policy, including the description and policy body.</p>"
+    },
+    "InlinePolicyItem":{
+      "type":"structure",
+      "members":{
+        "Description":{
+          "shape":"InlinePolicyDescription",
+          "documentation":"<p>The description of the inline policy.</p>"
+        }
+      },
+      "documentation":"<p>An item in the list of inline policies returned.</p>"
+    },
+    "InternalServerException":{
+      "type":"structure",
+      "required":["Message"],
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "documentation":"<p>The request processing has failed because of an unknown error, exception, or failure.</p>",
+      "error":{"httpStatusCode":500},
+      "exception":true,
+      "fault":true,
+      "retryable":{"throttling":false}
+    },
+    "IsAuthorizedInput":{
+      "type":"structure",
+      "required":["PolicyStoreIdentifier"],
+      "members":{
+        "Action":{
+          "shape":"ActionIdentifier",
+          "documentation":"<p>The action for which the authorization decision is made. For example, is the principal allowed to perform the action on the resource.</p>"
+        },
+        "Context":{
+          "shape":"Context",
+          "documentation":"<p>The runtime context to be used for making authorization decisions.</p>"
+        },
+        "PolicyStoreIdentifier":{
+          "shape":"PolicyStoreId",
+          "documentation":"<p>The identifier of the policy store. Policies in this policy store will be used to make an authorization decision for the input.</p>",
+          "location":"uri",
+          "locationName":"PolicyStoreIdentifier"
+        },
+        "Principal":{
+          "shape":"EntityIdentifier",
+          "documentation":"<p>The principal for which the authorization decision is made. For example, is the principal allowed to perform the action on the resource.</p>"
+        },
+        "Resource":{
+          "shape":"EntityIdentifier",
+          "documentation":"<p>The resource for which the authorization decision is made. For example, is the principal allowed to perform the action on the resource.</p>"
+        },
+        "SliceComplement":{
+          "shape":"SliceComplement",
+          "documentation":"<p>Input slice data that is used to make the authorization decision. The slice is the subset of policies and entity data used to evaluate a specific authorization request. For example, groups to which the principal belongs.</p>"
+        }
+      }
+    },
+    "IsAuthorizedOutput":{
+      "type":"structure",
+      "members":{
+        "Decision":{
+          "shape":"Decision",
+          "documentation":"<p>An authorization decision that indicates if the authorization request should be allowed or denied.</p>"
+        },
+        "DeterminingPolicies":{
+          "shape":"DeterminingPolicyList",
+          "documentation":"<p>The list of determining policies used to make the authorization decision. For example, if there are two matching policies, where one is a forbid and the other is a permit, then the forbid policy will be the determining policy. In the case of multiple matching permit policies then there would be multiple determining policies. In the case that no policies match, and hence the response is DENY, there would be no determining policies.</p>"
+        },
+        "Errors":{
+          "shape":"EvaluationErrorList",
+          "documentation":"<p>Errors that occurred while making an authorization decision, for example, a policy references an Entity or entity Attribute that does not exist in the slice.</p>"
+        }
+      }
+    },
+    "ListPoliciesInput":{
+      "type":"structure",
+      "required":["PolicyStoreIdentifier"],
+      "members":{
+        "Filter":{
+          "shape":"PolicyFilter",
+          "documentation":"<p>Filter used to list policies that match a certain criteria. For example, list policies for a specific principal.</p>"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "documentation":"<p>The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining paginated results can be retrieved.</p>"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults.</p>"
+        },
+        "PolicyStoreIdentifier":{
+          "shape":"PolicyStoreId",
+          "documentation":"<p>The identifier of the PolicyStore you want to list policies from.</p>",
+          "location":"uri",
+          "locationName":"PolicyStoreIdentifier"
+        }
+      }
+    },
+    "ListPoliciesOutput":{
+      "type":"structure",
+      "required":["Policies"],
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>Provides an identifier to allow retrieval of paginated results.</p>"
+        },
+        "Policies":{
+          "shape":"PolicyList",
+          "documentation":"<p>Lists all policies that are available in the specified PolicyStore.</p>"
+        }
+      }
+    },
+    "ListPolicyStoresInput":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"MaxResults",
+          "documentation":"<p>The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining paginated results can be retrieved.</p>"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults.</p>"
+        }
+      }
+    },
+    "ListPolicyStoresOutput":{
+      "type":"structure",
+      "required":["PolicyStores"],
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>Provides an identifier to allow retrieval of paginated results.</p>"
+        },
+        "PolicyStores":{
+          "shape":"PolicyStoreList",
+          "documentation":"<p>The PolicyStores requested.</p>"
+        }
+      }
+    },
+    "LongAttribute":{
+      "type":"long",
+      "box":true
+    },
+    "MaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":200,
+      "min":1
+    },
+    "NextToken":{
+      "type":"string",
+      "max":8000,
+      "min":1,
+      "pattern":"^[A-Za-z0-9-_\\.]*$"
+    },
+    "ParentList":{
+      "type":"list",
+      "member":{"shape":"EntityIdentifier"},
+      "max":100,
+      "min":0
+    },
+    "PolicyBody":{
+      "type":"string",
+      "max":100000,
+      "min":1,
+      "pattern":"[.  ]+"
+    },
+    "PolicyDefinition":{
+      "type":"structure",
+      "members":{
+        "InlinePolicy":{
+          "shape":"InlinePolicy",
+          "documentation":"<p>The inline policy.</p>"
+        }
+      },
+      "documentation":"<p>Contains information about the policy definition, including the policy type, description, and policy body. This is the top level data type used to create a policy. The following policy type is supported:</p> <ul> <li> <p>InlinePolicy</p> </li> </ul> <p>This data type is used as a request parameter in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_CreatePolicy.html\">CreatePolicy</a> operation.</p>",
+      "union":true
+    },
+    "PolicyDefinitionDetail":{
+      "type":"structure",
+      "members":{
+        "InlinePolicy":{
+          "shape":"InlinePolicyDetail",
+          "documentation":"<p>The inline policy.</p>"
+        }
+      },
+      "documentation":"<p>Contains information about the policy definition, including the policy type, description, and policy body.</p>",
+      "union":true
+    },
+    "PolicyDefinitionItem":{
+      "type":"structure",
+      "members":{
+        "InlinePolicy":{
+          "shape":"InlinePolicyItem",
+          "documentation":"<p>The object that represents an InlinePolicy in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_ListPolicies.html\">ListPolicies</a> operation output. </p>"
+        }
+      },
+      "documentation":"<p>The object that represents a PolicyDefinition in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_ListPolicies.html\">ListPolicies</a> operation output.</p>",
+      "union":true
+    },
+    "PolicyFilter":{
+      "type":"structure",
+      "members":{
+        "Principal":{
+          "shape":"EntityReference",
+          "documentation":"<p>A filter to list policies for a principal.</p>"
+        },
+        "Resource":{
+          "shape":"EntityReference",
+          "documentation":"<p>A filter to list policies for a resource.</p>"
+        }
+      },
+      "documentation":"<p>A filter to refine policies returned in a query.</p>"
+    },
+    "PolicyId":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^.*$"
+    },
+    "PolicyItem":{
+      "type":"structure",
+      "required":[
+        "Arn",
+        "CreatedDate",
+        "LastUpdatedDate",
+        "PolicyDefinition",
+        "PolicyId",
+        "PolicyStoreId",
+        "PolicyType"
+      ],
+      "members":{
+        "Arn":{
+          "shape":"ResourceArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the policy.</p>"
+        },
+        "CreatedDate":{
+          "shape":"TimestampFormat",
+          "documentation":"<p>The date and time the policy was created.</p>"
+        },
+        "LastUpdatedDate":{
+          "shape":"TimestampFormat",
+          "documentation":"<p>The date and time the policy was last updated.</p>"
+        },
+        "PolicyDefinition":{
+          "shape":"PolicyDefinitionItem",
+          "documentation":"<p>The policy definition of an item in the list of policies returned.</p>"
+        },
+        "PolicyId":{
+          "shape":"PolicyId",
+          "documentation":"<p>The identifier of the policy you want information about.</p>"
+        },
+        "PolicyStoreId":{
+          "shape":"PolicyStoreId",
+          "documentation":"<p>The identifier of the PolicyStore where the policy you want information about is stored.</p>"
+        },
+        "PolicyType":{
+          "shape":"PolicyType",
+          "documentation":"<p>The type of the policy, such as <code>Inline</code>.</p>"
+        },
+        "Principal":{
+          "shape":"EntityIdentifier",
+          "documentation":"<p>The prinicpal associated with the policy.</p>"
+        },
+        "Resource":{
+          "shape":"EntityIdentifier",
+          "documentation":"<p>The resource associated with the policy.</p>"
+        }
+      },
+      "documentation":"<p>An item in the list of policies returned.</p>"
+    },
+    "PolicyList":{
+      "type":"list",
+      "member":{"shape":"PolicyItem"}
+    },
+    "PolicyStoreId":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^.*$"
+    },
+    "PolicyStoreItem":{
+      "type":"structure",
+      "required":[
+        "Arn",
+        "CreatedDate",
+        "PolicyStoreId"
+      ],
+      "members":{
+        "Arn":{
+          "shape":"ResourceArn",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the policy store.</p>"
+        },
+        "CreatedDate":{
+          "shape":"TimestampFormat",
+          "documentation":"<p>The date and time the policy was created.</p>"
+        },
+        "PolicyStoreId":{
+          "shape":"PolicyStoreId",
+          "documentation":"<p>The identifier of the PolicyStore where the policy you want information about is stored.</p>"
+        }
+      },
+      "documentation":"<p>An item in the list of policy stores returned.</p>"
+    },
+    "PolicyStoreList":{
+      "type":"list",
+      "member":{"shape":"PolicyStoreItem"}
+    },
+    "PolicyType":{
+      "type":"string",
+      "enum":["Inline"]
+    },
+    "RecordAttribute":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"AttributeValue"}
+    },
+    "ResourceArn":{
+      "type":"string",
+      "max":2500,
+      "min":1,
+      "pattern":"^arn:[^:]*:[^:]*:[^:]*:[^:]*:.*$"
+    },
+    "ResourceId":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^.*$"
+    },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "required":[
+        "Message",
+        "ResourceId",
+        "ResourceType"
+      ],
+      "members":{
+        "Message":{"shape":"String"},
+        "ResourceId":{
+          "shape":"ResourceId",
+          "documentation":"<p>The request references a resource that doesn't exist.</p>"
+        },
+        "ResourceType":{
+          "shape":"ResourceType",
+          "documentation":"<p>The request references a resource that doesn't exist.</p>"
+        }
+      },
+      "documentation":"<p>The request references a resource that doesn't exist.</p>",
+      "error":{
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ResourceType":{
+      "type":"string",
+      "enum":[
+        "PolicyStore",
+        "Policy"
+      ]
+    },
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "required":[
+        "Message",
+        "ResourceType"
+      ],
+      "members":{
+        "Message":{"shape":"String"},
+        "ResourceId":{
+          "shape":"ResourceId",
+          "documentation":"<p>The request would cause a service quota to be exceeded.</p>"
+        },
+        "ResourceType":{
+          "shape":"ResourceType",
+          "documentation":"<p>The request would cause a service quota to be exceeded.</p>"
+        }
+      },
+      "documentation":"<p>The request would cause a service quota to be exceeded.</p>",
+      "error":{
+        "httpStatusCode":402,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "SetAttribute":{
+      "type":"list",
+      "member":{"shape":"AttributeValue"}
+    },
+    "SliceComplement":{
+      "type":"structure",
+      "members":{
+        "Entities":{
+          "shape":"EntitiesList",
+          "documentation":"<p>Entity data that is used to make the authorization decision. For example, groups to which the principal belongs.</p>"
+        }
+      },
+      "documentation":"<p>Contains slice data that is used to make the authorization decision. The slice is the subset of policies and entity data used to evaluate a specific authorization request.</p> <p>This data type is used as a request parameter in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_IsAuthorized.html\">IsAuthorized</a> operation.</p>"
+    },
+    "String":{"type":"string"},
+    "StringAttribute":{"type":"string"},
+    "ThrottlingException":{
+      "type":"structure",
+      "required":["Message"],
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "documentation":"<p>The request was denied due to request throttling.</p>",
+      "error":{
+        "httpStatusCode":429,
+        "senderFault":true
+      },
+      "exception":true,
+      "retryable":{"throttling":true}
+    },
+    "TimestampFormat":{
+      "type":"timestamp",
+      "timestampFormat":"iso8601"
+    },
+    "ValidationException":{
+      "type":"structure",
+      "required":[
+        "Message",
+        "Reason"
+      ],
+      "members":{
+        "Fields":{
+          "shape":"ValidationExceptionFieldList",
+          "documentation":"<p>The input fails to satisfy the constraints specified by an AWS service.</p>"
+        },
+        "Message":{"shape":"String"},
+        "Reason":{
+          "shape":"ValidationExceptionReason",
+          "documentation":"<p>The input fails to satisfy the constraints specified by an AWS service.</p>"
+        }
+      },
+      "documentation":"<p>The input fails to satisfy the constraints specified by an AWS service.</p>",
+      "error":{
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ValidationExceptionField":{
+      "type":"structure",
+      "required":[
+        "Message",
+        "Name",
+        "Reason"
+      ],
+      "members":{
+        "Message":{
+          "shape":"String",
+          "documentation":"<p>The message for the input validation error.</p>"
+        },
+        "Name":{
+          "shape":"String",
+          "documentation":"<p>The name of the field that failed input validation.</p>"
+        },
+        "Reason":{
+          "shape":"ValidationExceptionFieldReason",
+          "documentation":"<p>The reason for the input validation error.</p>"
+        }
+      },
+      "documentation":"<p>A field that failed input validation.</p>"
+    },
+    "ValidationExceptionFieldList":{
+      "type":"list",
+      "member":{"shape":"ValidationExceptionField"}
+    },
+    "ValidationExceptionFieldReason":{
+      "type":"string",
+      "enum":[
+        "LengthNotValid",
+        "PatternNotValid",
+        "SyntaxNotValid",
+        "ValueNotValid",
+        "Other"
+      ]
+    },
+    "ValidationExceptionReason":{
+      "type":"string",
+      "enum":[
+        "FieldValidationFailed",
+        "UnknownOperation",
+        "CannotParse",
+        "Other"
+      ]
+    }
+  },
+  "documentation":"<p>This is the Amazon Verified Permissions API Reference. It provides descriptions, syntax, and usage examples for each of the actions and data types for the Verified Permissions service.</p> <p>Amazon Verified Permissions is a scalable, fine-grained permissions management and governance service for custom applications. Developers define and manage their application's authorization model with an intuitive policy management system. At the highest level, Verified Permissions consists of a policy language named Cedar and a hosted service for policy management and evaluation. To learn more about the Cedar policy language, see the <a href=\"https://www.cedarpolicy.com/\">Cedar Policy website</a>.</p>"
+}

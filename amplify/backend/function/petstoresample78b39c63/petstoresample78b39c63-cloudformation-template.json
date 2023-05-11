@@ -1,0 +1,223 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "{\"createdOn\":\"Linux\",\"createdBy\":\"Amplify\",\"createdWith\":\"11.0.5\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
+  "Parameters": {
+    "CloudWatchRule": {
+      "Type": "String",
+      "Default": "NONE",
+      "Description": " Schedule Expression"
+    },
+    "deploymentBucketName": {
+      "Type": "String"
+    },
+    "env": {
+      "Type": "String"
+    },
+    "s3Key": {
+      "Type": "String"
+    },
+    "authpetstoresample483a619cUserPoolId": {
+      "Type": "String"
+    },
+    "authpetstoresample483a619cAppClientIDWeb": {
+      "Type": "String"
+    }
+  },
+  "Conditions": {
+    "ShouldNotCreateEnvResources": {
+      "Fn::Equals": [
+        {
+          "Ref": "env"
+        },
+        "NONE"
+      ]
+    }
+  },
+  "Resources": {
+    "LambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Metadata": {
+        "aws:asset:path": "./src",
+        "aws:asset:property": "Code"
+      },
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": {
+            "Ref": "s3Key"
+          }
+        },
+        "Handler": "index.handler",
+        "FunctionName": {
+          "Fn::If": [
+            "ShouldNotCreateEnvResources",
+            "petstoresample78b39c63",
+            {
+              "Fn::Join": [
+                "",
+                [
+                  "petstoresample78b39c63",
+                  "-",
+                  {
+                    "Ref": "env"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        "Environment": {
+          "Variables": {
+            "ENV": {
+              "Ref": "env"
+            },
+            "REGION": {
+              "Ref": "AWS::Region"
+            },
+            "USERPOOLID": {
+              "Ref": "authpetstoresample483a619cUserPoolId"
+            },
+            "APPCLIENTID": {
+              "Ref": "authpetstoresample483a619cAppClientIDWeb"
+            },
+            "POLICYSTOREID": "ps-0b6f29ea-9893-44b7-9ff7-33df7fbe2991"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs16.x",
+        "Layers": [],
+        "Timeout": 25
+      }
+    },
+    "LambdaExecutionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "RoleName": {
+          "Fn::If": [
+            "ShouldNotCreateEnvResources",
+            "petstoresampleLambdaRolea441e384",
+            {
+              "Fn::Join": [
+                "",
+                [
+                  "petstoresampleLambdaRolea441e384",
+                  "-",
+                  {
+                    "Ref": "env"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "lambdaexecutionpolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Resource": {
+                "Fn::Sub": [
+                  "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*",
+                  {
+                    "region": {
+                      "Ref": "AWS::Region"
+                    },
+                    "account": {
+                      "Ref": "AWS::AccountId"
+                    },
+                    "lambda": {
+                      "Ref": "LambdaFunction"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "verifiedpermissions:List*",
+                "verifiedpermissions:IsAuthorized*"
+              ],
+              "Resource": "*"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "Name": {
+      "Value": {
+        "Ref": "LambdaFunction"
+      }
+    },
+    "Arn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "LambdaFunction",
+          "Arn"
+        ]
+      }
+    },
+    "Region": {
+      "Value": {
+        "Ref": "AWS::Region"
+      }
+    },
+    "LambdaExecutionRole": {
+      "Value": {
+        "Ref": "LambdaExecutionRole"
+      }
+    },
+    "LambdaExecutionRoleArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "LambdaExecutionRole",
+          "Arn"
+        ]
+      }
+    }
+  }
+}

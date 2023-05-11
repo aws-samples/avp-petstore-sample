@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "paths": {
+    "/pets": {
+      "name": "/pets",
+      "lambdaFunction": "petstoresample78b39c63",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/inventory": {
+      "name": "/inventory",
+      "lambdaFunction": "petstoresample78b39c63",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/orders": {
+      "name": "/orders",
+      "lambdaFunction": "petstoresample78b39c63",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/order/create": {
+      "name": "/order/create",
+      "lambdaFunction": "petstoresample78b39c63",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/pet/get/{petId}": {
+      "name": "/pet/get/{petId}",
+      "lambdaFunction": "petstoresample78b39c63",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/order/get/{orderNumber}": {
+      "name": "/order/get/{orderNumber}",
+      "lambdaFunction": "petstoresample78b39c63",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/pet/create": {
+      "name": "/pet/create",
+      "lambdaFunction": "petstoresample78b39c63",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/order/cancel/{orderNumber}": {
+      "name": "/order/cancel/{orderNumber}",
+      "lambdaFunction": "petstoresample78b39c63",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/pet/update/{petId}": {
+      "name": "/pet/update/{petId}",
+      "lambdaFunction": "petstoresample78b39c63",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

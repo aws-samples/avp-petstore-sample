@@ -1,0 +1,29 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-petstoresample-staging-153326-authRole",
+      "UnauthRoleArn": "arn:aws:iam::881284900522:role/amplify-petstoresample-staging-153326-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::881284900522:role/amplify-petstoresample-staging-153326-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-petstoresample-staging-153326-deployment",
+      "UnauthRoleName": "amplify-petstoresample-staging-153326-unauthRole",
+      "StackName": "amplify-petstoresample-staging-153326",
+      "StackId": "arn:aws:cloudformation:us-west-2:881284900522:stack/amplify-petstoresample-staging-153326/5cce0270-ddfe-11ed-83ea-066a8fd886d3",
+      "AmplifyAppId": "d1a33jxbev6mix"
+    },
+    "categories": {
+      "auth": {
+        "petstoresample483a619c": {}
+      },
+      "function": {
+        "petstoresample78b39c63": {
+          "deploymentBucketName": "amplify-petstoresample-staging-153326-deployment",
+          "s3Key": "amplify-builds/petstoresample78b39c63-71383636385353583133-build.zip"
+        }
+      },
+      "api": {
+        "petstoreapi": {}
+      }
+    }
+  }
+}

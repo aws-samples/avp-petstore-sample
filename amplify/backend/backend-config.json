@@ -1,0 +1,80 @@
+{
+  "api": {
+    "petstoreapi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "petstoresample78b39c63"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "auth": {
+    "petstoresample483a619c": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "petstoresample78b39c63": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb"
+          ],
+          "category": "auth",
+          "resourceName": "petstoresample483a619c"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "hosting": {},
+  "parameters": {
+    "AMPLIFY_function_petstoresample78b39c63_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "petstoresample78b39c63"
+        }
+      ]
+    },
+    "AMPLIFY_function_petstoresample78b39c63_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "petstoresample78b39c63"
+        }
+      ]
+    }
+  }
+}
