@@ -16,9 +16,18 @@ export function override(resources: AmplifyAuthCognitoStackTemplate, amplifyProj
         name: 'storeOwner',
         required: false,
     }
+    
+    const employmentStoreCode = {
+        attributeDataType: 'String',
+        developerOnlyAttribute: false,
+        mutable: true,
+        name: 'employmentStoreCode',
+        required: false,
+    }
+    
     resources.userPool.schema = [
         ...(resources.userPool.schema as any[]), // Carry over existing attributes (example: email)
-        userTypeAttribute, storeOwnerAttr
+        userTypeAttribute, storeOwnerAttr, employmentStoreCode
     ]
     
     resources.userPoolClientWeb.writeAttributes = [

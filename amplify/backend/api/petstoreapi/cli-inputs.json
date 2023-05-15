@@ -1,64 +1,64 @@
 {
   "version": 1,
   "paths": {
-    "/pets": {
-      "name": "/pets",
+    "/store/{storeId}/pets": {
+      "name": "/store/{storeId}/pets",
       "lambdaFunction": "petstoresample78b39c63",
       "permissions": {
         "setting": "open"
       }
     },
-    "/inventory": {
-      "name": "/inventory",
+    "/store/{storeId}/inventory": {
+      "name": "/store/{storeId}/inventory",
       "lambdaFunction": "petstoresample78b39c63",
       "permissions": {
         "setting": "open"
       }
     },
-    "/orders": {
-      "name": "/orders",
+    "/store/{storeId}/orders": {
+      "name": "/store/{storeId}/orders",
       "lambdaFunction": "petstoresample78b39c63",
       "permissions": {
         "setting": "open"
       }
     },
-    "/order/create": {
-      "name": "/order/create",
+    "/store/{storeId}/order/create": {
+      "name": "/store/{storeId}/order/create",
       "lambdaFunction": "petstoresample78b39c63",
       "permissions": {
         "setting": "open"
       }
     },
-    "/pet/get/{petId}": {
-      "name": "/pet/get/{petId}",
+    "/store/{storeId}/pet/get/{petId}": {
+      "name": "/store/{storeId}/pet/get/{petId}",
       "lambdaFunction": "petstoresample78b39c63",
       "permissions": {
         "setting": "open"
       }
     },
-    "/order/get/{orderNumber}": {
-      "name": "/order/get/{orderNumber}",
+    "/store/{storeId}/order/get/{orderNumber}": {
+      "name": "/store/{storeId}/order/get/{orderNumber}",
       "lambdaFunction": "petstoresample78b39c63",
       "permissions": {
         "setting": "open"
       }
     },
-    "/pet/create": {
-      "name": "/pet/create",
+    "/store/{storeId}/pet/create": {
+      "name": "/store/{storeId}/pet/create",
       "lambdaFunction": "petstoresample78b39c63",
       "permissions": {
         "setting": "open"
       }
     },
-    "/order/cancel/{orderNumber}": {
-      "name": "/order/cancel/{orderNumber}",
+    "/store/{storeId}/order/cancel/{orderNumber}": {
+      "name": "/store/{storeId}/order/cancel/{orderNumber}",
       "lambdaFunction": "petstoresample78b39c63",
       "permissions": {
         "setting": "open"
       }
     },
-    "/pet/update/{petId}": {
-      "name": "/pet/update/{petId}",
+    "/store/{storeId}/pet/update/{petId}": {
+      "name": "/store/{storeId}/pet/update/{petId}",
       "lambdaFunction": "petstoresample78b39c63",
       "permissions": {
         "setting": "open"
