@@ -17,12 +17,12 @@ import { useState } from 'react';
 import awsExports from './aws-exports';
 Amplify.configure(awsExports);
 
-let isAlertVisible, setIsAlertVisible, alertHeading, alertMessage , alertVariation;
-let petId, orderNumber, authResult;
+let isAlertVisible, setIsAlertVisible, alertHeading, alertMessage , alertVariation, isCustomerUser;
+let petId, orderNumber, authResult ='', storeId;
 
 function App({ signOut, user }) {
   [isAlertVisible, setIsAlertVisible] = useState(false);
-  
+  var roles = user.signInUserSession.idToken.payload ['cognito:groups'] || [];
   return (
       <>
       <View as="header" padding="10px" backgroundColor="var(--amplify-colors-white)">
@@ -66,31 +66,46 @@ function App({ signOut, user }) {
               <TabItem title="Action simulation">
                 <Grid templateColumns="1fr 1fr">
                   <View textAlign="left">
-                    
+                    <TextField onChange={e => storeId = e.target.value} placeholder="Pet Store Id eg. petstore-1" label="Enter Pet Store Number" /><br/>
+                        
                     <Expander type="multiple" defaultValue={['line-01','line-02','line-03','line-04','line-05','line-06','line-07','line-08']}>
   
                       <Divider orientation="horizontal" />
-                      <ExpanderItem title="Authenticated user actions" value="line-1">
-                        <Text textAlign="left" variation="info">Listing all pets is an action permitted to all authenticated users regardless of their type.</Text><br/>
-                        <Button onClick={() => getData('/pets', 'GET')}>Search Pets</Button>
-                        <Button onClick={() => getData('/pet/create', 'POST')}>Add Pet</Button>
-                        <Button onClick={() => getData('/order/create', 'POST')}>Place Order</Button>
-                      </ExpanderItem>
                       
-                      <Divider orientation="horizontal" />
-                      <ExpanderItem title="Resource owner actions" value="line-2">
-                        <Text textAlign="left" variation="info">Listing all pets is an action permitted to all authenticated users regardless of their type.</Text><br/>
-                        <TextField onChange={e => petId = e.target.value} placeholder="Pet ID, 123 for example" label="Edit pet details" outerStartComponent={<Button onClick={(e) => getData('/pet/update/'+petId, 'POST')}>Submit</Button>}/><br/>
-                        <TextField onChange={e => orderNumber = e.target.value}  placeholder="Order Number, 123 for example" label="Get order details" outerStartComponent={<Button onClick={() => getData('/order/get/'+orderNumber, 'GET')}>Submit</Button>}/><br/>
-                        <TextField onChange={e => orderNumber = e.target.value}  placeholder="Order Number, 123 for example" label="Cancel order" outerStartComponent={<Button onClick={() => getData('/order/cancel/'+orderNumber, 'POST')}>Submit</Button>}/>
-                      </ExpanderItem>
+                       
+                      { roles.includes('Customer') ? (
+                      <div>
+                        <ExpanderItem title="Customer role type actions" value="line-1">
+                          <Text textAlign="left" variation="info">Customers can search for pets, order pets and cancel orders. </Text><br/>
+                          <Button onClick={() => getData('/pets', 'GET')}>Search Pets</Button>
+                          <Button onClick={() => getData('/order/create', 'POST')}>Place Order</Button>
+                          <Button onClick={() => getData('/order/get/order-1', 'GET')}>View Order</Button>
+                        </ExpanderItem>
+                      </div>
+                      ): null}
                       
-                      <Divider orientation="horizontal" />
-                      <ExpanderItem title="Store owner actions" value="line-3">
-                        <Text textAlign="left" variation="info">Listing all pets is an action permitted to all authenticated users regardless of their type.</Text><br/>
-                        <Button onClick={() => getData('/orders', 'GET')}>List All Orders</Button>
-                        <Button onClick={() => getData('/inventory', 'GET')}>Get Inventory</Button>
+                     
+                      {roles.includes('Pet-Groomer-Role') ? (
+                      <div>
+                        <Divider orientation="horizontal" />
+                        <ExpanderItem title="Pet Groomer role actions" value="line-2">
+                          <Text textAlign="left" variation="info">Pet Groomers can add pets, edit pet details and  get order details  .</Text><br/>
+                          <Button onClick={() => getData('/pet/create', 'POST')}>Add Pet</Button>
+                          <TextField onChange={e => petId = e.target.value} placeholder="Pet ID, 123 for example" label="Edit pet details" outerStartComponent={<Button onClick={(e) => getData('/pet/update/'+petId, 'POST')}>Submit</Button>}/><br/>
+                          <TextField onChange={e => orderNumber = e.target.value}  placeholder="Order Number, 123 for example" label="Get order details" outerStartComponent={<Button onClick={() => getData('/order/get/'+orderNumber, 'GET')}>Submit</Button>}/><br/>
                       </ExpanderItem>
+                      </div>
+                      ) : null}
+                      
+                      {roles.includes('Store-Owner-Role') ? (
+                      <div>
+                        <Divider orientation="horizontal" />
+                          <ExpanderItem title="Store Owner actions" value="line-3">
+                            <Text textAlign="left" variation="info">Store Manager can get all orders and inventory of pets.</Text><br/>
+                            <Button onClick={() => getData('/orders', 'GET')}>List All Orders</Button>
+                          </ExpanderItem>
+                      </div>
+                      ): null}
                     </Expander>
                   </View>
                   
@@ -119,7 +134,7 @@ async function getData(actionPath, action) {
   authResult = "";
   setIsAlertVisible(false);
   const apiName = 'petstoreapi';
-  const path = actionPath;
+  const path = "/store/" + storeId + actionPath;
   const myInit = {
     headers:{
       Authorization: await getToken("ID")
