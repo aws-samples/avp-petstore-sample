@@ -176,7 +176,7 @@ permit (
         MyApplication::Action::"GetStoreInventory",
         MyApplication:: Action::"ListOrders"
     ],
-    resource == MyApplication::Application::"PetStore"
+    resource 
 );
 :::
 #### Update Policy Store ID for Authorizer:
@@ -220,7 +220,7 @@ action in [
 MyApplication::Action::"GetStoreInventory",
 MyApplication:: Action::"ListOrders"
 ],
-resource == MyApplication::Application::"PetStore"
+resource
 )when { principal.employmentStoreCode == resource.storeId }
 ;
 :::
