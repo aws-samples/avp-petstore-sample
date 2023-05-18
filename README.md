@@ -4,11 +4,11 @@
 2. Select the [petstoresample...] Cognito User Pool 
 3. We will need to create 3 users in order to fully test the functionality of this application and the policies for authorization in Amazon Verified Permissions
     1. First create “abhi”. This user id is required in order to test the Customer-GetOrders policy which we will cover below in the Verified Permissions section of the setup guide.
-    2. This user is hard coded as the order owner in this application for ease of this example
-    3. ![Abhi Code Snippet](static/PetStore-01.png)
-    4. You will want to define and validate the email and set a password as shown in the screenshot below
-    5. ![CUP User Creation](static/PetStore-02.png)
-    6. Next create 2 more users. Their names can be whatever you would like.
+        1. This user is hard coded as the order owner in this application for ease of this example
+        2. ![Abhi Code Snippet](static/PetStore-01.png)
+    2. You will want to define and validate the email and set a password as shown in the screenshot below
+    3. ![CUP User Creation](static/PetStore-02.png)
+    4. Next create 2 more users. Their names can be whatever you would like.
         1. After you have created the 3rd user, go back in and edit the user in order to add a custom attribute
         2. ![Custom User Attribute](static/Petstore-03.png)
         3. Click “Add Attribute” at the bottom of the menu and configure as shown below
