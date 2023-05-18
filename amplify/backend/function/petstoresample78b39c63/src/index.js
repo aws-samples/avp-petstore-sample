@@ -119,9 +119,6 @@ exports.handler = async (event) => {
               "EntityId": payload["cognito:username"]
             },
             "Attributes": {
-              "storeOwner": {
-                "Boolean": "true" == payload["custom:storeOwner"] ? true : false
-              },
               "employmentStoreCode" : {
                 "String":payload["custom:employmentStoreCode"] == null ? "":payload["custom:employmentStoreCode"] 
               }
@@ -154,7 +151,8 @@ exports.handler = async (event) => {
     //---------Prepare authorization query
     try{
        addResourceEntities(entities, actionMap[event.httpMethod + event.resource], event.pathParameters);
-       console.log (entities.Entities);
+       
+        console.log(JSON.stringify(entities));
         let authQuery = {
             PolicyStoreIdentifier: policyStoreId, 
             Principal: {"EntityType": "MyApplication::User", "EntityId": payload["cognito:username"]},
@@ -162,7 +160,7 @@ exports.handler = async (event) => {
             Resource: buildResource(actionMap[event.httpMethod + event.resource], event.pathParameters), 
             SliceComplement: entities
         };
-        console.log(authQuery);
+        console.log(JSON.stringify(authQuery));
         const authResult = await avp.isAuthorized(authQuery).promise();
         console.log(authResult);
         
@@ -172,6 +170,7 @@ exports.handler = async (event) => {
             return buildResponse(403, "You are not authorized to perform this action. " + event.httpMethod + ' ' + event.path, authResult);
         }
     }catch(err){
+        console.log(JSON.stringify(err));
         return buildResponse(403, "Error while running authorization query: "+err, {});
     }
 
