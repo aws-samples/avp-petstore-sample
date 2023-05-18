@@ -30,7 +30,7 @@
 3. You will see a page like the following, click edit in the upper left section of the page.
 4. ![Console Schema](static/PetStore-06.png)
 5. Delete the current contents, and paste in the following.
-6. :::code{showCopyAction=true showLineNumbers=true language=bash}
+6. '''
 {
     "MyApplication": {
         "actions": {
@@ -145,21 +145,21 @@
         }
     }
 }
-:::
+'''
 7. Click “save changes.”
 #### Policies:
 1. Now click on “Policies” in the left menu
 2. You will need to add the following policies
 Customer Role - Search Pets and Place Order
-:::code{showCopyAction=true showLineNumbers=true language=bash}
+'''
 permit (
     principal in MyApplication::Role::"Customer",
     action in [MyApplication::Action::"SearchPets", MyApplication::Action::"PlaceOrder"],
     resource
 );
-:::
+'''
 Customer Role - Get Order
-:::code{showCopyAction=true showLineNumbers=true language=bash}
+'''
 permit (
     principal in MyApplication::Role::"Customer",
     action in [MyApplication::Action::"GetOrder"],
@@ -167,9 +167,9 @@ permit (
 ) when {
     principal == resource.owner
 };
-:::
+'''
 Store Owner no store check
-:::code{showCopyAction=true showLineNumbers=true language=bash}
+'''
 permit (
     principal in MyApplication::Role::"Store-Owner-Role",
     action in [
@@ -178,7 +178,7 @@ permit (
     ],
     resource == MyApplication::Application::"PetStore"
 );
-:::
+'''
 #### Update Policy Store ID for Authorizer:
 1. Now navigate to the “Settings“ section along the left menu
 2. Copy the Policy Store ID, we will need this to update the env variable in the Auth Lambda for the application to match your dev environment. 
@@ -213,7 +213,7 @@ permit (
     2. Once you have tested each user and their access in the App, go back and change the Store Owner policy to match the one below in Amazon Verified Permissions.
 
 Store Owner with store check
-:::code{showCopyAction=true showLineNumbers=true language=bash}
+'''
 permit (
 principal in MyApplication::Role::"Store-Owner-Role",
 action in [
@@ -223,5 +223,5 @@ MyApplication:: Action::"ListOrders"
 resource == MyApplication::Application::"PetStore"
 )when { principal.employmentStoreCode == resource.storeId }
 ;
-:::
+'''
     1. Now when you try the application, if you put “petstore-austin” in the prompt box you will get a Deny and if you put “petstore-london” in the prompt box you will get an Allow. This is because the application is leveraging the “storeowner” attribute passed in the JWT to limit their access in accordance to the more restrictive Policy that identifies the specific store location the persona manages.
