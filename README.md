@@ -1,4 +1,4 @@
-[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/mmatouk/petstore-sample)
+[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=[https://github.com/mmatouk/petstore-sample](https://github.com/aws-samples/avp-petstore-sample))
 # Introduction
 
 # Setup Guide
@@ -30,7 +30,7 @@
 3. You will see a page like the following, click edit in the upper left section of the page.
 4. ![Console Schema](static/PetStore-06.png)
 5. Delete the current contents, and paste in the following.
-6. '''
+6. ```json
 {
     "MyApplication": {
         "actions": {
@@ -145,7 +145,7 @@
         }
     }
 }
-'''
+```
 7. Click “save changes.”
 #### Policies:
 1. Now click on “Policies” in the left menu
