@@ -1,4 +1,5 @@
 [![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/aws-samples/avp-petstore-sample)
+
 # Introduction
 
 # Setup Guide
@@ -13,9 +14,9 @@
     3. ![CUP User Creation](static/PetStore-02.png)
     4. Next create 2 more users. Their names can be whatever you would like.
         1. After you have created the 3rd user, go back in and edit the user in order to add a custom attribute
-        2. ![Custom User Attribute](static/Petstore-03.png)
+        2. ![Custom User Attribute](static/PetStore-03.png)
         3. Click “Add Attribute” at the bottom of the menu and configure as shown below
-        4. ![Attribute Name/Value](static/Petstore-04.png)
+        4. ![Attribute Name/Value](static/PetStore-04.png)
 4. Now we need to create groups and add these users to the appropriate ones.
     1. Under the groups tab in Cognito, click “create group”
     2. ![Custom Group Creation](static/PetStore-05.png)
@@ -30,7 +31,7 @@
 3. You will see a page like the following, click edit in the upper left section of the page.
 4. ![Console Schema](static/PetStore-06.png)
 5. Delete the current contents, and paste in the following.
-6. :::code{showCopyAction=true showLineNumbers=true language=bash}
+```
 {
     "MyApplication": {
         "actions": {
@@ -145,21 +146,21 @@
         }
     }
 }
-:::
+```
 7. Click “save changes.”
 #### Policies:
 1. Now click on “Policies” in the left menu
 2. You will need to add the following policies
 Customer Role - Search Pets and Place Order
-:::code{showCopyAction=true showLineNumbers=true language=bash}
+```
 permit (
     principal in MyApplication::Role::"Customer",
     action in [MyApplication::Action::"SearchPets", MyApplication::Action::"PlaceOrder"],
     resource
 );
-:::
+```
 Customer Role - Get Order
-:::code{showCopyAction=true showLineNumbers=true language=bash}
+```
 permit (
     principal in MyApplication::Role::"Customer",
     action in [MyApplication::Action::"GetOrder"],
@@ -167,9 +168,9 @@ permit (
 ) when {
     principal == resource.owner
 };
-:::
+```
 Store Owner no store check
-:::code{showCopyAction=true showLineNumbers=true language=bash}
+```
 permit (
     principal in MyApplication::Role::"Store-Owner-Role",
     action in [
@@ -178,7 +179,7 @@ permit (
     ],
     resource 
 );
-:::
+```
 #### Update Policy Store ID for Authorizer:
 1. Now navigate to the “Settings“ section along the left menu
 2. Copy the Policy Store ID, we will need this to update the env variable in the Auth Lambda for the application to match your dev environment. 
@@ -213,15 +214,14 @@ permit (
     2. Once you have tested each user and their access in the App, go back and change the Store Owner policy to match the one below in Amazon Verified Permissions.
 
 Store Owner with store check
-:::code{showCopyAction=true showLineNumbers=true language=bash}
+```
 permit (
-principal in MyApplication::Role::"Store-Owner-Role",
-action in [
-MyApplication::Action::"GetStoreInventory",
-MyApplication:: Action::"ListOrders"
-],
-resource
-)when { principal.employmentStoreCode == resource.storeId }
-;
-:::
-    1. Now when you try the application, if you put “petstore-austin” in the prompt box you will get a Deny and if you put “petstore-london” in the prompt box you will get an Allow. This is because the application is leveraging the “storeowner” attribute passed in the JWT to limit their access in accordance to the more restrictive Policy that identifies the specific store location the persona manages.
+    principal in MyApplication::Role::"Store-Owner-Role",
+    action in [
+        MyApplication::Action::"GetStoreInventory",
+        MyApplication:: Action::"ListOrders"
+    ],
+    resource)
+when { principal.employmentStoreCode == resource.storeId };
+```
+Now when you try the application, if you put “petstore-austin” in the prompt box you will get a Deny and if you put “petstore-london” in the prompt box you will get an Allow. This is because the application is leveraging the “storeowner” attribute passed in the JWT to limit their access in accordance to the more restrictive Policy that identifies the specific store location the persona manages.
