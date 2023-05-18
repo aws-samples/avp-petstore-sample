@@ -1,4 +1,5 @@
-[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=[https://github.com/mmatouk/petstore-sample](https://github.com/aws-samples/avp-petstore-sample))
+[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/aws-samples/avp-petstore-sample)
+
 # Introduction
 
 # Setup Guide
@@ -176,7 +177,7 @@ permit (
         MyApplication::Action::"GetStoreInventory",
         MyApplication:: Action::"ListOrders"
     ],
-    resource == MyApplication::Application::"PetStore"
+    resource 
 );
 ```
 #### Update Policy Store ID for Authorizer:
@@ -220,7 +221,7 @@ permit (
         MyApplication::Action::"GetStoreInventory",
         MyApplication:: Action::"ListOrders"
     ],
-    resource == MyApplication::Application::"PetStore")
+    resource)
 when { principal.employmentStoreCode == resource.storeId };
 ```
 Now when you try the application, if you put “petstore-austin” in the prompt box you will get a Deny and if you put “petstore-london” in the prompt box you will get an Allow. This is because the application is leveraging the “storeowner” attribute passed in the JWT to limit their access in accordance to the more restrictive Policy that identifies the specific store location the persona manages.
