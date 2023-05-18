@@ -30,7 +30,8 @@
 3. You will see a page like the following, click edit in the upper left section of the page.
 4. ![Console Schema](static/PetStore-06.png)
 5. Delete the current contents, and paste in the following.
-6. ```json
+6. 
+```
 {
     "MyApplication": {
         "actions": {
