@@ -1,30 +1,36 @@
 [![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/aws-samples/avp-petstore-sample)
 
 # Introduction
+This sample web application demonstrates authentication and policy-based authorization of diffrent user types to an imaginary Pet Store web app. This application uses Amazon Cognito for authentication and uses Amazon Verified Permissions for policy-based authorization, the application uses Amplify platform to accelerate deployment and provisioning of backend resources.
 
-# Setup Guide
+The first step to test this sample application is to login to your AWS console then click the link above to deploy this sample application in your AWS account using Amplify hosting. This will also create backend resources needed for the application like Amazon Cognito user pool, API Gateway project and Lambda function to simulate backend service. After successful deployment of the sample application, follow the steps below to create users, groups and authorization policies and test authorization scenarios.
+
+# Configuration Guide
 ### Cognito:
+In this section, you will create users and groups, add custom attributes to the users and assign users to their groups to simulate customer and store owner personas.
+
 1. Navigate to Amazon Cognito in the Console
 2. Select the [petstoresample...] Cognito User Pool 
 3. We will need to create 3 users in order to fully test the functionality of this application and the policies for authorization in Amazon Verified Permissions
     1. First create “abhi”. This user id is required in order to test the Customer-GetOrders policy which we will cover below in the Verified Permissions section of the setup guide.
-        1. This user is hard coded as the order owner in this application for ease of this example
-        2. ![Abhi Code Snippet](static/PetStore-01.png)
+        This user is hard coded as the order owner in this application for ease of this example
+        ![Abhi Code Snippet](static/PetStore-01.png)
     2. You will want to define and validate the email and set a password as shown in the screenshot below
-    3. ![CUP User Creation](static/PetStore-02.png)
-    4. Next create 2 more users. Their names can be whatever you would like.
+    ![CUP User Creation](static/PetStore-02.png)
+    3. Next create 2 more users. Their names can be whatever you would like.
         1. After you have created the 3rd user, go back in and edit the user in order to add a custom attribute
-        2. ![Custom User Attribute](static/PetStore-03.png)
-        3. Click “Add Attribute” at the bottom of the menu and configure as shown below
-        4. ![Attribute Name/Value](static/PetStore-04.png)
+        ![Custom User Attribute](static/PetStore-03.png)
+        2. Click “Add Attribute” at the bottom of the menu and configure as shown below
+        ![Attribute Name/Value](static/PetStore-04.png)
 4. Now we need to create groups and add these users to the appropriate ones.
     1. Under the groups tab in Cognito, click “create group”
-    2. ![Custom Group Creation](static/PetStore-05.png)
-    3. You will need to create them as shown above as these attributes that are passed in the JWT are explicitly matched by the application in order to display the appropriate UI to the user. The Authorization decisions to leverage the API calls behind the buttons are still managed by Verified Permissions (You can validate this by adding the users to these groups and using the app without putting in the appropriate AuthZ policy in Verified Permissions. You will return a Deny).
-    4. The “Customer” group needs to include “abhi” and the second user you created earlier
-    5. The “Store-Owner-Role“ group should include the 3rd user you created earlier
+    ![Custom Group Creation](static/PetStore-05.png)
+    2. You will need to create them as shown above as these attributes that are passed in the JWT are explicitly matched by the application in order to display the appropriate UI to the user. The Authorization decisions to leverage the API calls behind the buttons are still managed by Verified Permissions (You can validate this by adding the users to these groups and using the app without putting in the appropriate AuthZ policy in Verified Permissions. You will return a Deny).
+    3. The “Customer” group needs to include “abhi” and the second user you created earlier
+    4. The “Store-Owner-Role“ group should include the 3rd user you created earlier
 5. Congratulations, Cognito is now configured correctly in order to fully validate this application.
 ### Amazon Verified Permissions:
+In this section, you will create Amazon Verified Permissions policy-store, schema and policies to represent the authorization model of the application.
 #### Schema:
 1. Navigate to Amazon Verified Permissions in the Console
 2. Click on “Schema“ in the left menu
