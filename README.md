@@ -11,9 +11,26 @@ In this section, you will create users and groups, add custom attributes to the 
 1. Navigate to Amazon Cognito in the Console
 2. Select the [petstoresample...] Cognito User Pool 
 3. We will need to create 3 users in order to fully test the functionality of this application and the policies for authorization in Amazon Verified Permissions
-    1. First create “abhi”. This user id is required in order to test the Customer-GetOrders policy which we will cover below in the Verified Permissions section of the setup guide.
-        This user is hard coded as the order owner in this application for ease of this example
-        ![Abhi Code Snippet](static/PetStore-01.png)
+    1. First create “abhi”. This user id is required in order to test the Customer-GetOrders policy which we will cover below in the Verified Permissions section of the setup guide. This username is hard coded as the order owner in Lambda function code for demonestration purposes as below
+    ```
+    {
+        "Identifier": {
+            "EntityType": "MyApplication::Order", 
+            "EntityId": pathParams.orderNumber
+        },
+        "Attributes": {
+            "storeId": {
+              "String": pathParams.storeId
+            },
+            "owner" : { // Hardcoding the owner to abhi@
+                "EntityIdentifier": {
+                       "EntityType": "MyApplication::User",
+                       "EntityId": "abhi"
+                }                     
+            }
+      }
+    }
+    ``` 
     2. You will want to define and validate the email and set a password as shown in the screenshot below
     ![CUP User Creation](static/PetStore-02.png)
     3. Next create 2 more users. Their names can be whatever you would like.
