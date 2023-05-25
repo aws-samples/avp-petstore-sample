@@ -34,7 +34,7 @@ In this section, you will create users and groups, add custom attributes to the 
     To create the user, define and validate the email and set a password as shown in the screenshot below
     ![CUP User Creation](static/PetStore-02.png)
     
-    3. Similarly, create two more users with any usernames of your choice
+    2. Similarly, create two more users with any usernames of your choice
         1. Edit one of the users to indicate that they are an employee of a certain store, to do this first visit user profile by clicking on the username
         ![Custom User Attribute](static/PetStore-03.png)
         2. Click “Add Attribute” at the bottom of the screen and add the attribute and value below
@@ -47,7 +47,7 @@ In this section, you will create users and groups, add custom attributes to the 
     4. The “Store-Owner-Role“ group should include the user with employmentStoreCode attribute
 Cognito user pool now has the users and groups needed for demonestration of this application.
 ### Managing permissions in Amazon Verified Permissions:
-In this section, you will create Amazon Verified Permissions policy-store, schema and policies to represent the authorization model of the application.
+In this section, we will create Amazon Verified Permissions policy-store, schema and policies to represent the authorization model for the application.
 #### Schema:
 1. Navigate to Amazon Verified Permissions in the Console
 2. Click on “Schema“ in the left menu
