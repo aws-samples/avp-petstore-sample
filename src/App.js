@@ -61,8 +61,7 @@ function App({ signOut, user }) {
           <View padding="10px" as="div" level={1} textAlign="center" backgroundColor="var(--amplify-colors-white)" 
             width="86%" minHeight="300px" boxShadow="3px 3px 5px 6px var(--amplify-colors-neutral-60)" opacity="90">
             
-            <Tabs defaultIndex={1} >
-              <TabItem title="Authorization model">Tab 1 Content</TabItem>
+            <Tabs defaultIndex={0} >
               <TabItem title="Action simulation">
                 <Grid templateColumns="1fr 1fr">
                   <View textAlign="left">
