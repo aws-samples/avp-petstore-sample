@@ -33,6 +33,7 @@ In this section, you will create users and groups, add custom attributes to the 
     ``` 
     To create the user, define and validate the email and set a password as shown in the screenshot below
     ![CUP User Creation](static/PetStore-02.png)
+    
     3. Similarly, create two more users with any usernames of your choice
         1. Edit one of the users to indicate that they are an employee of a certain store, to do this first visit user profile by clicking on the username
         ![Custom User Attribute](static/PetStore-03.png)
