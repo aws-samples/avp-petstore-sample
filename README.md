@@ -9,9 +9,9 @@ The first step to test this sample application is to login to your AWS console t
 In this section, you will create users and groups, add custom attributes to the users and assign users to their groups to simulate customer and store owner personas.
 
 1. Navigate to Amazon Cognito in the Console
-2. Select the [petstoresample...] Cognito User Pool 
-3. We will need to create 3 users in order to fully test the functionality of this application and the policies for authorization in Amazon Verified Permissions
-    1. First create “abhi”. This user id is required in order to test the Customer-GetOrders policy which we will cover below in the Verified Permissions section of the setup guide. This username is hard coded as the order owner in Lambda function code for demonestration purposes as below
+2. Select the [petstoresample...] Cognito User Pool, navigate to the Users tab and click on Create user button
+3. We need to create 3 users to fully test the functionality of this application...
+    1. First create “abhi”. This user represents a customer with an existing order, this will be used to test Customer-GetOrders policy which we will cover later in the Verified Permissions section of the setup guide. This username is hard coded as the order owner in Lambda code for demonestration purposes as below
     ```
     {
         "Identifier": {
@@ -31,20 +31,20 @@ In this section, you will create users and groups, add custom attributes to the 
       }
     }
     ``` 
-    2. You will want to define and validate the email and set a password as shown in the screenshot below
+    To create the user, define and validate the email and set a password as shown in the screenshot below
     ![CUP User Creation](static/PetStore-02.png)
-    3. Next create 2 more users. Their names can be whatever you would like.
-        1. After you have created the 3rd user, go back in and edit the user in order to add a custom attribute
+    3. Similarly, create two more users with any usernames of your choice
+        1. Edit one of the users to indicate that they are an employee of a certain store, to do this first visit user profile by clicking on the username
         ![Custom User Attribute](static/PetStore-03.png)
-        2. Click “Add Attribute” at the bottom of the menu and configure as shown below
+        2. Click “Add Attribute” at the bottom of the screen and add the attribute and value below
         ![Attribute Name/Value](static/PetStore-04.png)
-4. Now we need to create groups and add these users to the appropriate ones.
+4. Now we need to create groups to represent customers and store-owners and add these users to the appropriate group.
     1. Under the groups tab in Cognito, click “create group”
     ![Custom Group Creation](static/PetStore-05.png)
-    2. You will need to create them as shown above as these attributes that are passed in the JWT are explicitly matched by the application in order to display the appropriate UI to the user. The Authorization decisions to leverage the API calls behind the buttons are still managed by Verified Permissions (You can validate this by adding the users to these groups and using the app without putting in the appropriate AuthZ policy in Verified Permissions. You will return a Deny).
-    3. The “Customer” group needs to include “abhi” and the second user you created earlier
-    4. The “Store-Owner-Role“ group should include the 3rd user you created earlier
-5. Congratulations, Cognito is now configured correctly in order to fully validate this application.
+    2. Group names need to be exactly as shown, these group names are part of the tokens issued by Cognito and will be used for Role-based access control (RBAC)
+    3. The “Customer” group needs to include “abhi” and one of the other users you have created (the one without employmentStoreCode attribute)
+    4. The “Store-Owner-Role“ group should include the user with employmentStoreCode attribute
+Cognito user pool now has the users and groups needed for demonestration of this application.
 ### Managing permissions in Amazon Verified Permissions:
 In this section, you will create Amazon Verified Permissions policy-store, schema and policies to represent the authorization model of the application.
 #### Schema:
