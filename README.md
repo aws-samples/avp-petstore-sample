@@ -10,7 +10,7 @@ In this section, you will create users and groups, add custom attributes to the 
 
 1. Navigate to Amazon Cognito service in the AWS Console
 2. Search for the [petstoresample...] Cognito User Pool that was created by Amplify, navigate to the Users tab and click on Create user button
-3. We need to create 3 users to fully test the functionality of this application, a customer account, a store owner account and "abhi" who is a customer with an existing order.
+3. We need to create 3 users to fully test the functionality of this application, a customer account, a store owner account and "abhi" who represents a customer with an existing order.
     1. First lets create “abhi”. This will be used to test Customer-GetOrders policy which we will cover later in the Verified Permissions section of the setup guide. This username is hard coded as the order owner in Lambda code for demonestration purposes, so you need to create the user with the exact username.
     Create the user as explained in the screenshot below
     ![CUP User Creation](static/PetStore-02.png)
@@ -155,7 +155,7 @@ In this section, we will create Amazon Verified Permissions policy-store, schema
 #### Policies:
 1. Now click on “Policies” in the left menu
 2. You will need to add the following policies
-Customer Role - Search Pets and Place Order
+Customer Role - This policy allows customers to search for pets and place orders, this is a role-based access control policy (RBAC)
 ```
 permit (
     principal in MyApplication::Role::"Customer",
@@ -163,7 +163,7 @@ permit (
     resource
 );
 ```
-Customer Role - Get Order
+Customer Role - Get Order, this policy allows customers to get details of their orders. This is an example of both role-based and attribute-based access control policy, principal must be in the role Customer and also principal has to be the owner of the order to be allowed to take the GetOrder action.
 ```
 permit (
     principal in MyApplication::Role::"Customer",
@@ -173,7 +173,7 @@ permit (
     principal == resource.owner
 };
 ```
-Store Owner no store check
+Store Owner no store check, this is a RBAC policy that allow store owners to get inventory and list of orders.
 ```
 permit (
     principal in MyApplication::Role::"Store-Owner-Role",
@@ -185,14 +185,21 @@ permit (
 );
 ```
 #### Configuring the application to use the recently created policy store:
-1. Now navigate to the “Settings“ section along the left menu
-2. Copy the Policy Store ID, we will need this to update the env variable in the Auth Lambda for the application to match your dev environment. 
-3. Navigate to the Lambda Service
-4. Select the [Petstoresample...] lamdba function and click the “configuration” tab.
+The backend lambda function uses an environment variable to reference the AVP policy-store, lambda function has been created by Amplify and has a placeholder that need to be edited to have the value of the correct policy-store.
+1. In AVP console, navigate to the “Settings“ section on the left menu
+2. Copy the Policy Store ID 
+3. Navigate to the Lambda Service console
+4. Search for and select the [Petstoresample...] lamdba function and click the “configuration” tab.
 5. ![Lambda AuthZ Update](static/PetStore-07.png)
-6. Next click on the environment variables along the left menu and edit to update the Policy Store ID to what you copied from you Verified Permissions Policy Store settings, and save.
+6. Next click on the environment variables along the left menu and edit to update the Policy Store ID to what you copied from AVP Policy Store settings, and save.
 7. Congratulations, Amazon Verified Permissions is now set and your application is ready for testing.
 ### Testing the Application:
+Petstore sample application allows a user to sign-in and take certain actions from the frontend, these actions send HTTPS requests to backend lambda function through API Gateway passing the user token as a form of authorization, backend lambda function extract information about the request, user token and the resource being accessd then create an authorization query to Amazon Verified Permissions to get a decision, based on the decision the call is allowed or denied by the backend lambda function.
+
+You can review the backend lambda code by visiting [Petstoresample...] lamdba function that was created by Amplify in your AWS account.
+
+To test the application, follow these steps:
+
 1. Navigate to AWS Amplify and click on the petstore-sample application
 2. ![Update](static/PetStore-08.png)
 3. select the link under your front end of the application in order to launch in another Tab the Application UI.
@@ -200,10 +207,10 @@ permit (
 5. You should see a login screen like the one below.
 6. ![Update](static/PetStore-10.png)
 7. First login as abhi to see the full suite of API’s. 
-    1. When you log in as a customer, you will see the “Customer role type actions“ menu. As you attempt each of the following actions, you will yield a result on the right side of the screen with a permit or deny decision from AVP and the corresponding reason. 
+    1. When you log in as a customer, you will see the “Customer role type actions“ menu. As you attempt each of the following actions, you will see authorization results on the right side of the screen with a permit or deny decision from AVP and the corresponding reason. 
     2. ![Update](static/PetStore-11.png)
     3. Select, Search Pets, and see the result on the right side. Next try Place order and view the result again.
-    4. As you select View Order, as abhi, you will yield a successful message like the one shown below, this is due to the fact that abhi is listed as the resource owner for the resource, order-1.
+    4. As you select View Order, as abhi, you will get a successful message like the one shown below, this is due to the fact that abhi is listed as the resource owner for the resource, order-1.
     5. ![Update](static/PetStore-12.png)
     6. Sign out of the abhi persona and lets move on to the next customer user.
 8.  Sign in as the 2nd Customer user.
