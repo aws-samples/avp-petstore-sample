@@ -16,11 +16,14 @@ const policyStoreId = process.env.POLICYSTOREID;
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
 exports.handler = async (event) => {
-    console.log(`EVENT: ${JSON.stringify(event)}`);
     
-    //---------Verify and decode authorization token
-    const token = event.headers["Authorization"];
-    let payload;
+
+    /**
+    Define entities structure, this represents the supplementary data to be passed to authorization engine as part of every authorization query
+    Entities list include information about users, groups, actions and relationships between these entities, this data is used to guide authorization engine
+    This is the initial list of hard-coded entities, in real-world scenarios, these entities will be combination of backend data from database, runtime data
+    from application context of environment in addition to user/groups data from user's security token.
+    */
     let entities = {
                       "Entities" : [
                         {
@@ -107,12 +110,16 @@ exports.handler = async (event) => {
                         }
                       ]
                     };
-
+    /**
+    Extract and verify authorization token, this also parses the token data payload
+    */
+    const token = event.headers["Authorization"];
+    let payload;
     try {
         payload = await jwtVerifier.verify(token);
         var groups = payload["cognito:groups"] || [];
-        console.log(groups);
-        //add user to entities
+        
+        //add user (principal information) to entities list
         var userEntity =  {
             "Identifier": {
               "EntityType": "MyApplication::User",
@@ -152,7 +159,6 @@ exports.handler = async (event) => {
     try{
        addResourceEntities(entities, actionMap[event.httpMethod + event.resource], event.pathParameters);
        
-        console.log(JSON.stringify(entities));
         let authQuery = {
             PolicyStoreIdentifier: policyStoreId, 
             Principal: {"EntityType": "MyApplication::User", "EntityId": payload["cognito:username"]},
@@ -160,7 +166,7 @@ exports.handler = async (event) => {
             Resource: buildResource(actionMap[event.httpMethod + event.resource], event.pathParameters), 
             SliceComplement: entities
         };
-        console.log(JSON.stringify(authQuery));
+
         const authResult = await avp.isAuthorized(authQuery).promise();
         console.log(authResult);
         
@@ -192,8 +198,7 @@ function addResourceEntities(entities, action, pathParams) {
             }
       }
     });
-  }
-  else if( ["GetOrder", "CancelOrder"].contains(action) ){ //order related action
+  } else if( ["GetOrder", "CancelOrder"].contains(action) ){ //order related action
     entities.Entities.push ({
         "Identifier": {
             "EntityType": "MyApplication::Order", 
@@ -203,7 +208,7 @@ function addResourceEntities(entities, action, pathParams) {
             "storeId": {
               "String": pathParams.storeId
             },
-            "owner" : {                                     // Hardcoding the owner to abhi@
+            "owner" : { // Hardcoding the owner to abhi, this is for demonestration purposes
                 "EntityIdentifier": {
                        "EntityType": "MyApplication::User",
                        "EntityId": "abhi"
