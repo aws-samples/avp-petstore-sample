@@ -222,17 +222,17 @@ To test the application, follow these steps:
     4. Sign out of the customer 2 persona and lets move on to the store owner user.
 6. Next, log in as the StoreOwner and assess your api access. Try with and without defining the petstore in the input field (options are: “petstore-london“ and “petstore-austin”).
     ![Update](static/PetStore-15.png)
-    Once you have tested each user and their access in the App, go back and change the Store Owner policy to match the one below in Amazon Verified Permissions, this change will add attribute-based access control to the store owner role to allow owners to manage only the store they own rather than any store.
+7. In the next test, we will limit store owner permissions to only the store they own, this change will add attribute-based access control to the store owner policy. Edit the store owner policy to add the condition below
 
-Store Owner with store check
-```
-permit (
-    principal in MyApplication::Role::"Store-Owner-Role",
-    action in [
-        MyApplication::Action::"GetStoreInventory",
-        MyApplication:: Action::"ListOrders"
-    ],
-    resource)
-when { principal.employmentStoreCode == resource.storeId };
-```
-Now when you try the application, if you put “petstore-austin” in the prompt box you will get a Deny and if you put “petstore-london” in the prompt box you will get an Allow. This is because the application is leveraging the “storeowner” attribute passed in the JWT to limit their access in accordance to the more restrictive Policy that identifies the specific store location the persona manages.
+    Store Owner with store check
+    ```
+    permit (
+        principal in MyApplication::Role::"Store-Owner-Role",
+        action in [
+            MyApplication::Action::"GetStoreInventory",
+            MyApplication:: Action::"ListOrders"
+        ],
+        resource)
+    when { principal.employmentStoreCode == resource.storeId };
+    ```
+    Now when you try the application, if you put “petstore-austin” in the prompt box you will get a Deny and if you put “petstore-london” in the prompt box you will get an Allow. This is because the application is leveraging the “storeowner” attribute passed in the JWT to limit their access in accordance to the more restrictive Policy that identifies the specific store location the persona manages.
