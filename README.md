@@ -201,28 +201,28 @@ You can review the backend lambda code by visiting [Petstoresample...] lamdba fu
 To test the application, follow these steps:
 
 1. Navigate to AWS Amplify and click on the petstore-sample application
-2. ![Update](static/PetStore-08.png)
-3. select the link under your front end of the application in order to launch in another Tab the Application UI.
-4. ![Update](static/PetStore-09.png)
-5. You should see a login screen like the one below.
-6. ![Update](static/PetStore-10.png)
-7. First login as abhi to see the full suite of API’s. 
+![Update](static/PetStore-08.png)
+2. select the link under your front end of the application in order to launch in another Tab the Application UI.
+![Update](static/PetStore-09.png)
+3. You should see a login screen like the one below.
+![Update](static/PetStore-10.png)
+4. First login as "abhi" 
     1. When you log in as a customer, you will see the “Customer role type actions“ menu. As you attempt each of the following actions, you will see authorization results on the right side of the screen with a permit or deny decision from AVP and the corresponding reason. 
-    2. ![Update](static/PetStore-11.png)
-    3. Select, Search Pets, and see the result on the right side. Next try Place order and view the result again.
-    4. As you select View Order, as abhi, you will get a successful message like the one shown below, this is due to the fact that abhi is listed as the resource owner for the resource, order-1.
-    5. ![Update](static/PetStore-12.png)
-    6. Sign out of the abhi persona and lets move on to the next customer user.
-8.  Sign in as the 2nd Customer user.
+    ![Update](static/PetStore-11.png)
+    2. Select, Search Pets, and see the result on the right side. Next try Place order and view the result again.
+    3. As you select View Order, as abhi, you will get a successful message like the one shown below, this is due to the fact that abhi is listed as the resource owner for the resource, order-1.
+    ![Update](static/PetStore-12.png)
+    4. Sign out of the abhi persona and lets move on to the next customer user.
+5.  Sign in as the 2nd Customer user.
     1. When you sign in, you will see the same “Customer role type actions“ menu as we did with the abhi persona.
     2. Select, Search Pets, and see the result on the right side. Next try Place order and view the result again. As before you will see a corresponding success as shown below. 
-    3. ![Update](static/PetStore-13.png)
-    4. Now as you try View Order, you will yield a failure message like the one shown below, this is due to the fact that customer user 2 is NOT listed as the resource owner for the resource, order-1.
-    5. ![Update](static/PetStore-14.png)
-    6. Sign out of the customer 2 persona and lets move on to the store owner user.
-9. Next, log in as the StoreOwner and assess your api access. Try with and without defining the petstore in the input field (options are: “petstore-london“ and “petstore-austin”).
-    1. ![Update](static/PetStore-15.png)
-    2. Once you have tested each user and their access in the App, go back and change the Store Owner policy to match the one below in Amazon Verified Permissions.
+    ![Update](static/PetStore-13.png)
+    3. Now as you try View Order, you will yield a failure message like the one shown below, this is due to the fact that customer user 2 is NOT listed as the resource owner for the resource, order-1.
+    ![Update](static/PetStore-14.png)
+    4. Sign out of the customer 2 persona and lets move on to the store owner user.
+6. Next, log in as the StoreOwner and assess your api access. Try with and without defining the petstore in the input field (options are: “petstore-london“ and “petstore-austin”).
+    ![Update](static/PetStore-15.png)
+    Once you have tested each user and their access in the App, go back and change the Store Owner policy to match the one below in Amazon Verified Permissions, this change will add attribute-based access control to the store owner role to allow owners to manage only the store they own rather than any store.
 
 Store Owner with store check
 ```
