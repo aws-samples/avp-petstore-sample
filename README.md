@@ -207,10 +207,8 @@ You can review the backend lambda code by visiting [Petstoresample...] lamdba fu
 
 1. Navigate to AWS Amplify and click on the avp-petstore-sample application
 2. Select the link under your front end of the application in order to launch in another Tab the Application UI. This opens the web application on the sign-in screen.
-![Update](static/PetStore-09.png)
 3. First, login as "abhi" who is a customer with an existing order
-    1. When you log in as a customer, you will see the “Customer role type actions“ menu. As you attempt each of the following actions, you will see authorization results on the right side of the screen with Allow or Deny decision from AVP and the corresponding reason. 
-    ![Update](static/PetStore-11.png)
+    1. When you log in as a customer, you will see the “Customer role type actions“ menu. As you attempt each of the following actions, you will see authorization results on the right side of the screen with Allow or Deny decision from AVP and the corresponding reason.
     2. Select, Search Pets, and see the result on the right side. Next try Place order and view the result again.
     3. As you select View Order, as abhi, you will get a successful message like the one shown below, this is due to the fact that abhi is listed as the resource owner for the resource, order-1.
     ![Update](static/PetStore-12.png)
