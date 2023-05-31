@@ -65,7 +65,6 @@ function App({ signOut, user }) {
               <TabItem title="Action simulation">
                 <Grid templateColumns="1fr 1fr">
                   <View textAlign="left">
-                    <TextField onChange={e => storeId = e.target.value} placeholder="Pet Store Id eg. petstore-1" label="Enter Pet Store Number" /><br/>
                         
                     <Expander type="multiple" defaultValue={['line-01','line-02','line-03','line-04','line-05','line-06','line-07','line-08']}>
   
@@ -86,6 +85,7 @@ function App({ signOut, user }) {
                      
                       {roles.includes('Pet-Groomer-Role') ? (
                       <div>
+                        <TextField onChange={e => storeId = e.target.value} placeholder="PetStore Id eg. petstore-london" label="Enter PetStore Identifier" /><br/>
                         <Divider orientation="horizontal" />
                         <ExpanderItem title="Pet Groomer role actions" value="line-2">
                           <Text textAlign="left" variation="info">Pet Groomers can add pets, edit pet details and  get order details  .</Text><br/>
