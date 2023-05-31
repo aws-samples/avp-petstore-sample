@@ -5,7 +5,7 @@ This sample web application demonstrates authentication and policy-based authori
 
 The first step to test this sample application is to login to your AWS console then click the link above to deploy this sample application in your AWS account using Amplify hosting. This will also create backend resources needed for the application like Amazon Cognito user pool, API Gateway project and Lambda function to simulate backend service. Application will go through provision, build and deploy stages and might take several minutes to complete.
 
-![Update](static/PetStore-09.png)
+![Update](static/PetStore-deploy.gif)
 
 After successful deployment of the sample application, follow the steps below to create users, groups and authorization policies and test authorization scenarios.
 
