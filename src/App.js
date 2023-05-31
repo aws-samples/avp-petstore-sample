@@ -85,7 +85,6 @@ function App({ signOut, user }) {
                      
                       {roles.includes('Pet-Groomer-Role') ? (
                       <div>
-                        <TextField onChange={e => storeId = e.target.value} placeholder="PetStore Id eg. petstore-london" label="Enter PetStore Identifier" /><br/>
                         <Divider orientation="horizontal" />
                         <ExpanderItem title="Pet Groomer role actions" value="line-2">
                           <Text textAlign="left" variation="info">Pet Groomers can add pets, edit pet details and  get order details  .</Text><br/>
@@ -99,6 +98,7 @@ function App({ signOut, user }) {
                       {roles.includes('Store-Owner-Role') ? (
                       <div>
                         <Divider orientation="horizontal" />
+                          <TextField onChange={e => storeId = e.target.value} placeholder="PetStore Id eg. petstore-london" label="Enter PetStore Identifier" /><br/>
                           <ExpanderItem title="Store Owner actions" value="line-3">
                             <Text textAlign="left" variation="info">Store Manager can get all orders and inventory of pets.</Text><br/>
                             <Button onClick={() => getData('/orders', 'GET')}>List All Orders</Button>
