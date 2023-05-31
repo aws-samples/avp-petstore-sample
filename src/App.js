@@ -68,7 +68,7 @@ function App({ signOut, user }) {
                   
                     <TextField padding="10px" onChange={e => storeId = e.target.value} placeholder="PetStore Id eg. petstore-london" label="Enter PetStore Identifier" /><br/>
                         
-                    <Expander type="multiple" defaultValue={['line-01','line-02','line-03','line-04','line-05','line-06','line-07','line-08']}>
+                    <Expander type="multiple" defaultValue={['line-1','line-2','line-3']}>
   
                       <Divider orientation="horizontal" />
                       
