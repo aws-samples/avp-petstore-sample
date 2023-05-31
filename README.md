@@ -37,8 +37,8 @@ In this section, we will create Amazon Verified Permissions policy-store, schema
 1. Navigate to Amazon Verified Permissions in the Console
 2. Click on “Schema“ in the left menu
 3. You will see a page like the following, click edit in the upper left section of the page.
-4. ![Console Schema](static/PetStore-06.png)
-5. Delete the current contents, and paste in the following.
+![Console Schema](static/PetStore-06.png)
+4. Delete the current contents, and paste in the following.
 ```
 {
     "MyApplication": {
