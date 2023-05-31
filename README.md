@@ -194,9 +194,8 @@ The backend lambda function uses an environment variable to reference the AVP po
 2. Copy the Policy Store ID 
 3. Navigate to the Lambda Service console
 4. Search for and select the [Petstoresample...] lamdba function and click the “configuration” tab.
-5. ![Lambda AuthZ Update](static/PetStore-07.png)
-6. Next click on the environment variables along the left menu and edit to update the Policy Store ID to what you copied from AVP Policy Store settings, and save.
-7. Congratulations, Amazon Verified Permissions is now set and your application is ready for testing.
+5. Next click on the environment variables along the left menu and edit to update the Policy Store ID to what you copied from AVP Policy Store settings, and save.
+6. Congratulations, Amazon Verified Permissions is now set and your application is ready for testing.
 ### Testing the Application:
 Petstore sample application allows a user to sign-in and take certain actions from the frontend, these actions send HTTPS requests to backend lambda function through API Gateway passing the user token as a form of authorization, backend lambda function extract information about the request, user token and the resource being accessd then create an authorization query to Amazon Verified Permissions to get a decision, based on the decision the call is allowed or denied by the backend lambda function.
 
@@ -204,29 +203,25 @@ You can review the backend lambda code by visiting [Petstoresample...] lamdba fu
 
 To test the application, follow these steps:
 
-1. Navigate to AWS Amplify and click on the petstore-sample application
-![Update](static/PetStore-08.png)
-2. select the link under your front end of the application in order to launch in another Tab the Application UI.
+1. Navigate to AWS Amplify and click on the avp-petstore-sample application
+2. Select the link under your front end of the application in order to launch in another Tab the Application UI. This opens the web application on the sign-in screen.
 ![Update](static/PetStore-09.png)
-3. You should see a login screen like the one below.
-![Update](static/PetStore-10.png)
-4. First login as "abhi" 
-    1. When you log in as a customer, you will see the “Customer role type actions“ menu. As you attempt each of the following actions, you will see authorization results on the right side of the screen with a permit or deny decision from AVP and the corresponding reason. 
+3. First, login as "abhi" who is a customer with an existing order
+    1. When you log in as a customer, you will see the “Customer role type actions“ menu. As you attempt each of the following actions, you will see authorization results on the right side of the screen with Allow or Deny decision from AVP and the corresponding reason. 
     ![Update](static/PetStore-11.png)
     2. Select, Search Pets, and see the result on the right side. Next try Place order and view the result again.
     3. As you select View Order, as abhi, you will get a successful message like the one shown below, this is due to the fact that abhi is listed as the resource owner for the resource, order-1.
     ![Update](static/PetStore-12.png)
     4. Sign out of the abhi persona and lets move on to the next customer user.
-5.  Sign in as the 2nd Customer user.
+4.  Sign in as the 2nd Customer user.
     1. When you sign in, you will see the same “Customer role type actions“ menu as we did with the abhi persona.
-    2. Select, Search Pets, and see the result on the right side. Next try Place order and view the result again. As before you will see a corresponding success as shown below. 
-    ![Update](static/PetStore-13.png)
-    3. Now as you try View Order, you will yield a failure message like the one shown below, this is due to the fact that customer user 2 is NOT listed as the resource owner for the resource, order-1.
+    2. Select, Search Pets, and see the result on the right side. Next try Place order and view the result again. As before you will see a corresponding success as shown below.
+    3. Now as you try View Order, you will get a Deny decision, this is due to the fact that this customer is NOT listed as the resource owner for the resource, order-1.
     ![Update](static/PetStore-14.png)
     4. Sign out of the customer 2 persona and lets move on to the store owner user.
-6. Next, log in as the StoreOwner and assess your api access. Try with and without defining the petstore in the input field (options are: “petstore-london“ and “petstore-austin”).
+5. Next, log in as the StoreOwner, try to list orders with and without defining the petstore-id in the input field (options are: “petstore-london“ and “petstore-austin”).
     ![Update](static/PetStore-15.png)
-7. In the next test, we will limit store owner permissions to only the store they own, this change will add attribute-based access control to the store owner policy. Edit the store owner policy to add the condition below
+6. In the next test, we will limit store owner permissions to only the store they own, this change will add attribute-based access control to the store owner policy. Edit the store owner policy to add the condition below
 
     Store Owner with store check
     ```
