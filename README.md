@@ -203,7 +203,7 @@ You can review the backend lambda code by visiting [Petstoresample...] lamdba fu
 
 ![Update](static/PetStore-test.gif)
 
-####To test the application after successful deployment, follow these steps:
+#### To test the application after successful deployment, follow these steps:
 
 1. Navigate to AWS Amplify and click on the avp-petstore-sample application
 2. Select the link under your front end of the application in order to launch in another Tab the Application UI. This opens the web application on the sign-in screen.
