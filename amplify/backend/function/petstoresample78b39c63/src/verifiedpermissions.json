@@ -3,246 +3,914 @@
   "metadata":{
     "apiVersion":"2021-12-01",
     "endpointPrefix":"verifiedpermissions",
-    "jsonVersion":"1.1",
-    "protocol":"rest-json",
+    "jsonVersion":"1.0",
+    "protocol":"json",
     "serviceFullName":"Amazon Verified Permissions",
-    "serviceId":"Verified Permissions",
+    "serviceId":"VerifiedPermissions",
     "signatureVersion":"v4",
     "signingName":"verifiedpermissions",
-    "uid":"verified-permissions-2021-12-01"
+    "targetPrefix":"VerifiedPermissions",
+    "uid":"verifiedpermissions-2021-12-01"
   },
   "operations":{
+    "BatchGetPoliciesAdminInternal":{
+      "name":"BatchGetPoliciesAdminInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetPoliciesAdminInternalInput"},
+      "output":{"shape":"BatchGetPoliciesAdminInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "internalonly":true
+    },
+    "BatchGetPoliciesAuthzInternal":{
+      "name":"BatchGetPoliciesAuthzInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetPoliciesAuthzInternalInput"},
+      "output":{"shape":"BatchGetPoliciesAuthzInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true,
+      "internalonly":true
+    },
+    "BatchGetPolicyStoresAdminInternal":{
+      "name":"BatchGetPolicyStoresAdminInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetPolicyStoresAdminInternalInput"},
+      "output":{"shape":"BatchGetPolicyStoresAdminInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "internalonly":true
+    },
+    "BatchGetPolicyStoresAuthzInternal":{
+      "name":"BatchGetPolicyStoresAuthzInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetPolicyStoresAuthzInternalInput"},
+      "output":{"shape":"BatchGetPolicyStoresAuthzInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true,
+      "internalonly":true
+    },
+    "BatchGetPolicyTemplatesAdminInternal":{
+      "name":"BatchGetPolicyTemplatesAdminInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetPolicyTemplatesAdminInternalInput"},
+      "output":{"shape":"BatchGetPolicyTemplatesAdminInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "internalonly":true
+    },
+    "BatchGetPolicyTemplatesAuthzInternal":{
+      "name":"BatchGetPolicyTemplatesAuthzInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetPolicyTemplatesAuthzInternalInput"},
+      "output":{"shape":"BatchGetPolicyTemplatesAuthzInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true,
+      "internalonly":true
+    },
+    "CreateIdentitySource":{
+      "name":"CreateIdentitySource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateIdentitySourceInput"},
+      "output":{"shape":"CreateIdentitySourceOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "CreatePolicy":{
       "name":"CreatePolicy",
       "http":{
         "method":"POST",
-        "requestUri":"/policy-stores/{PolicyStoreIdentifier}/policies",
-        "responseCode":200
+        "requestUri":"/"
       },
       "input":{"shape":"CreatePolicyInput"},
       "output":{"shape":"CreatePolicyOutput"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ServiceQuotaExceededException"},
-        {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
       ],
-      "documentation":"<p>Creates a policy in the specified PolicyStore.</p>",
-      "endpoint":{"hostPrefix":"admin-"},
       "idempotent":true
     },
     "CreatePolicyStore":{
       "name":"CreatePolicyStore",
       "http":{
         "method":"POST",
-        "requestUri":"/policy-stores",
-        "responseCode":200
+        "requestUri":"/"
       },
       "input":{"shape":"CreatePolicyStoreInput"},
       "output":{"shape":"CreatePolicyStoreOutput"},
       "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ServiceQuotaExceededException"},
-        {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
       ],
-      "documentation":"<p>Creates a PolicyStore. A PolicyStore is a container for policy resources.</p> <p>You can create one PolicyStore per AWS account.</p>",
-      "endpoint":{"hostPrefix":"admin-"},
+      "idempotent":true
+    },
+    "CreatePolicyTemplate":{
+      "name":"CreatePolicyTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreatePolicyTemplateInput"},
+      "output":{"shape":"CreatePolicyTemplateOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteAssociatedPolicyStoreResourcesAdminInternal":{
+      "name":"DeleteAssociatedPolicyStoreResourcesAdminInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteAssociatedPolicyStoreResourcesAdminInternalInput"},
+      "output":{"shape":"DeleteAssociatedPolicyStoreResourcesAdminInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true,
+      "internalonly":true
+    },
+    "DeleteIdentitySource":{
+      "name":"DeleteIdentitySource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteIdentitySourceInput"},
+      "output":{"shape":"DeleteIdentitySourceOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
       "idempotent":true
     },
     "DeletePolicy":{
       "name":"DeletePolicy",
       "http":{
-        "method":"DELETE",
-        "requestUri":"/policy-stores/{PolicyStoreIdentifier}/policies/{PolicyIdentifier}",
-        "responseCode":200
+        "method":"POST",
+        "requestUri":"/"
       },
       "input":{"shape":"DeletePolicyInput"},
       "output":{"shape":"DeletePolicyOutput"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
       ],
-      "documentation":"<p>Deletes the specified policy.</p> <p>If you specify a policy that does not exist, the request response will still return a successful HTTP 200 status code. If you specify a PolicyStore that does not exit, the request response will return a client error HTTP 404 status code.</p>",
-      "endpoint":{"hostPrefix":"admin-"},
       "idempotent":true
+    },
+    "DeletePolicyAuthzInternal":{
+      "name":"DeletePolicyAuthzInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeletePolicyAuthzInternalInput"},
+      "output":{"shape":"DeletePolicyAuthzInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true,
+      "internalonly":true
     },
     "DeletePolicyStore":{
       "name":"DeletePolicyStore",
       "http":{
-        "method":"DELETE",
-        "requestUri":"/policy-stores/{PolicyStoreIdentifier}",
-        "responseCode":200
+        "method":"POST",
+        "requestUri":"/"
       },
       "input":{"shape":"DeletePolicyStoreInput"},
       "output":{"shape":"DeletePolicyStoreOutput"},
       "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
       ],
-      "documentation":"<p>Deletes the specified PolicyStore.</p> <p>If you specify a PolicyStore that does not exist, the request response will still return a successful HTTP 200 status code.</p>",
-      "endpoint":{"hostPrefix":"admin-"},
       "idempotent":true
+    },
+    "DeletePolicyStore0ThisRouteShouldntExistBecauseOfSmithyRouteBug":{
+      "name":"DeletePolicyStore0ThisRouteShouldntExistBecauseOfSmithyRouteBug",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeletePolicyStore0ThisRouteShouldntExistBecauseOfSmithyRouteBugInput"},
+      "output":{"shape":"DeletePolicyStore0ThisRouteShouldntExistBecauseOfSmithyRouteBugOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true,
+      "internalonly":true
+    },
+    "DeletePolicyStoreAuthzInternal":{
+      "name":"DeletePolicyStoreAuthzInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeletePolicyStoreAuthzInternalInput"},
+      "output":{"shape":"DeletePolicyStoreAuthzInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true,
+      "internalonly":true
+    },
+    "DeletePolicyTemplate":{
+      "name":"DeletePolicyTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeletePolicyTemplateInput"},
+      "output":{"shape":"DeletePolicyTemplateOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "DeletePolicyTemplateAuthzInternal":{
+      "name":"DeletePolicyTemplateAuthzInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeletePolicyTemplateAuthzInternalInput"},
+      "output":{"shape":"DeletePolicyTemplateAuthzInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true,
+      "internalonly":true
+    },
+    "DeleteTemplateLinkedPoliciesAdminInternal":{
+      "name":"DeleteTemplateLinkedPoliciesAdminInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteTemplateLinkedPoliciesAdminInternalInput"},
+      "output":{"shape":"DeleteTemplateLinkedPoliciesAdminInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true,
+      "internalonly":true
+    },
+    "GetIdentitySource":{
+      "name":"GetIdentitySource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetIdentitySourceInput"},
+      "output":{"shape":"GetIdentitySourceOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
     },
     "GetPolicy":{
       "name":"GetPolicy",
       "http":{
-        "method":"GET",
-        "requestUri":"/policy-stores/{PolicyStoreIdentifier}/policies/{PolicyIdentifier}",
-        "responseCode":200
+        "method":"POST",
+        "requestUri":"/"
       },
       "input":{"shape":"GetPolicyInput"},
       "output":{"shape":"GetPolicyOutput"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetPolicyStore":{
+      "name":"GetPolicyStore",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetPolicyStoreInput"},
+      "output":{"shape":"GetPolicyStoreOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetPolicyStoreAdminInternal":{
+      "name":"GetPolicyStoreAdminInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetPolicyStoreAdminInternalInput"},
+      "output":{"shape":"GetPolicyStoreAdminInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
       ],
-      "documentation":"<p>Retrieves information about the specified policy, including the policy Id and the Id of the PolicyStore where the policy you want information about is stored.</p>",
-      "endpoint":{"hostPrefix":"admin-"}
+      "internalonly":true
+    },
+    "GetPolicyTemplate":{
+      "name":"GetPolicyTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetPolicyTemplateInput"},
+      "output":{"shape":"GetPolicyTemplateOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetSchema":{
+      "name":"GetSchema",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSchemaInput"},
+      "output":{"shape":"GetSchemaOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
     },
     "IsAuthorized":{
       "name":"IsAuthorized",
       "http":{
         "method":"POST",
-        "requestUri":"/policy-stores/{PolicyStoreIdentifier}/is-authorized",
-        "responseCode":200
+        "requestUri":"/"
       },
       "input":{"shape":"IsAuthorizedInput"},
       "output":{"shape":"IsAuthorizedOutput"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
       ],
-      "documentation":"<p>An API operation that makes an authorization decision using both input and preconfigured policies. All determining policies will be used to make the authorization decision.</p>",
-      "endpoint":{"hostPrefix":"authz-"},
       "idempotent":true
+    },
+    "IsAuthorizedInternal":{
+      "name":"IsAuthorizedInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"IsAuthorizedInternalInput"},
+      "output":{"shape":"IsAuthorizedInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true,
+      "internalonly":true
+    },
+    "IsAuthorizedWithToken":{
+      "name":"IsAuthorizedWithToken",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"IsAuthorizedWithTokenInput"},
+      "output":{"shape":"IsAuthorizedWithTokenOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "ListIdentitySources":{
+      "name":"ListIdentitySources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListIdentitySourcesInput"},
+      "output":{"shape":"ListIdentitySourcesOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
     },
     "ListPolicies":{
       "name":"ListPolicies",
       "http":{
         "method":"POST",
-        "requestUri":"/list/policy-stores/{PolicyStoreIdentifier}/policies",
-        "responseCode":200
+        "requestUri":"/"
       },
       "input":{"shape":"ListPoliciesInput"},
       "output":{"shape":"ListPoliciesOutput"},
       "errors":[
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
-      ],
-      "documentation":"<p>Lists all policies stored in the specified PolicyStore.</p>",
-      "endpoint":{"hostPrefix":"admin-"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
     },
     "ListPolicyStores":{
       "name":"ListPolicyStores",
       "http":{
         "method":"POST",
-        "requestUri":"/list/policy-stores",
-        "responseCode":200
+        "requestUri":"/"
       },
       "input":{"shape":"ListPolicyStoresInput"},
       "output":{"shape":"ListPolicyStoresOutput"},
       "errors":[
-        {"shape":"InternalServerException"},
-        {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListPolicyTemplates":{
+      "name":"ListPolicyTemplates",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListPolicyTemplatesInput"},
+      "output":{"shape":"ListPolicyTemplatesOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "PutPolicyAuthzInternal":{
+      "name":"PutPolicyAuthzInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutPolicyAuthzInternalInput"},
+      "output":{"shape":"PutPolicyAuthzInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
       ],
-      "documentation":"<p>Lists all PolicyStores.</p>",
-      "endpoint":{"hostPrefix":"admin-"}
+      "idempotent":true,
+      "internalonly":true
+    },
+    "PutPolicyStoreAuthzInternal":{
+      "name":"PutPolicyStoreAuthzInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutPolicyStoreAuthzInternalInput"},
+      "output":{"shape":"PutPolicyStoreAuthzInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true,
+      "internalonly":true
+    },
+    "PutPolicyTemplateAuthzInternal":{
+      "name":"PutPolicyTemplateAuthzInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutPolicyTemplateAuthzInternalInput"},
+      "output":{"shape":"PutPolicyTemplateAuthzInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true,
+      "internalonly":true
+    },
+    "PutSchema":{
+      "name":"PutSchema",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutSchemaInput"},
+      "output":{"shape":"PutSchemaOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "PutSchemaAuthzInternal":{
+      "name":"PutSchemaAuthzInternal",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutSchemaAuthzInternalInput"},
+      "output":{"shape":"PutSchemaAuthzInternalOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true,
+      "internalonly":true
+    },
+    "UpdateIdentitySource":{
+      "name":"UpdateIdentitySource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateIdentitySourceInput"},
+      "output":{"shape":"UpdateIdentitySourceOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "UpdatePolicy":{
+      "name":"UpdatePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdatePolicyInput"},
+      "output":{"shape":"UpdatePolicyOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "UpdatePolicyStore":{
+      "name":"UpdatePolicyStore",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdatePolicyStoreInput"},
+      "output":{"shape":"UpdatePolicyStoreOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "UpdatePolicyTemplate":{
+      "name":"UpdatePolicyTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdatePolicyTemplateInput"},
+      "output":{"shape":"UpdatePolicyTemplateOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
     }
   },
   "shapes":{
     "AccessDeniedException":{
       "type":"structure",
-      "required":["Message"],
+      "required":["message"],
       "members":{
-        "Message":{"shape":"String"}
-      },
-      "documentation":"<p>You don't have sufficient access to perform this action.</p>",
-      "error":{
-        "httpStatusCode":403,
-        "senderFault":true
+        "message":{"shape":"String"}
       },
       "exception":true
+    },
+    "AccountId":{
+      "type":"string",
+      "pattern":"[0-9]{1,12}"
     },
     "ActionId":{
       "type":"string",
       "max":200,
       "min":1,
-      "pattern":"^.*$"
+      "pattern":".*"
     },
     "ActionIdentifier":{
       "type":"structure",
       "required":[
-        "ActionId",
-        "ActionType"
+        "actionType",
+        "actionId"
       ],
       "members":{
-        "ActionId":{
-          "shape":"ActionId",
-          "documentation":"<p>The Id of an Action.</p>"
-        },
-        "ActionType":{
-          "shape":"ActionType",
-          "documentation":"<p>The type of an Action.</p>"
-        }
-      },
-      "documentation":"<p>Contains information about the action for which the authorization decision is made, including the action Id and action type.</p> <p>This data type is used as a request parameter in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_IsAuthorized.html\">IsAuthorized</a> operation.</p>"
+        "actionType":{"shape":"ActionType"},
+        "actionId":{"shape":"ActionId"}
+      }
     },
     "ActionType":{
       "type":"string",
       "max":200,
       "min":1,
-      "pattern":"^Action$|^.+::Action$"
+      "pattern":"Action$|^.+::Action"
     },
     "AttributeValue":{
       "type":"structure",
       "members":{
-        "Boolean":{
-          "shape":"BooleanAttribute",
-          "documentation":"<p>An attribute value of Boolean type.</p>"
-        },
-        "EntityIdentifier":{
-          "shape":"EntityIdentifier",
-          "documentation":"<p>An attribute value of EntityIdentifier type.</p>"
-        },
-        "Long":{
-          "shape":"LongAttribute",
-          "documentation":"<p>An attribute value of Long type.</p>"
-        },
-        "Record":{
-          "shape":"RecordAttribute",
-          "documentation":"<p>An attribute value of Record type.</p>"
-        },
-        "Set":{
-          "shape":"SetAttribute",
-          "documentation":"<p>An attribute value of Set type.</p>"
-        },
-        "String":{
-          "shape":"StringAttribute",
-          "documentation":"<p>An attribute value of String type.</p>"
-        }
+        "boolean":{"shape":"BooleanAttribute"},
+        "entityIdentifier":{"shape":"EntityIdentifier"},
+        "long":{"shape":"LongAttribute"},
+        "string":{"shape":"StringAttribute"},
+        "set":{"shape":"SetAttribute"},
+        "record":{"shape":"RecordAttribute"}
       },
-      "documentation":"<p>The value of an attribute.</p> <p>Contains information about the runtime context for which the authorization decision is made, including attribute values of different value types. The following attribute value types are supported:</p> <ul> <li> <p>Boolean</p> </li> <li> <p>EntityIdentifier</p> </li> <li> <p>Long</p> </li> <li> <p>Record</p> </li> <li> <p>Set</p> </li> <li> <p>String</p> </li> </ul> <p>This data type is used as a request parameter in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_IsAuthorized.html\">IsAuthorized</a> operation.</p>",
       "union":true
+    },
+    "BatchError":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"String"},
+        "identifier":{"shape":"String"},
+        "message":{"shape":"String"}
+      }
+    },
+    "BatchErrorsInternal":{
+      "type":"list",
+      "member":{"shape":"BatchError"}
+    },
+    "BatchGetPoliciesAdminInternalInput":{
+      "type":"structure",
+      "required":["policyEntries"],
+      "members":{
+        "policyEntries":{"shape":"PolicyEntriesAdminInternal"}
+      }
+    },
+    "BatchGetPoliciesAdminInternalOutput":{
+      "type":"structure",
+      "required":[
+        "policies",
+        "batchErrors"
+      ],
+      "members":{
+        "policies":{"shape":"PoliciesInternal"},
+        "batchErrors":{"shape":"BatchErrorsInternal"}
+      }
+    },
+    "BatchGetPoliciesAuthzInternalInput":{
+      "type":"structure",
+      "required":["policyEntries"],
+      "members":{
+        "policyEntries":{"shape":"PolicyEntriesAuthZInternal"}
+      }
+    },
+    "BatchGetPoliciesAuthzInternalOutput":{
+      "type":"structure",
+      "required":[
+        "policies",
+        "batchErrors"
+      ],
+      "members":{
+        "policies":{"shape":"PoliciesInternal"},
+        "batchErrors":{"shape":"BatchErrorsInternal"}
+      }
+    },
+    "BatchGetPolicyStoresAdminInternalInput":{
+      "type":"structure",
+      "required":["policyStoreEntries"],
+      "members":{
+        "policyStoreEntries":{"shape":"PolicyStoreEntriesInternal"}
+      }
+    },
+    "BatchGetPolicyStoresAdminInternalOutput":{
+      "type":"structure",
+      "required":[
+        "policyStores",
+        "batchErrors"
+      ],
+      "members":{
+        "policyStores":{"shape":"PolicyStoresInternal"},
+        "batchErrors":{"shape":"BatchErrorsInternal"}
+      }
+    },
+    "BatchGetPolicyStoresAuthzInternalInput":{
+      "type":"structure",
+      "required":["policyStoreEntries"],
+      "members":{
+        "policyStoreEntries":{"shape":"PolicyStoreEntriesInternal"}
+      }
+    },
+    "BatchGetPolicyStoresAuthzInternalOutput":{
+      "type":"structure",
+      "required":[
+        "policyStores",
+        "batchErrors"
+      ],
+      "members":{
+        "policyStores":{"shape":"PolicyStoresInternal"},
+        "batchErrors":{"shape":"BatchErrorsInternal"}
+      }
+    },
+    "BatchGetPolicyTemplatesAdminInternalInput":{
+      "type":"structure",
+      "required":["policyTemplateEntries"],
+      "members":{
+        "policyTemplateEntries":{"shape":"PolicyTemplateEntriesInternal"}
+      }
+    },
+    "BatchGetPolicyTemplatesAdminInternalOutput":{
+      "type":"structure",
+      "required":[
+        "policyTemplates",
+        "batchErrors"
+      ],
+      "members":{
+        "policyTemplates":{"shape":"PolicyTemplatesInternal"},
+        "batchErrors":{"shape":"BatchErrorsInternal"}
+      }
+    },
+    "BatchGetPolicyTemplatesAuthzInternalInput":{
+      "type":"structure",
+      "required":["policyTemplateEntries"],
+      "members":{
+        "policyTemplateEntries":{"shape":"PolicyTemplateEntriesInternal"}
+      }
+    },
+    "BatchGetPolicyTemplatesAuthzInternalOutput":{
+      "type":"structure",
+      "required":[
+        "policyTemplates",
+        "batchErrors"
+      ],
+      "members":{
+        "policyTemplates":{"shape":"PolicyTemplatesInternal"},
+        "batchErrors":{"shape":"BatchErrorsInternal"}
+      }
+    },
+    "BatchSize":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
     },
     "Boolean":{
       "type":"boolean",
@@ -252,140 +920,257 @@
       "type":"boolean",
       "box":true
     },
+    "ClientId":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":".*"
+    },
+    "ClientIds":{
+      "type":"list",
+      "member":{"shape":"ClientId"},
+      "max":1000,
+      "min":0
+    },
+    "CognitoUserPoolConfiguration":{
+      "type":"structure",
+      "required":["userPoolArn"],
+      "members":{
+        "userPoolArn":{"shape":"UserPoolArn"},
+        "clientIds":{"shape":"ClientIds"}
+      }
+    },
+    "Configuration":{
+      "type":"structure",
+      "members":{
+        "cognitoUserPoolConfiguration":{"shape":"CognitoUserPoolConfiguration"}
+      },
+      "union":true
+    },
+    "ConflictException":{
+      "type":"structure",
+      "required":[
+        "message",
+        "resources"
+      ],
+      "members":{
+        "message":{"shape":"String"},
+        "resources":{"shape":"ResourceConflictList"}
+      },
+      "exception":true
+    },
     "Context":{
       "type":"map",
       "key":{"shape":"String"},
       "value":{"shape":"AttributeValue"},
       "max":50,
-      "min":1
+      "min":0
+    },
+    "CreateIdentitySourceInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "configuration"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        },
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "configuration":{"shape":"Configuration"},
+        "principalEntityType":{"shape":"PrincipalEntityType"}
+      }
+    },
+    "CreateIdentitySourceOutput":{
+      "type":"structure",
+      "required":[
+        "createdDate",
+        "identitySourceId",
+        "lastUpdatedDate",
+        "policyStoreId"
+      ],
+      "members":{
+        "createdDate":{"shape":"TimestampFormat"},
+        "identitySourceId":{"shape":"IdentitySourceId"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"},
+        "policyStoreId":{"shape":"PolicyStoreId"}
+      }
     },
     "CreatePolicyInput":{
       "type":"structure",
       "required":[
-        "PolicyDefinition",
-        "PolicyStoreIdentifier"
+        "policyStoreId",
+        "definition"
       ],
       "members":{
-        "ClientToken":{
+        "clientToken":{
           "shape":"IdempotencyToken",
-          "documentation":"<p>The <code>ClientToken</code> is used for idempotency control. Idempotency ensures that an API request completes no more than one time. With an idempotent request, if the original request completes successfully, any subsequent retries complete successfully without performing any further actions. However, the result might contain updated information, such as the current creation status.</p> <p>To make an idempotent API request, specify a client token in the request. You shouldn't reuse the same client token for other API requests. If you retry a request that completed successfully using the same client token and the same parameters, the retry succeeds without performing any further actions. If you retry a successful request using the same client token, but one or more of the parameters are different, the retry fails with an <code>IdempotentParameterMismatch</code> error.</p>",
           "idempotencyToken":true
         },
-        "PolicyDefinition":{
-          "shape":"PolicyDefinition",
-          "documentation":"<p>The policy type and content you want to use for the new policy. The policy content is written in Cedar language. The following policy type is supported:</p> <ul> <li> <p>InlinePolicy</p> </li> </ul>"
-        },
-        "PolicyStoreIdentifier":{
-          "shape":"PolicyStoreId",
-          "documentation":"<p>The <code>PolicyStoreId</code> of the PolicyStore you want to create the policy in.</p>",
-          "location":"uri",
-          "locationName":"PolicyStoreIdentifier"
-        }
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "definition":{"shape":"PolicyDefinition"}
       }
     },
     "CreatePolicyOutput":{
       "type":"structure",
       "required":[
-        "Arn",
-        "CreatedDate",
-        "LastUpdatedDate",
-        "PolicyId",
-        "PolicyStoreId",
-        "PolicyType"
+        "policyStoreId",
+        "policyId",
+        "policyType",
+        "createdDate",
+        "lastUpdatedDate"
       ],
       "members":{
-        "Arn":{
-          "shape":"ResourceArn",
-          "documentation":"<p>The Amazon Resource Name (ARN) of the policy.</p>"
-        },
-        "CreatedDate":{
-          "shape":"TimestampFormat",
-          "documentation":"<p>The date and time the policy was created.</p>"
-        },
-        "LastUpdatedDate":{
-          "shape":"TimestampFormat",
-          "documentation":"<p>The date and time the policy was last updated.</p>"
-        },
-        "PolicyId":{
-          "shape":"PolicyId",
-          "documentation":"<p>The identifier of the created policy.</p>"
-        },
-        "PolicyStoreId":{
-          "shape":"PolicyStoreId",
-          "documentation":"<p>The identifier of the PolicyStore that the policy was created in.</p>"
-        },
-        "PolicyType":{
-          "shape":"PolicyType",
-          "documentation":"<p>The policy type of the created policy.</p>"
-        },
-        "Principal":{
-          "shape":"EntityIdentifier",
-          "documentation":"<p>The principal specified in the policy scope. This is an optional response element when the <code>Principal</code> is unspecified.</p>"
-        },
-        "Resource":{
-          "shape":"EntityIdentifier",
-          "documentation":"<p>The resource specified in the policy scope. This is an optional response element when the <code>Resource</code> is unspecified.</p>"
-        }
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyId":{"shape":"PolicyId"},
+        "policyType":{"shape":"PolicyType"},
+        "principal":{"shape":"EntityIdentifier"},
+        "resource":{"shape":"EntityIdentifier"},
+        "createdDate":{"shape":"TimestampFormat"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"}
       }
     },
     "CreatePolicyStoreInput":{
       "type":"structure",
+      "required":["validationSettings"],
       "members":{
-        "ClientToken":{
+        "clientToken":{
           "shape":"IdempotencyToken",
-          "documentation":"<p>The <code>ClientToken</code> is used for idempotency control. Idempotency ensures that an API request completes no more than one time. With an idempotent request, if the original request completes successfully, any subsequent retries complete successfully without performing any further actions. However, the result might contain updated information, such as the current creation status.</p> <p>To make an idempotent API request, specify a client token in the request. You shouldn't reuse the same client token for other API requests. If you retry a request that completed successfully using the same client token and the same parameters, the retry succeeds without performing any further actions. If you retry a successful request using the same client token, but one or more of the parameters are different, the retry fails with an <code>IdempotentParameterMismatch</code> error.</p>",
           "idempotencyToken":true
-        }
+        },
+        "validationSettings":{"shape":"ValidationSettings"}
       }
     },
     "CreatePolicyStoreOutput":{
       "type":"structure",
       "required":[
-        "Arn",
-        "CreatedDate",
-        "PolicyStoreId"
+        "policyStoreId",
+        "arn",
+        "createdDate",
+        "lastUpdatedDate"
       ],
       "members":{
-        "Arn":{
-          "shape":"ResourceArn",
-          "documentation":"<p>The Amazon Resource Name (ARN) of the PolicyStore.</p>"
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "arn":{"shape":"ResourceArn"},
+        "createdDate":{"shape":"TimestampFormat"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"}
+      }
+    },
+    "CreatePolicyTemplateInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "statement"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
         },
-        "CreatedDate":{
-          "shape":"TimestampFormat",
-          "documentation":"<p>The date and time the PolicyStore was created.</p>"
-        },
-        "PolicyStoreId":{
-          "shape":"PolicyStoreId",
-          "documentation":"<p>The identifier of the created PolicyStore.</p>"
-        }
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "description":{"shape":"PolicyTemplateDescription"},
+        "statement":{"shape":"PolicyStatement"}
+      }
+    },
+    "CreatePolicyTemplateOutput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyTemplateId",
+        "createdDate",
+        "lastUpdatedDate"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyTemplateId":{"shape":"PolicyTemplateId"},
+        "createdDate":{"shape":"TimestampFormat"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"}
       }
     },
     "Decision":{
       "type":"string",
       "enum":[
-        "Allow",
-        "Deny"
+        "ALLOW",
+        "DENY"
       ]
+    },
+    "DeleteAssociatedPolicyStoreResourcesAdminInternalInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "creatorAccountId",
+        "timeToLive"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "creatorAccountId":{"shape":"String"},
+        "timeToLive":{"shape":"Integer"},
+        "batchSize":{"shape":"BatchSize"},
+        "templateToken":{"shape":"NextToken"},
+        "policyToken":{"shape":"NextToken"}
+      }
+    },
+    "DeleteAssociatedPolicyStoreResourcesAdminInternalOutput":{
+      "type":"structure",
+      "required":[
+        "templatesDeleted",
+        "policiesDeleted",
+        "schemasDeleted"
+      ],
+      "members":{
+        "templatesDeleted":{"shape":"Integer"},
+        "policiesDeleted":{"shape":"Integer"},
+        "schemasDeleted":{"shape":"Integer"},
+        "templateToken":{"shape":"NextToken"},
+        "policyToken":{"shape":"NextToken"}
+      }
+    },
+    "DeleteIdentitySourceInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "identitySourceId"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "identitySourceId":{"shape":"IdentitySourceId"}
+      }
+    },
+    "DeleteIdentitySourceOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeletePolicyAuthzInternalInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyId",
+        "ownerAccountId"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyId":{"shape":"PolicyId"},
+        "ownerAccountId":{"shape":"AccountId"},
+        "principal":{"shape":"EntityIdentifier"},
+        "resource":{"shape":"EntityIdentifier"}
+      }
+    },
+    "DeletePolicyAuthzInternalOutput":{
+      "type":"structure",
+      "members":{
+      }
     },
     "DeletePolicyInput":{
       "type":"structure",
       "required":[
-        "PolicyIdentifier",
-        "PolicyStoreIdentifier"
+        "policyStoreId",
+        "policyId"
       ],
       "members":{
-        "PolicyIdentifier":{
-          "shape":"PolicyId",
-          "documentation":"<p>The identifier of the policy you want to delete.</p>",
-          "location":"uri",
-          "locationName":"PolicyIdentifier"
-        },
-        "PolicyStoreIdentifier":{
-          "shape":"PolicyStoreId",
-          "documentation":"<p>The identifier of the PolicyStore where the policy you want to delete is stored.</p>",
-          "location":"uri",
-          "locationName":"PolicyStoreIdentifier"
-        }
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyId":{"shape":"PolicyId"}
       }
     },
     "DeletePolicyOutput":{
@@ -393,16 +1178,39 @@
       "members":{
       }
     },
+    "DeletePolicyStore0ThisRouteShouldntExistBecauseOfSmithyRouteBugInput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeletePolicyStore0ThisRouteShouldntExistBecauseOfSmithyRouteBugOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeletePolicyStoreAuthzInternalInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "ownerAccountId",
+        "version"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "ownerAccountId":{"shape":"AccountId"},
+        "version":{"shape":"VersionNumber"}
+      }
+    },
+    "DeletePolicyStoreAuthzInternalOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeletePolicyStoreInput":{
       "type":"structure",
-      "required":["PolicyStoreIdentifier"],
+      "required":["policyStoreId"],
       "members":{
-        "PolicyStoreIdentifier":{
-          "shape":"PolicyStoreId",
-          "documentation":"<p>The identifier of the PolicyStore you want to delete.</p>",
-          "location":"uri",
-          "locationName":"PolicyStoreIdentifier"
-        }
+        "policyStoreId":{"shape":"PolicyStoreId"}
       }
     },
     "DeletePolicyStoreOutput":{
@@ -410,358 +1218,554 @@
       "members":{
       }
     },
-    "DeterminingPolicyItem":{
+    "DeletePolicyTemplateAuthzInternalInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyTemplateId",
+        "ownerAccountId",
+        "version"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyTemplateId":{"shape":"PolicyTemplateId"},
+        "ownerAccountId":{"shape":"AccountId"},
+        "version":{"shape":"VersionNumber"}
+      }
+    },
+    "DeletePolicyTemplateAuthzInternalOutput":{
       "type":"structure",
       "members":{
-        "DeterminingPolicyIdentifier":{
-          "shape":"PolicyId",
-          "documentation":"<p>The identifier of a policy that determined to an authorization decision.</p>"
-        }
-      },
-      "documentation":"<p>An item representing one of the policies that determined an authorization decision.</p> <p>This data type is used as a response parameter in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_IsAuthorized.html\">IsAuthorized</a> operation.</p>"
+      }
+    },
+    "DeletePolicyTemplateInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyTemplateId"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyTemplateId":{"shape":"PolicyTemplateId"}
+      }
+    },
+    "DeletePolicyTemplateOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteTemplateLinkedPoliciesAdminInternalInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyTemplateId",
+        "creatorAccountId"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyTemplateId":{"shape":"PolicyTemplateId"},
+        "creatorAccountId":{"shape":"String"},
+        "timeToLive":{"shape":"Integer"},
+        "batchSize":{"shape":"BatchSize"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "DeleteTemplateLinkedPoliciesAdminInternalOutput":{
+      "type":"structure",
+      "required":["recordsDeleted"],
+      "members":{
+        "recordsDeleted":{"shape":"Integer"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "DeterminingPolicyItem":{
+      "type":"structure",
+      "required":["policyId"],
+      "members":{
+        "policyId":{"shape":"PolicyId"}
+      }
     },
     "DeterminingPolicyList":{
       "type":"list",
       "member":{"shape":"DeterminingPolicyItem"}
     },
-    "EntitiesList":{
-      "type":"list",
-      "member":{"shape":"EntityItem"},
-      "max":100,
-      "min":1
+    "DiscoveryUrl":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"https://.*"
+    },
+    "EntitiesDefinition":{
+      "type":"structure",
+      "members":{
+        "entities":{"shape":"EntityList"}
+      },
+      "union":true
     },
     "EntityAttributes":{
       "type":"map",
       "key":{"shape":"String"},
       "value":{"shape":"AttributeValue"},
       "max":50,
-      "min":1
+      "min":0
     },
     "EntityId":{
       "type":"string",
       "max":200,
       "min":1,
-      "pattern":"^.*$"
+      "pattern":".*"
     },
     "EntityIdentifier":{
       "type":"structure",
       "required":[
-        "EntityId",
-        "EntityType"
+        "entityType",
+        "entityId"
       ],
       "members":{
-        "EntityId":{
-          "shape":"EntityId",
-          "documentation":"<p>The identifier of an entity.</p>"
-        },
-        "EntityType":{
-          "shape":"EntityType",
-          "documentation":"<p>The type of an entity.</p>"
-        }
-      },
-      "documentation":"<p>Contains the identifier of an entity, including the entity Id and entity type.</p> <p>This data type is used as a request parameter in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_CreatePolicy.html\">CreatePolicy</a>, <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_GetPolicy.html\">GetPolicy</a>, and <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_IsAuthorized.html\">IsAuthorized</a> operations.</p>"
+        "entityType":{"shape":"EntityType"},
+        "entityId":{"shape":"EntityId"}
+      }
     },
     "EntityItem":{
       "type":"structure",
-      "required":["Identifier"],
+      "required":["identifier"],
       "members":{
-        "Attributes":{
-          "shape":"EntityAttributes",
-          "documentation":"<p>A list of attributes for an EntityItem.</p>"
-        },
-        "Identifier":{
-          "shape":"EntityIdentifier",
-          "documentation":"<p>The identifier of an entity item.</p>"
-        },
-        "Parents":{
-          "shape":"ParentList",
-          "documentation":"<p>The parents of an entity item</p>"
-        }
-      },
-      "documentation":"<p>An item representing an entity in the list of entities sent to the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_IsAuthorized.html\">IsAuthorized</a> operation.</p>"
+        "identifier":{"shape":"EntityIdentifier"},
+        "attributes":{"shape":"EntityAttributes"},
+        "parents":{"shape":"ParentList"}
+      }
+    },
+    "EntityList":{
+      "type":"list",
+      "member":{"shape":"EntityItem"},
+      "max":100,
+      "min":0
     },
     "EntityReference":{
       "type":"structure",
       "members":{
-        "Identifier":{
-          "shape":"EntityIdentifier",
-          "documentation":"<p>The identifier, which consists of an EntityType and EntityId, of a principal or resource.</p>"
-        },
-        "Unspecified":{
-          "shape":"Boolean",
-          "documentation":"<p>Used to indicate that a principal or resource is not specified. This can be used to search for policies that are not associated with a specific principal or resource.</p>"
-        }
+        "unspecified":{"shape":"Boolean"},
+        "identifier":{"shape":"EntityIdentifier"}
       },
-      "documentation":"<p>Contains the reference to a principal or resource.</p>",
       "union":true
     },
     "EntityType":{
       "type":"string",
       "max":200,
       "min":1,
-      "pattern":"^.*$"
+      "pattern":".*"
+    },
+    "EvaluationErrorItem":{
+      "type":"structure",
+      "required":["errorDescription"],
+      "members":{
+        "errorDescription":{"shape":"String"}
+      }
     },
     "EvaluationErrorList":{
       "type":"list",
-      "member":{"shape":"EvaluationErrorListItem"}
+      "member":{"shape":"EvaluationErrorItem"}
     },
-    "EvaluationErrorListItem":{
+    "GetIdentitySourceInput":{
       "type":"structure",
+      "required":[
+        "policyStoreId",
+        "identitySourceId"
+      ],
       "members":{
-        "ErrorDescription":{
-          "shape":"String",
-          "documentation":"<p>The error description.</p>"
-        }
-      },
-      "documentation":"<p>Contains an item representing an evaluation error, including the error description.</p>"
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "identitySourceId":{"shape":"IdentitySourceId"}
+      }
+    },
+    "GetIdentitySourceOutput":{
+      "type":"structure",
+      "required":[
+        "createdDate",
+        "details",
+        "identitySourceId",
+        "lastUpdatedDate",
+        "policyStoreId",
+        "principalEntityType"
+      ],
+      "members":{
+        "createdDate":{"shape":"TimestampFormat"},
+        "details":{"shape":"IdentitySourceDetails"},
+        "identitySourceId":{"shape":"IdentitySourceId"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"},
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "principalEntityType":{"shape":"PrincipalEntityType"}
+      }
     },
     "GetPolicyInput":{
       "type":"structure",
       "required":[
-        "PolicyIdentifier",
-        "PolicyStoreIdentifier"
+        "policyStoreId",
+        "policyId"
       ],
       "members":{
-        "PolicyIdentifier":{
-          "shape":"PolicyId",
-          "documentation":"<p>The identifier of the policy you want information about.</p>",
-          "location":"uri",
-          "locationName":"PolicyIdentifier"
-        },
-        "PolicyStoreIdentifier":{
-          "shape":"PolicyStoreId",
-          "documentation":"<p>The identifier of the PolicyStore where the policy you want information about is stored.</p>",
-          "location":"uri",
-          "locationName":"PolicyStoreIdentifier"
-        }
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyId":{"shape":"PolicyId"}
       }
     },
     "GetPolicyOutput":{
       "type":"structure",
       "required":[
-        "Arn",
-        "CreatedDate",
-        "LastUpdatedDate",
-        "PolicyDefinition",
-        "PolicyId",
-        "PolicyStoreId",
-        "PolicyType"
+        "policyStoreId",
+        "policyId",
+        "policyType",
+        "definition",
+        "createdDate",
+        "lastUpdatedDate"
       ],
       "members":{
-        "Arn":{
-          "shape":"ResourceArn",
-          "documentation":"<p>The Amazon Resource Name (ARN) of the policy.</p>"
-        },
-        "CreatedDate":{
-          "shape":"TimestampFormat",
-          "documentation":"<p>The date and time the policy was created.</p>"
-        },
-        "LastUpdatedDate":{
-          "shape":"TimestampFormat",
-          "documentation":"<p>The date and time the policy was last updated.</p>"
-        },
-        "PolicyDefinition":{
-          "shape":"PolicyDefinitionDetail",
-          "documentation":"<p>The definition of the policy requested.</p>"
-        },
-        "PolicyId":{
-          "shape":"PolicyId",
-          "documentation":"<p>The identifier of the policy you want information about.</p>"
-        },
-        "PolicyStoreId":{
-          "shape":"PolicyStoreId",
-          "documentation":"<p>The identifier of the PolicyStore where the policy you want information about is stored.</p>"
-        },
-        "PolicyType":{
-          "shape":"PolicyType",
-          "documentation":"<p>The policy type of the policy.</p>"
-        },
-        "Principal":{
-          "shape":"EntityIdentifier",
-          "documentation":"<p>The principal specified in the policy. This is an optional response element when the <code>Principal</code> is unspecified.</p>"
-        },
-        "Resource":{
-          "shape":"EntityIdentifier",
-          "documentation":"<p>The resource specified in the policy. This is an optional response element when the <code>Resource</code> is unspecified.</p>"
-        }
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyId":{"shape":"PolicyId"},
+        "policyType":{"shape":"PolicyType"},
+        "principal":{"shape":"EntityIdentifier"},
+        "resource":{"shape":"EntityIdentifier"},
+        "definition":{"shape":"PolicyDefinitionDetail"},
+        "createdDate":{"shape":"TimestampFormat"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"}
+      }
+    },
+    "GetPolicyStoreAdminInternalInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "creatorAccountId"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "creatorAccountId":{"shape":"String"}
+      }
+    },
+    "GetPolicyStoreAdminInternalOutput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "arn",
+        "validationSettings",
+        "createdDate",
+        "lastUpdatedDate"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "arn":{"shape":"ResourceArn"},
+        "validationSettings":{"shape":"ValidationSettings"},
+        "createdDate":{"shape":"TimestampFormat"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"}
+      }
+    },
+    "GetPolicyStoreInput":{
+      "type":"structure",
+      "required":["policyStoreId"],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"}
+      }
+    },
+    "GetPolicyStoreOutput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "arn",
+        "validationSettings",
+        "createdDate",
+        "lastUpdatedDate"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "arn":{"shape":"ResourceArn"},
+        "validationSettings":{"shape":"ValidationSettings"},
+        "createdDate":{"shape":"TimestampFormat"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"}
+      }
+    },
+    "GetPolicyTemplateInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyTemplateId"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyTemplateId":{"shape":"PolicyTemplateId"}
+      }
+    },
+    "GetPolicyTemplateOutput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyTemplateId",
+        "statement",
+        "createdDate",
+        "lastUpdatedDate"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyTemplateId":{"shape":"PolicyTemplateId"},
+        "description":{"shape":"PolicyTemplateDescription"},
+        "statement":{"shape":"PolicyStatement"},
+        "createdDate":{"shape":"TimestampFormat"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"}
+      }
+    },
+    "GetSchemaInput":{
+      "type":"structure",
+      "required":["policyStoreId"],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"}
+      }
+    },
+    "GetSchemaOutput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "schema",
+        "createdDate",
+        "lastUpdatedDate"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "schema":{"shape":"SchemaJson"},
+        "createdDate":{"shape":"TimestampFormat"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"}
       }
     },
     "IdempotencyToken":{
       "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-]*"
+    },
+    "IdentitySourceDetails":{
+      "type":"structure",
+      "members":{
+        "clientIds":{"shape":"ClientIds"},
+        "userPoolArn":{"shape":"UserPoolArn"},
+        "discoveryUrl":{"shape":"DiscoveryUrl"},
+        "openIdIssuer":{"shape":"OpenIdIssuer"}
+      }
+    },
+    "IdentitySourceFilter":{
+      "type":"structure",
+      "members":{
+        "principalEntityType":{"shape":"PrincipalEntityType"}
+      }
+    },
+    "IdentitySourceFilters":{
+      "type":"list",
+      "member":{"shape":"IdentitySourceFilter"},
+      "max":10,
+      "min":0
+    },
+    "IdentitySourceId":{
+      "type":"string",
       "max":200,
       "min":1,
-      "pattern":"^.*$"
+      "pattern":"[a-zA-Z0-9-]*"
     },
-    "InlinePolicy":{
+    "IdentitySourceItem":{
       "type":"structure",
-      "required":["PolicyBody"],
+      "required":[
+        "createdDate",
+        "details",
+        "identitySourceId",
+        "lastUpdatedDate",
+        "policyStoreId",
+        "principalEntityType"
+      ],
       "members":{
-        "Description":{
-          "shape":"InlinePolicyDescription",
-          "documentation":"<p>A description of the inline policy.</p>"
-        },
-        "PolicyBody":{
-          "shape":"PolicyBody",
-          "documentation":"<p>The content of policy written in Cedar language.</p>"
-        }
-      },
-      "documentation":"<p>Contains information about an inline policy, including the description and policy body.</p> <p>This data type is used with top level data type <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_PolicyDefinition.html\">PolicyDefinition</a>, a request parameter in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_CreatePolicy.html\">CreatePolicy</a> operation.</p>"
+        "createdDate":{"shape":"TimestampFormat"},
+        "details":{"shape":"IdentitySourceItemDetails"},
+        "identitySourceId":{"shape":"IdentitySourceId"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"},
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "principalEntityType":{"shape":"PrincipalEntityType"}
+      }
     },
-    "InlinePolicyDescription":{
-      "type":"string",
-      "max":150,
-      "min":0,
-      "pattern":"[.  ]*"
-    },
-    "InlinePolicyDetail":{
-      "type":"structure",
-      "required":["PolicyBody"],
-      "members":{
-        "Description":{
-          "shape":"InlinePolicyDescription",
-          "documentation":"<p>The description of the inline policy.</p>"
-        },
-        "PolicyBody":{
-          "shape":"PolicyBody",
-          "documentation":"<p>The policy content of the inline policy.</p>"
-        }
-      },
-      "documentation":"<p>Contains information about an inline policy, including the description and policy body.</p>"
-    },
-    "InlinePolicyItem":{
+    "IdentitySourceItemDetails":{
       "type":"structure",
       "members":{
-        "Description":{
-          "shape":"InlinePolicyDescription",
-          "documentation":"<p>The description of the inline policy.</p>"
-        }
-      },
-      "documentation":"<p>An item in the list of inline policies returned.</p>"
+        "clientIds":{"shape":"ClientIds"},
+        "userPoolArn":{"shape":"UserPoolArn"},
+        "discoveryUrl":{"shape":"DiscoveryUrl"},
+        "openIdIssuer":{"shape":"OpenIdIssuer"}
+      }
+    },
+    "IdentitySources":{
+      "type":"list",
+      "member":{"shape":"IdentitySourceItem"}
+    },
+    "Integer":{
+      "type":"integer",
+      "box":true
     },
     "InternalServerException":{
       "type":"structure",
-      "required":["Message"],
+      "required":["message"],
       "members":{
-        "Message":{"shape":"String"}
+        "message":{"shape":"String"}
       },
-      "documentation":"<p>The request processing has failed because of an unknown error, exception, or failure.</p>",
-      "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true,
       "retryable":{"throttling":false}
     },
     "IsAuthorizedInput":{
       "type":"structure",
-      "required":["PolicyStoreIdentifier"],
+      "required":["policyStoreId"],
       "members":{
-        "Action":{
-          "shape":"ActionIdentifier",
-          "documentation":"<p>The action for which the authorization decision is made. For example, is the principal allowed to perform the action on the resource.</p>"
-        },
-        "Context":{
-          "shape":"Context",
-          "documentation":"<p>The runtime context to be used for making authorization decisions.</p>"
-        },
-        "PolicyStoreIdentifier":{
-          "shape":"PolicyStoreId",
-          "documentation":"<p>The identifier of the policy store. Policies in this policy store will be used to make an authorization decision for the input.</p>",
-          "location":"uri",
-          "locationName":"PolicyStoreIdentifier"
-        },
-        "Principal":{
-          "shape":"EntityIdentifier",
-          "documentation":"<p>The principal for which the authorization decision is made. For example, is the principal allowed to perform the action on the resource.</p>"
-        },
-        "Resource":{
-          "shape":"EntityIdentifier",
-          "documentation":"<p>The resource for which the authorization decision is made. For example, is the principal allowed to perform the action on the resource.</p>"
-        },
-        "SliceComplement":{
-          "shape":"SliceComplement",
-          "documentation":"<p>Input slice data that is used to make the authorization decision. The slice is the subset of policies and entity data used to evaluate a specific authorization request. For example, groups to which the principal belongs.</p>"
-        }
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "principal":{"shape":"EntityIdentifier"},
+        "action":{"shape":"ActionIdentifier"},
+        "resource":{"shape":"EntityIdentifier"},
+        "context":{"shape":"Context"},
+        "entities":{"shape":"EntitiesDefinition"}
+      }
+    },
+    "IsAuthorizedInternalInput":{
+      "type":"structure",
+      "required":[
+        "accountId",
+        "policyStoreId"
+      ],
+      "members":{
+        "accountId":{"shape":"AccountId"},
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "principal":{"shape":"EntityIdentifier"},
+        "action":{"shape":"ActionIdentifier"},
+        "resource":{"shape":"EntityIdentifier"},
+        "context":{"shape":"Context"},
+        "entities":{"shape":"EntitiesDefinition"}
+      }
+    },
+    "IsAuthorizedInternalOutput":{
+      "type":"structure",
+      "required":[
+        "decision",
+        "determiningPolicies",
+        "errors"
+      ],
+      "members":{
+        "decision":{"shape":"Decision"},
+        "determiningPolicies":{"shape":"DeterminingPolicyList"},
+        "errors":{"shape":"EvaluationErrorList"}
       }
     },
     "IsAuthorizedOutput":{
       "type":"structure",
+      "required":[
+        "decision",
+        "determiningPolicies",
+        "errors"
+      ],
       "members":{
-        "Decision":{
-          "shape":"Decision",
-          "documentation":"<p>An authorization decision that indicates if the authorization request should be allowed or denied.</p>"
-        },
-        "DeterminingPolicies":{
-          "shape":"DeterminingPolicyList",
-          "documentation":"<p>The list of determining policies used to make the authorization decision. For example, if there are two matching policies, where one is a forbid and the other is a permit, then the forbid policy will be the determining policy. In the case of multiple matching permit policies then there would be multiple determining policies. In the case that no policies match, and hence the response is DENY, there would be no determining policies.</p>"
-        },
-        "Errors":{
-          "shape":"EvaluationErrorList",
-          "documentation":"<p>Errors that occurred while making an authorization decision, for example, a policy references an Entity or entity Attribute that does not exist in the slice.</p>"
-        }
+        "decision":{"shape":"Decision"},
+        "determiningPolicies":{"shape":"DeterminingPolicyList"},
+        "errors":{"shape":"EvaluationErrorList"}
+      }
+    },
+    "IsAuthorizedWithTokenInput":{
+      "type":"structure",
+      "required":["policyStoreId"],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "identityToken":{"shape":"Token"},
+        "accessToken":{"shape":"Token"},
+        "action":{"shape":"ActionIdentifier"},
+        "resource":{"shape":"EntityIdentifier"},
+        "context":{"shape":"Context"},
+        "entities":{"shape":"EntitiesDefinition"}
+      }
+    },
+    "IsAuthorizedWithTokenOutput":{
+      "type":"structure",
+      "required":[
+        "decision",
+        "determiningPolicies",
+        "errors"
+      ],
+      "members":{
+        "decision":{"shape":"Decision"},
+        "determiningPolicies":{"shape":"DeterminingPolicyList"},
+        "errors":{"shape":"EvaluationErrorList"}
+      }
+    },
+    "IsPrincipalGroupPolicy":{
+      "type":"boolean",
+      "box":true
+    },
+    "ListIdentitySourcesInput":{
+      "type":"structure",
+      "required":["policyStoreId"],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"ListIdentitySourcesMaxResults"},
+        "filters":{"shape":"IdentitySourceFilters"}
+      }
+    },
+    "ListIdentitySourcesMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":200,
+      "min":1
+    },
+    "ListIdentitySourcesOutput":{
+      "type":"structure",
+      "required":["identitySources"],
+      "members":{
+        "nextToken":{"shape":"NextToken"},
+        "identitySources":{"shape":"IdentitySources"}
       }
     },
     "ListPoliciesInput":{
       "type":"structure",
-      "required":["PolicyStoreIdentifier"],
+      "required":["policyStoreId"],
       "members":{
-        "Filter":{
-          "shape":"PolicyFilter",
-          "documentation":"<p>Filter used to list policies that match a certain criteria. For example, list policies for a specific principal.</p>"
-        },
-        "MaxResults":{
-          "shape":"MaxResults",
-          "documentation":"<p>The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining paginated results can be retrieved.</p>"
-        },
-        "NextToken":{
-          "shape":"NextToken",
-          "documentation":"<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults.</p>"
-        },
-        "PolicyStoreIdentifier":{
-          "shape":"PolicyStoreId",
-          "documentation":"<p>The identifier of the PolicyStore you want to list policies from.</p>",
-          "location":"uri",
-          "locationName":"PolicyStoreIdentifier"
-        }
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"},
+        "filter":{"shape":"PolicyFilter"}
       }
     },
     "ListPoliciesOutput":{
       "type":"structure",
-      "required":["Policies"],
+      "required":["policies"],
       "members":{
-        "NextToken":{
-          "shape":"NextToken",
-          "documentation":"<p>Provides an identifier to allow retrieval of paginated results.</p>"
-        },
-        "Policies":{
-          "shape":"PolicyList",
-          "documentation":"<p>Lists all policies that are available in the specified PolicyStore.</p>"
-        }
+        "nextToken":{"shape":"NextToken"},
+        "policies":{"shape":"PolicyList"}
       }
     },
     "ListPolicyStoresInput":{
       "type":"structure",
       "members":{
-        "MaxResults":{
-          "shape":"MaxResults",
-          "documentation":"<p>The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining paginated results can be retrieved.</p>"
-        },
-        "NextToken":{
-          "shape":"NextToken",
-          "documentation":"<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults.</p>"
-        }
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
       }
     },
     "ListPolicyStoresOutput":{
       "type":"structure",
-      "required":["PolicyStores"],
+      "required":["policyStores"],
       "members":{
-        "NextToken":{
-          "shape":"NextToken",
-          "documentation":"<p>Provides an identifier to allow retrieval of paginated results.</p>"
-        },
-        "PolicyStores":{
-          "shape":"PolicyStoreList",
-          "documentation":"<p>The PolicyStores requested.</p>"
-        }
+        "nextToken":{"shape":"NextToken"},
+        "policyStores":{"shape":"PolicyStoreList"}
+      }
+    },
+    "ListPolicyTemplatesInput":{
+      "type":"structure",
+      "required":["policyStoreId"],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListPolicyTemplatesOutput":{
+      "type":"structure",
+      "required":["policyTemplates"],
+      "members":{
+        "nextToken":{"shape":"NextToken"},
+        "policyTemplates":{"shape":"PolicyTemplatesList"}
       }
     },
     "LongAttribute":{
@@ -771,14 +1775,28 @@
     "MaxResults":{
       "type":"integer",
       "box":true,
-      "max":200,
+      "max":20,
       "min":1
+    },
+    "Namespace":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":".*"
+    },
+    "NamespaceList":{
+      "type":"list",
+      "member":{"shape":"Namespace"}
     },
     "NextToken":{
       "type":"string",
       "max":8000,
       "min":1,
-      "pattern":"^[A-Za-z0-9-_\\.]*$"
+      "pattern":"[A-Za-z0-9-_=+/\\.]*"
+    },
+    "OpenIdIssuer":{
+      "type":"string",
+      "enum":["COGNITO"]
     },
     "ParentList":{
       "type":"list",
@@ -786,156 +1804,400 @@
       "max":100,
       "min":0
     },
-    "PolicyBody":{
-      "type":"string",
-      "max":100000,
-      "min":1,
-      "pattern":"[.  ]+"
+    "PoliciesInternal":{
+      "type":"list",
+      "member":{"shape":"PolicyInternal"}
     },
     "PolicyDefinition":{
       "type":"structure",
       "members":{
-        "InlinePolicy":{
-          "shape":"InlinePolicy",
-          "documentation":"<p>The inline policy.</p>"
-        }
+        "static":{"shape":"StaticPolicyDefinition"},
+        "templateLinked":{"shape":"TemplateLinkedPolicyDefinition"}
       },
-      "documentation":"<p>Contains information about the policy definition, including the policy type, description, and policy body. This is the top level data type used to create a policy. The following policy type is supported:</p> <ul> <li> <p>InlinePolicy</p> </li> </ul> <p>This data type is used as a request parameter in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_CreatePolicy.html\">CreatePolicy</a> operation.</p>",
       "union":true
     },
     "PolicyDefinitionDetail":{
       "type":"structure",
       "members":{
-        "InlinePolicy":{
-          "shape":"InlinePolicyDetail",
-          "documentation":"<p>The inline policy.</p>"
-        }
+        "static":{"shape":"StaticPolicyDefinitionDetail"},
+        "templateLinked":{"shape":"TemplateLinkedPolicyDefinitionDetail"}
       },
-      "documentation":"<p>Contains information about the policy definition, including the policy type, description, and policy body.</p>",
+      "union":true
+    },
+    "PolicyDefinitionInternal":{
+      "type":"structure",
+      "members":{
+        "static":{"shape":"StaticPolicyDefinitionInternal"},
+        "templateLinked":{"shape":"TemplateLinkedPolicyDefinitionInternal"}
+      },
       "union":true
     },
     "PolicyDefinitionItem":{
       "type":"structure",
       "members":{
-        "InlinePolicy":{
-          "shape":"InlinePolicyItem",
-          "documentation":"<p>The object that represents an InlinePolicy in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_ListPolicies.html\">ListPolicies</a> operation output. </p>"
-        }
+        "static":{"shape":"StaticPolicyDefinitionItem"},
+        "templateLinked":{"shape":"TemplateLinkedPolicyDefinitionItem"}
       },
-      "documentation":"<p>The object that represents a PolicyDefinition in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_ListPolicies.html\">ListPolicies</a> operation output.</p>",
       "union":true
+    },
+    "PolicyEntriesAdminInternal":{
+      "type":"list",
+      "member":{"shape":"PolicyEntryAdminInternal"}
+    },
+    "PolicyEntriesAuthZInternal":{
+      "type":"list",
+      "member":{"shape":"PolicyEntryAuthZInternal"}
+    },
+    "PolicyEntryAdminInternal":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyId",
+        "principal",
+        "resource",
+        "ownerAccountId"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyId":{"shape":"PolicyId"},
+        "principal":{"shape":"EntityIdentifier"},
+        "resource":{"shape":"EntityIdentifier"},
+        "ownerAccountId":{"shape":"AccountId"}
+      }
+    },
+    "PolicyEntryAuthZInternal":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyId",
+        "ownerAccountId"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyId":{"shape":"PolicyId"},
+        "principal":{"shape":"EntityIdentifier"},
+        "resource":{"shape":"EntityIdentifier"},
+        "ownerAccountId":{"shape":"AccountId"}
+      }
     },
     "PolicyFilter":{
       "type":"structure",
       "members":{
-        "Principal":{
-          "shape":"EntityReference",
-          "documentation":"<p>A filter to list policies for a principal.</p>"
-        },
-        "Resource":{
-          "shape":"EntityReference",
-          "documentation":"<p>A filter to list policies for a resource.</p>"
-        }
-      },
-      "documentation":"<p>A filter to refine policies returned in a query.</p>"
+        "principal":{"shape":"EntityReference"},
+        "resource":{"shape":"EntityReference"},
+        "policyType":{"shape":"PolicyType"},
+        "policyTemplateId":{"shape":"PolicyTemplateId"}
+      }
     },
     "PolicyId":{
       "type":"string",
       "max":200,
       "min":1,
-      "pattern":"^.*$"
+      "pattern":"[a-zA-Z0-9-]*"
+    },
+    "PolicyInternal":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyId",
+        "policyType",
+        "definition",
+        "ownerAccountId",
+        "version"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyId":{"shape":"PolicyId"},
+        "policyType":{"shape":"PolicyType"},
+        "definition":{"shape":"PolicyDefinitionInternal"},
+        "ownerAccountId":{"shape":"AccountId"},
+        "version":{"shape":"VersionNumber"}
+      }
     },
     "PolicyItem":{
       "type":"structure",
       "required":[
-        "Arn",
-        "CreatedDate",
-        "LastUpdatedDate",
-        "PolicyDefinition",
-        "PolicyId",
-        "PolicyStoreId",
-        "PolicyType"
+        "policyStoreId",
+        "policyId",
+        "policyType",
+        "definition",
+        "createdDate",
+        "lastUpdatedDate"
       ],
       "members":{
-        "Arn":{
-          "shape":"ResourceArn",
-          "documentation":"<p>The Amazon Resource Name (ARN) of the policy.</p>"
-        },
-        "CreatedDate":{
-          "shape":"TimestampFormat",
-          "documentation":"<p>The date and time the policy was created.</p>"
-        },
-        "LastUpdatedDate":{
-          "shape":"TimestampFormat",
-          "documentation":"<p>The date and time the policy was last updated.</p>"
-        },
-        "PolicyDefinition":{
-          "shape":"PolicyDefinitionItem",
-          "documentation":"<p>The policy definition of an item in the list of policies returned.</p>"
-        },
-        "PolicyId":{
-          "shape":"PolicyId",
-          "documentation":"<p>The identifier of the policy you want information about.</p>"
-        },
-        "PolicyStoreId":{
-          "shape":"PolicyStoreId",
-          "documentation":"<p>The identifier of the PolicyStore where the policy you want information about is stored.</p>"
-        },
-        "PolicyType":{
-          "shape":"PolicyType",
-          "documentation":"<p>The type of the policy, such as <code>Inline</code>.</p>"
-        },
-        "Principal":{
-          "shape":"EntityIdentifier",
-          "documentation":"<p>The prinicpal associated with the policy.</p>"
-        },
-        "Resource":{
-          "shape":"EntityIdentifier",
-          "documentation":"<p>The resource associated with the policy.</p>"
-        }
-      },
-      "documentation":"<p>An item in the list of policies returned.</p>"
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyId":{"shape":"PolicyId"},
+        "policyType":{"shape":"PolicyType"},
+        "principal":{"shape":"EntityIdentifier"},
+        "resource":{"shape":"EntityIdentifier"},
+        "definition":{"shape":"PolicyDefinitionItem"},
+        "createdDate":{"shape":"TimestampFormat"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"}
+      }
     },
     "PolicyList":{
       "type":"list",
       "member":{"shape":"PolicyItem"}
     },
+    "PolicyStatement":{
+      "type":"string",
+      "max":10000,
+      "min":1
+    },
+    "PolicyStoreEntriesInternal":{
+      "type":"list",
+      "member":{"shape":"PolicyStoreEntryInternal"}
+    },
+    "PolicyStoreEntryInternal":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "ownerAccountId"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "ownerAccountId":{"shape":"AccountId"}
+      }
+    },
     "PolicyStoreId":{
       "type":"string",
       "max":200,
       "min":1,
-      "pattern":"^.*$"
+      "pattern":"[a-zA-Z0-9-]*"
+    },
+    "PolicyStoreInternal":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "ownerAccountId",
+        "version"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "ownerAccountId":{"shape":"AccountId"},
+        "version":{"shape":"VersionNumber"}
+      }
     },
     "PolicyStoreItem":{
       "type":"structure",
       "required":[
-        "Arn",
-        "CreatedDate",
-        "PolicyStoreId"
+        "policyStoreId",
+        "arn",
+        "createdDate"
       ],
       "members":{
-        "Arn":{
-          "shape":"ResourceArn",
-          "documentation":"<p>The Amazon Resource Name (ARN) of the policy store.</p>"
-        },
-        "CreatedDate":{
-          "shape":"TimestampFormat",
-          "documentation":"<p>The date and time the policy was created.</p>"
-        },
-        "PolicyStoreId":{
-          "shape":"PolicyStoreId",
-          "documentation":"<p>The identifier of the PolicyStore where the policy you want information about is stored.</p>"
-        }
-      },
-      "documentation":"<p>An item in the list of policy stores returned.</p>"
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "arn":{"shape":"ResourceArn"},
+        "createdDate":{"shape":"TimestampFormat"}
+      }
     },
     "PolicyStoreList":{
       "type":"list",
       "member":{"shape":"PolicyStoreItem"}
     },
+    "PolicyStoresInternal":{
+      "type":"list",
+      "member":{"shape":"PolicyStoreInternal"}
+    },
+    "PolicyTemplateDescription":{
+      "type":"string",
+      "max":150,
+      "min":0
+    },
+    "PolicyTemplateEntriesInternal":{
+      "type":"list",
+      "member":{"shape":"PolicyTemplateEntryInternal"}
+    },
+    "PolicyTemplateEntryInternal":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyTemplateId",
+        "ownerAccountId"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyTemplateId":{"shape":"PolicyTemplateId"},
+        "ownerAccountId":{"shape":"AccountId"}
+      }
+    },
+    "PolicyTemplateId":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-]*"
+    },
+    "PolicyTemplateInternal":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyTemplateId",
+        "statement",
+        "ownerAccountId",
+        "version"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyTemplateId":{"shape":"PolicyTemplateId"},
+        "statement":{"shape":"PolicyStatement"},
+        "ownerAccountId":{"shape":"AccountId"},
+        "version":{"shape":"VersionNumber"}
+      }
+    },
+    "PolicyTemplateItem":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyTemplateId",
+        "createdDate",
+        "lastUpdatedDate"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyTemplateId":{"shape":"PolicyTemplateId"},
+        "description":{"shape":"PolicyTemplateDescription"},
+        "createdDate":{"shape":"TimestampFormat"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"}
+      }
+    },
+    "PolicyTemplatesInternal":{
+      "type":"list",
+      "member":{"shape":"PolicyTemplateInternal"}
+    },
+    "PolicyTemplatesList":{
+      "type":"list",
+      "member":{"shape":"PolicyTemplateItem"}
+    },
     "PolicyType":{
       "type":"string",
-      "enum":["Inline"]
+      "enum":[
+        "STATIC",
+        "TEMPLATE_LINKED"
+      ]
+    },
+    "PrincipalEntityType":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":".*"
+    },
+    "PutPolicyAuthzInternalInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "ownerAccountId",
+        "policyId",
+        "policyType",
+        "definition",
+        "version",
+        "isPrincipalGroupPolicy"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "ownerAccountId":{"shape":"AccountId"},
+        "policyId":{"shape":"PolicyId"},
+        "policyType":{"shape":"PolicyType"},
+        "definition":{"shape":"PolicyDefinitionInternal"},
+        "principal":{"shape":"EntityIdentifier"},
+        "resource":{"shape":"EntityIdentifier"},
+        "version":{"shape":"VersionNumber"},
+        "isPrincipalGroupPolicy":{"shape":"IsPrincipalGroupPolicy"}
+      }
+    },
+    "PutPolicyAuthzInternalOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutPolicyStoreAuthzInternalInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "ownerAccountId",
+        "version",
+        "validationSettings"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "ownerAccountId":{"shape":"AccountId"},
+        "version":{"shape":"VersionNumber"},
+        "validationSettings":{"shape":"ValidationSettings"}
+      }
+    },
+    "PutPolicyStoreAuthzInternalOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutPolicyTemplateAuthzInternalInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "ownerAccountId",
+        "policyTemplateId",
+        "version",
+        "statement"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "ownerAccountId":{"shape":"AccountId"},
+        "policyTemplateId":{"shape":"PolicyTemplateId"},
+        "version":{"shape":"VersionNumber"},
+        "statement":{"shape":"PolicyStatement"}
+      }
+    },
+    "PutPolicyTemplateAuthzInternalOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutSchemaAuthzInternalInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "ownerAccountId",
+        "schema",
+        "lastUpdatedDate",
+        "version"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "ownerAccountId":{"shape":"AccountId"},
+        "schema":{"shape":"SchemaJson"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"},
+        "version":{"shape":"VersionNumber"}
+      }
+    },
+    "PutSchemaAuthzInternalOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutSchemaInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "schema"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "schema":{"shape":"SchemaDefinition"}
+      }
+    },
+    "PutSchemaOutput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "namespaces",
+        "createdDate",
+        "lastUpdatedDate"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "namespaces":{"shape":"NamespaceList"},
+        "createdDate":{"shape":"TimestampFormat"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"}
+      }
     },
     "RecordAttribute":{
       "type":"map",
@@ -946,67 +2208,71 @@
       "type":"string",
       "max":2500,
       "min":1,
-      "pattern":"^arn:[^:]*:[^:]*:[^:]*:[^:]*:.*$"
+      "pattern":"arn:[^:]*:[^:]*:[^:]*:[^:]*:.*"
     },
-    "ResourceId":{
-      "type":"string",
-      "max":200,
-      "min":1,
-      "pattern":"^.*$"
+    "ResourceConflict":{
+      "type":"structure",
+      "required":[
+        "resourceId",
+        "resourceType"
+      ],
+      "members":{
+        "resourceId":{"shape":"String"},
+        "resourceType":{"shape":"ResourceType"}
+      }
+    },
+    "ResourceConflictList":{
+      "type":"list",
+      "member":{"shape":"ResourceConflict"}
     },
     "ResourceNotFoundException":{
       "type":"structure",
       "required":[
-        "Message",
-        "ResourceId",
-        "ResourceType"
+        "message",
+        "resourceId",
+        "resourceType"
       ],
       "members":{
-        "Message":{"shape":"String"},
-        "ResourceId":{
-          "shape":"ResourceId",
-          "documentation":"<p>The request references a resource that doesn't exist.</p>"
-        },
-        "ResourceType":{
-          "shape":"ResourceType",
-          "documentation":"<p>The request references a resource that doesn't exist.</p>"
-        }
-      },
-      "documentation":"<p>The request references a resource that doesn't exist.</p>",
-      "error":{
-        "httpStatusCode":404,
-        "senderFault":true
+        "message":{"shape":"String"},
+        "resourceId":{"shape":"String"},
+        "resourceType":{"shape":"ResourceType"}
       },
       "exception":true
     },
     "ResourceType":{
       "type":"string",
       "enum":[
-        "PolicyStore",
-        "Policy"
+        "IDENTITY_SOURCE",
+        "POLICY_STORE",
+        "POLICY",
+        "POLICY_TEMPLATE",
+        "SCHEMA"
       ]
+    },
+    "SchemaDefinition":{
+      "type":"structure",
+      "members":{
+        "json":{"shape":"SchemaJson"}
+      },
+      "union":true
+    },
+    "SchemaJson":{
+      "type":"string",
+      "max":10000,
+      "min":1
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
       "required":[
-        "Message",
-        "ResourceType"
+        "message",
+        "resourceType"
       ],
       "members":{
-        "Message":{"shape":"String"},
-        "ResourceId":{
-          "shape":"ResourceId",
-          "documentation":"<p>The request would cause a service quota to be exceeded.</p>"
-        },
-        "ResourceType":{
-          "shape":"ResourceType",
-          "documentation":"<p>The request would cause a service quota to be exceeded.</p>"
-        }
-      },
-      "documentation":"<p>The request would cause a service quota to be exceeded.</p>",
-      "error":{
-        "httpStatusCode":402,
-        "senderFault":true
+        "message":{"shape":"String"},
+        "resourceId":{"shape":"String"},
+        "resourceType":{"shape":"ResourceType"},
+        "serviceCode":{"shape":"String"},
+        "quotaCode":{"shape":"String"}
       },
       "exception":true
     },
@@ -1014,28 +2280,85 @@
       "type":"list",
       "member":{"shape":"AttributeValue"}
     },
-    "SliceComplement":{
+    "StaticPolicyDefinition":{
+      "type":"structure",
+      "required":["statement"],
+      "members":{
+        "description":{"shape":"StaticPolicyDescription"},
+        "statement":{"shape":"PolicyStatement"}
+      }
+    },
+    "StaticPolicyDefinitionDetail":{
+      "type":"structure",
+      "required":["statement"],
+      "members":{
+        "description":{"shape":"StaticPolicyDescription"},
+        "statement":{"shape":"PolicyStatement"}
+      }
+    },
+    "StaticPolicyDefinitionInternal":{
+      "type":"structure",
+      "required":["statement"],
+      "members":{
+        "statement":{"shape":"PolicyStatement"}
+      }
+    },
+    "StaticPolicyDefinitionItem":{
       "type":"structure",
       "members":{
-        "Entities":{
-          "shape":"EntitiesList",
-          "documentation":"<p>Entity data that is used to make the authorization decision. For example, groups to which the principal belongs.</p>"
-        }
-      },
-      "documentation":"<p>Contains slice data that is used to make the authorization decision. The slice is the subset of policies and entity data used to evaluate a specific authorization request.</p> <p>This data type is used as a request parameter in the <a href=\"https://docs.aws.amazon.com/amazon-verified-permissions/latest/APIReference/API_IsAuthorized.html\">IsAuthorized</a> operation.</p>"
+        "description":{"shape":"StaticPolicyDescription"}
+      }
+    },
+    "StaticPolicyDescription":{
+      "type":"string",
+      "max":150,
+      "min":0
     },
     "String":{"type":"string"},
     "StringAttribute":{"type":"string"},
+    "TemplateLinkedPolicyDefinition":{
+      "type":"structure",
+      "required":["policyTemplateId"],
+      "members":{
+        "policyTemplateId":{"shape":"PolicyTemplateId"},
+        "principal":{"shape":"EntityIdentifier"},
+        "resource":{"shape":"EntityIdentifier"}
+      }
+    },
+    "TemplateLinkedPolicyDefinitionDetail":{
+      "type":"structure",
+      "required":["policyTemplateId"],
+      "members":{
+        "policyTemplateId":{"shape":"PolicyTemplateId"},
+        "principal":{"shape":"EntityIdentifier"},
+        "resource":{"shape":"EntityIdentifier"}
+      }
+    },
+    "TemplateLinkedPolicyDefinitionInternal":{
+      "type":"structure",
+      "required":["policyTemplateId"],
+      "members":{
+        "policyTemplateId":{"shape":"PolicyTemplateId"},
+        "principal":{"shape":"EntityIdentifier"},
+        "resource":{"shape":"EntityIdentifier"}
+      }
+    },
+    "TemplateLinkedPolicyDefinitionItem":{
+      "type":"structure",
+      "required":["policyTemplateId"],
+      "members":{
+        "policyTemplateId":{"shape":"PolicyTemplateId"},
+        "principal":{"shape":"EntityIdentifier"},
+        "resource":{"shape":"EntityIdentifier"}
+      }
+    },
     "ThrottlingException":{
       "type":"structure",
-      "required":["Message"],
+      "required":["message"],
       "members":{
-        "Message":{"shape":"String"}
-      },
-      "documentation":"<p>The request was denied due to request throttling.</p>",
-      "error":{
-        "httpStatusCode":429,
-        "senderFault":true
+        "message":{"shape":"String"},
+        "serviceCode":{"shape":"String"},
+        "quotaCode":{"shape":"String"}
       },
       "exception":true,
       "retryable":{"throttling":true}
@@ -1044,76 +2367,205 @@
       "type":"timestamp",
       "timestampFormat":"iso8601"
     },
-    "ValidationException":{
+    "Token":{
+      "type":"string",
+      "max":131072,
+      "min":1,
+      "pattern":"[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+"
+    },
+    "UpdateCognitoUserPoolConfiguration":{
+      "type":"structure",
+      "required":["userPoolArn"],
+      "members":{
+        "userPoolArn":{"shape":"UserPoolArn"},
+        "clientIds":{"shape":"ClientIds"}
+      }
+    },
+    "UpdateConfiguration":{
+      "type":"structure",
+      "members":{
+        "cognitoUserPoolConfiguration":{"shape":"UpdateCognitoUserPoolConfiguration"}
+      },
+      "union":true
+    },
+    "UpdateIdentitySourceInput":{
       "type":"structure",
       "required":[
-        "Message",
-        "Reason"
+        "policyStoreId",
+        "identitySourceId",
+        "updateConfiguration"
       ],
       "members":{
-        "Fields":{
-          "shape":"ValidationExceptionFieldList",
-          "documentation":"<p>The input fails to satisfy the constraints specified by an AWS service.</p>"
-        },
-        "Message":{"shape":"String"},
-        "Reason":{
-          "shape":"ValidationExceptionReason",
-          "documentation":"<p>The input fails to satisfy the constraints specified by an AWS service.</p>"
-        }
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "identitySourceId":{"shape":"IdentitySourceId"},
+        "updateConfiguration":{"shape":"UpdateConfiguration"},
+        "principalEntityType":{"shape":"PrincipalEntityType"}
+      }
+    },
+    "UpdateIdentitySourceOutput":{
+      "type":"structure",
+      "required":[
+        "createdDate",
+        "identitySourceId",
+        "lastUpdatedDate",
+        "policyStoreId"
+      ],
+      "members":{
+        "createdDate":{"shape":"TimestampFormat"},
+        "identitySourceId":{"shape":"IdentitySourceId"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"},
+        "policyStoreId":{"shape":"PolicyStoreId"}
+      }
+    },
+    "UpdatePolicyDefinition":{
+      "type":"structure",
+      "members":{
+        "static":{"shape":"UpdateStaticPolicyDefinition"}
       },
-      "documentation":"<p>The input fails to satisfy the constraints specified by an AWS service.</p>",
-      "error":{
-        "httpStatusCode":400,
-        "senderFault":true
+      "union":true
+    },
+    "UpdatePolicyInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyId",
+        "definition"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyId":{"shape":"PolicyId"},
+        "definition":{"shape":"UpdatePolicyDefinition"}
+      }
+    },
+    "UpdatePolicyOutput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyId",
+        "policyType",
+        "createdDate",
+        "lastUpdatedDate"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyId":{"shape":"PolicyId"},
+        "policyType":{"shape":"PolicyType"},
+        "principal":{"shape":"EntityIdentifier"},
+        "resource":{"shape":"EntityIdentifier"},
+        "createdDate":{"shape":"TimestampFormat"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"}
+      }
+    },
+    "UpdatePolicyStoreInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "validationSettings"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "validationSettings":{"shape":"ValidationSettings"}
+      }
+    },
+    "UpdatePolicyStoreOutput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "arn",
+        "createdDate",
+        "lastUpdatedDate"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "arn":{"shape":"ResourceArn"},
+        "createdDate":{"shape":"TimestampFormat"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"}
+      }
+    },
+    "UpdatePolicyTemplateInput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyTemplateId",
+        "statement"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyTemplateId":{"shape":"PolicyTemplateId"},
+        "description":{"shape":"PolicyTemplateDescription"},
+        "statement":{"shape":"PolicyStatement"}
+      }
+    },
+    "UpdatePolicyTemplateOutput":{
+      "type":"structure",
+      "required":[
+        "policyStoreId",
+        "policyTemplateId",
+        "createdDate",
+        "lastUpdatedDate"
+      ],
+      "members":{
+        "policyStoreId":{"shape":"PolicyStoreId"},
+        "policyTemplateId":{"shape":"PolicyTemplateId"},
+        "createdDate":{"shape":"TimestampFormat"},
+        "lastUpdatedDate":{"shape":"TimestampFormat"}
+      }
+    },
+    "UpdateStaticPolicyDefinition":{
+      "type":"structure",
+      "required":["statement"],
+      "members":{
+        "description":{"shape":"StaticPolicyDescription"},
+        "statement":{"shape":"PolicyStatement"}
+      }
+    },
+    "UserPoolArn":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"arn:[a-zA-Z0-9-]+:cognito-idp:(([a-zA-Z0-9-]+:\\d{12}:userpool/[\\w-]+_[0-9a-zA-Z]+))"
+    },
+    "ValidationException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"},
+        "fieldList":{"shape":"ValidationExceptionFieldList"}
       },
       "exception":true
     },
     "ValidationExceptionField":{
       "type":"structure",
       "required":[
-        "Message",
-        "Name",
-        "Reason"
+        "path",
+        "message"
       ],
       "members":{
-        "Message":{
-          "shape":"String",
-          "documentation":"<p>The message for the input validation error.</p>"
-        },
-        "Name":{
-          "shape":"String",
-          "documentation":"<p>The name of the field that failed input validation.</p>"
-        },
-        "Reason":{
-          "shape":"ValidationExceptionFieldReason",
-          "documentation":"<p>The reason for the input validation error.</p>"
-        }
-      },
-      "documentation":"<p>A field that failed input validation.</p>"
+        "path":{"shape":"String"},
+        "message":{"shape":"String"}
+      }
     },
     "ValidationExceptionFieldList":{
       "type":"list",
       "member":{"shape":"ValidationExceptionField"}
     },
-    "ValidationExceptionFieldReason":{
+    "ValidationMode":{
       "type":"string",
       "enum":[
-        "LengthNotValid",
-        "PatternNotValid",
-        "SyntaxNotValid",
-        "ValueNotValid",
-        "Other"
+        "OFF",
+        "STRICT"
       ]
     },
-    "ValidationExceptionReason":{
-      "type":"string",
-      "enum":[
-        "FieldValidationFailed",
-        "UnknownOperation",
-        "CannotParse",
-        "Other"
-      ]
+    "ValidationSettings":{
+      "type":"structure",
+      "required":["mode"],
+      "members":{
+        "mode":{"shape":"ValidationMode"}
+      }
+    },
+    "VersionNumber":{
+      "type":"integer",
+      "box":true
     }
-  },
-  "documentation":"<p>This is the Amazon Verified Permissions API Reference. It provides descriptions, syntax, and usage examples for each of the actions and data types for the Verified Permissions service.</p> <p>Amazon Verified Permissions is a scalable, fine-grained permissions management and governance service for custom applications. Developers define and manage their application's authorization model with an intuitive policy management system. At the highest level, Verified Permissions consists of a policy language named Cedar and a hosted service for policy management and evaluation. To learn more about the Cedar policy language, see the <a href=\"https://www.cedarpolicy.com/\">Cedar Policy website</a>.</p>"
+  }
 }

@@ -25,85 +25,85 @@ exports.handler = async (event) => {
     from application context of environment in addition to user/groups data from user's security token.
     */
     let entities = {
-                      "Entities" : [
+                      "entities" : [
                         {
-                          "Identifier": {
-                            "EntityType": "MyApplication::Action",
-                            "EntityId": "AddPet"
+                          "identifier": {
+                            "entityType": "MyApplication::Action",
+                            "entityId": "AddPet"
                           }
                         },
                         {
-                          "Identifier": {
-                            "EntityType": "MyApplication::Action",
-                            "EntityId": "SearchPets"
+                          "identifier": {
+                            "entityType": "MyApplication::Action",
+                            "entityId": "SearchPets"
                           }
                         },
                         {
-                          "Identifier": {
-                            "EntityType": "MyApplication::Action",
-                            "EntityId": "PlaceOrder"
+                          "identifier": {
+                            "entityType": "MyApplication::Action",
+                            "entityId": "PlaceOrder"
                           }
                         },
                         {
-                          "Identifier": {
-                            "EntityType": "MyApplication::Action",
-                            "EntityId": "UpdatePet"
+                          "identifier": {
+                            "entityType": "MyApplication::Action",
+                            "entityId": "UpdatePet"
                           }
                         },
                         {
-                          "Identifier": {
-                            "EntityType": "MyApplication::Action",
-                            "EntityId": "DeletePet"
+                          "identifier": {
+                            "entityType": "MyApplication::Action",
+                            "entityId": "DeletePet"
                           }
                         },
                         {
-                          "Identifier": {
-                            "EntityType": "MyApplication::Action",
-                            "EntityId": "GetOrder"
+                          "identifier": {
+                            "entityType": "MyApplication::Action",
+                            "entityId": "GetOrder"
                           }
                         },
                         {
-                          "Identifier": {
-                            "EntityType": "MyApplication::Action",
-                            "EntityId": "CancelOrder"
+                          "identifier": {
+                            "entityType": "MyApplication::Action",
+                            "entityId": "CancelOrder"
                           }
                         },
                         {
-                          "Identifier": {
-                            "EntityType": "MyApplication::Action",
-                            "EntityId": "ListOrders"
+                          "identifier": {
+                            "entityType": "MyApplication::Action",
+                            "entityId": "ListOrders"
                           }
                         },
                         {
-                          "Identifier": {
-                            "EntityType": "MyApplication::Action",
-                            "EntityId": "GetStoreInventory"
+                          "identifier": {
+                            "entityType": "MyApplication::Action",
+                            "entityId": "GetStoreInventory"
                           }
                         },
                         {
-                          "Identifier": {
-                            "EntityType": "MyApplication::Pet",
-                            "EntityId": "123"
+                          "identifier": {
+                            "entityType": "MyApplication::Pet",
+                            "entityId": "123"
                           },
-                          "Attributes": {
+                          "attributes": {
                             "owner": {
-                              "EntityIdentifier": {
-                                  "EntityType": "MyApplication::User",
-                                  "EntityId": "customer"
+                              "entityIdentifier": {
+                                  "entityType": "MyApplication::User",
+                                  "entityId": "customer"
                               }
                             }
                           }
                         },
                         {
-                          "Identifier": {
-                            "EntityType": "Order",
-                            "EntityId": "123"
+                          "identifier": {
+                            "entityType": "Order",
+                            "entityId": "123"
                           },
-                          "Attributes": {
+                          "attributes": {
                             "owner": {
-                              "EntityIdentifier": {
-                                  "EntityType": "MyApplication::User",
-                                  "EntityId": "customer"
+                              "entityIdentifier": {
+                                  "entityType": "MyApplication::User",
+                                  "entityId": "customer"
                               }
                             }
                           }
@@ -121,35 +121,35 @@ exports.handler = async (event) => {
         
         //add user (principal information) to entities list
         var userEntity =  {
-            "Identifier": {
-              "EntityType": "MyApplication::User",
-              "EntityId": payload["cognito:username"]
+            "identifier": {
+              "entityType": "MyApplication::User",
+              "entityId": payload["cognito:username"]
             },
-            "Attributes": {
+            "attributes": {
               "employmentStoreCode" : {
-                "String":payload["custom:employmentStoreCode"] == null ? "":payload["custom:employmentStoreCode"] 
+                "string":payload["custom:employmentStoreCode"] == null ? "":payload["custom:employmentStoreCode"] 
               }
             },
-            "Parents": []
+            "parents": []
           }
         
         groups.forEach((group) => {
-          entities.Entities.push(
+          entities.entities.push(
             {
-              "Identifier": {
-                "EntityType": "MyApplication::Role",
-                "EntityId": group
+              "identifier": {
+                "entityType": "MyApplication::Role",
+                "entityId": group
               }
             }
           );
-          userEntity.Parents.push (
+          userEntity.parents.push (
             {
-                "EntityType": "MyApplication::Role",
-                "EntityId": group
+                "entityType": "MyApplication::Role",
+                "entityId": group
             }
           );
         });
-        entities.Entities.push(userEntity);
+        entities.entities.push(userEntity);
     } catch(err) {
         console.log(err)
         return buildResponse(403, "Error while verifying token: "+err);
@@ -160,17 +160,19 @@ exports.handler = async (event) => {
        addResourceEntities(entities, actionMap[event.httpMethod + event.resource], event.pathParameters);
        
         let authQuery = {
-            PolicyStoreIdentifier: policyStoreId, 
-            Principal: {"EntityType": "MyApplication::User", "EntityId": payload["cognito:username"]},
-            Action: {"ActionType": "MyApplication::Action", "ActionId": actionMap[event.httpMethod + event.resource]},
-            Resource: buildResource(actionMap[event.httpMethod + event.resource], event.pathParameters), 
-            SliceComplement: entities
+            policyStoreId: policyStoreId, 
+            principal: {"entityType": "MyApplication::User", "entityId": payload["cognito:username"]},
+            action: {"actionType": "MyApplication::Action", "actionId": actionMap[event.httpMethod + event.resource]},
+            resource: buildResource(actionMap[event.httpMethod + event.resource], event.pathParameters), 
+            entities: entities
         };
-
+        
+        console.log(authQuery);
+        
         const authResult = await avp.isAuthorized(authQuery).promise();
         console.log(authResult);
         
-        if (authResult.Decision == 'Allow') { //action is allowed by AVP
+        if (authResult.decision == 'ALLOW') { //action is allowed by AVP
             return buildResponse(200, 'Successful backend response for ' + event.httpMethod + ' ' + event.path, authResult);
         } else { //action is denied by AVP
             return buildResponse(403, "You are not authorized to perform this action. " + event.httpMethod + ' ' + event.path, authResult);
@@ -187,44 +189,44 @@ function addResourceEntities(entities, action, pathParams) {
   
   if( ["UpdatePet", "DeletePet"].contains(action) ){ //pet related action
   
-    entities.Entities.push ({
-      "Identifier": {
-        "EntityType": "MyApplication::Pet", 
-        "EntityId": pathParams.petId
+    entities.entities.push ({
+      "identifier": {
+        "entityType": "MyApplication::Pet", 
+        "entityId": pathParams.petId
       },
-      "Attributes": {
+      "attributes": {
             "storeId": {
-              "String": pathParams.storeId
+              "string": pathParams.storeId
             }
       }
     });
   } else if( ["GetOrder", "CancelOrder"].contains(action) ){ //order related action
-    entities.Entities.push ({
-        "Identifier": {
-            "EntityType": "MyApplication::Order", 
-            "EntityId": pathParams.orderNumber
+    entities.entities.push ({
+        "identifier": {
+            "entityType": "MyApplication::Order", 
+            "entityId": pathParams.orderNumber
         },
-        "Attributes": {
+        "attributes": {
             "storeId": {
-              "String": pathParams.storeId
+              "string": pathParams.storeId
             },
             "owner" : { // Hardcoding the owner to abhi, this is for demonestration purposes
-                "EntityIdentifier": {
-                       "EntityType": "MyApplication::User",
-                       "EntityId": "abhi"
+                "entityIdentifier": {
+                       "entityType": "MyApplication::User",
+                       "entityId": "abhi"
                 }                     
             }
       }
     });
   } else //application related action
-    entities.Entities.push ({ 
-      "Identifier": {
-        "EntityType": "MyApplication::Application",
-        "EntityId": "PetStore"
+    entities.entities.push ({ 
+      "identifier": {
+        "entityType": "MyApplication::Application",
+        "entityId": "PetStore"
       },
-      "Attributes": {
+      "attributes": {
             "storeId": {
-              "String": pathParams.storeId
+              "string": pathParams.storeId
             }
       }
     });  
@@ -234,18 +236,18 @@ function buildResource(action, pathParams){
   
   if( ["UpdatePet", "DeletePet"].contains(action) ){ //pet related action
     return {
-      "EntityType": "MyApplication::Pet", 
-      "EntityId": pathParams.petId
+      "entityType": "MyApplication::Pet", 
+      "entityId": pathParams.petId
       
     };
   }
   else if( ["GetOrder", "CancelOrder"].contains(action) ){ //order related action
     return {
-        "EntityType": "MyApplication::Order", 
-        "EntityId": pathParams.orderNumber
+        "entityType": "MyApplication::Order", 
+        "entityId": pathParams.orderNumber
     };
   } else //application related action
-    return {"EntityType": "MyApplication::Application", "EntityId": "PetStore"};
+    return {"entityType": "MyApplication::Application", "entityId": "PetStore"};
 }
 
 //---------helper function to build HTTP response
