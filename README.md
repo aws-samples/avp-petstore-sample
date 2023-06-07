@@ -18,7 +18,7 @@ In this section, you will create users and groups, add custom attributes to the 
     1. First lets create “abhi”. This will be used to test Customer-GetOrders policy which we will cover later in the Verified Permissions section of the setup guide. This username is hard coded as the order owner in Lambda code for demonestration purposes, so you need to create the user with the exact username.
     Create the user as explained in the screenshot below
     ![CUP User Creation](static/PetStore-02.png)
-    
+  
     2. Similarly, create two more users with any usernames of your choice for the customer and store-owner personas
         1. Edit store-owner user to add custom attribute to indicate that they are an employee of a certain store, to do this first visit user profile by clicking on the username
         ![Custom User Attribute](static/PetStore-03.png)
