@@ -137,14 +137,14 @@ exports.handler = async (event) => {
           entities.entities.push(
             {
               "identifier": {
-                "entityType": "MyApplication::Role",
+                "entityType": "MyApplication::Group",
                 "entityId": group
               }
             }
           );
           userEntity.parents.push (
             {
-                "entityType": "MyApplication::Role",
+                "entityType": "MyApplication::Group",
                 "entityId": group
             }
           );

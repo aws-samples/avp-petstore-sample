@@ -131,7 +131,7 @@ In this section, we will create Amazon Verified Permissions policy-store, schema
                     "type": "Record"
                 }
             },
-            "Role": {
+            "Group": {
                 "memberOfTypes": [],
                 "shape": {
                     "attributes": {},
@@ -140,7 +140,7 @@ In this section, we will create Amazon Verified Permissions policy-store, schema
             },
             "User": {
                 "memberOfTypes": [
-                    "Role"
+                    "Group"
                 ],
                 "shape": {
                     "attributes": {
@@ -159,18 +159,18 @@ In this section, we will create Amazon Verified Permissions policy-store, schema
 #### Policies:
 1. Now click on “Policies” in the left menu
 2. You will need to add the following policies
-Customer Role - This policy allows customers to search for pets and place orders, this is a role-based access control policy (RBAC)
+Customer  - This policy allows customers to search for pets and place orders, this is a role-based access control policy (RBAC)
 ```
 permit (
-    principal in MyApplication::Role::"Customer",
+    principal in MyApplication::Group::"Customer",
     action in [MyApplication::Action::"SearchPets", MyApplication::Action::"PlaceOrder"],
     resource
 );
 ```
-Customer Role - Get Order, this policy allows customers to get details of their orders. This is an example of both role-based and attribute-based access control policy, principal must be in the role Customer and also principal has to be the owner of the order to be allowed to take the GetOrder action.
+Customer  - Get Order, this policy allows customers to get details of their orders. This is an example of both role-based and attribute-based access control policy, principal must be in the role Customer and also principal has to be the owner of the order to be allowed to take the GetOrder action.
 ```
 permit (
-    principal in MyApplication::Role::"Customer",
+    principal in MyApplication::Group::"Customer",
     action in [MyApplication::Action::"GetOrder"],
     resource
 ) when {
@@ -180,7 +180,7 @@ permit (
 Store Owner no store check, this is a RBAC policy that allow store owners to get inventory and list of orders.
 ```
 permit (
-    principal in MyApplication::Role::"Store-Owner-Role",
+    principal in MyApplication::Group::"Store-Owner-Role",
     action in [
         MyApplication::Action::"GetStoreInventory",
         MyApplication:: Action::"ListOrders"
@@ -226,7 +226,7 @@ You can review the backend lambda code by visiting [Petstoresample...] lamdba fu
     Store Owner with store check
     ```
     permit (
-        principal in MyApplication::Role::"Store-Owner-Role",
+        principal in MyApplication::Group::"Store-Owner-Role",
         action in [
             MyApplication::Action::"GetStoreInventory",
             MyApplication:: Action::"ListOrders"
