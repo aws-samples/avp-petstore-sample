@@ -271,24 +271,6 @@
       ],
       "idempotent":true
     },
-    "DeletePolicyStore0ThisRouteShouldntExistBecauseOfSmithyRouteBug":{
-      "name":"DeletePolicyStore0ThisRouteShouldntExistBecauseOfSmithyRouteBug",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DeletePolicyStore0ThisRouteShouldntExistBecauseOfSmithyRouteBugInput"},
-      "output":{"shape":"DeletePolicyStore0ThisRouteShouldntExistBecauseOfSmithyRouteBugOutput"},
-      "errors":[
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"InternalServerException"}
-      ],
-      "idempotent":true,
-      "internalonly":true
-    },
     "DeletePolicyStoreAuthzInternal":{
       "name":"DeletePolicyStoreAuthzInternal",
       "http":{
@@ -472,8 +454,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
-      ],
-      "idempotent":true
+      ]
     },
     "IsAuthorizedInternal":{
       "name":"IsAuthorizedInternal",
@@ -507,8 +488,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
-      ],
-      "idempotent":true
+      ]
     },
     "ListIdentitySources":{
       "name":"ListIdentitySources",
@@ -959,11 +939,17 @@
       },
       "exception":true
     },
-    "Context":{
+    "ContextDefinition":{
+      "type":"structure",
+      "members":{
+        "contextMap":{"shape":"ContextMap"}
+      },
+      "union":true
+    },
+    "ContextMap":{
       "type":"map",
       "key":{"shape":"String"},
       "value":{"shape":"AttributeValue"},
-      "max":50,
       "min":0
     },
     "CreateIdentitySourceInput":{
@@ -1178,16 +1164,6 @@
       "members":{
       }
     },
-    "DeletePolicyStore0ThisRouteShouldntExistBecauseOfSmithyRouteBugInput":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "DeletePolicyStore0ThisRouteShouldntExistBecauseOfSmithyRouteBugOutput":{
-      "type":"structure",
-      "members":{
-      }
-    },
     "DeletePolicyStoreAuthzInternalInput":{
       "type":"structure",
       "required":[
@@ -1298,7 +1274,7 @@
     "EntitiesDefinition":{
       "type":"structure",
       "members":{
-        "entities":{"shape":"EntityList"}
+        "entityList":{"shape":"EntityList"}
       },
       "union":true
     },
@@ -1306,7 +1282,6 @@
       "type":"map",
       "key":{"shape":"String"},
       "value":{"shape":"AttributeValue"},
-      "max":50,
       "min":0
     },
     "EntityId":{
@@ -1338,7 +1313,6 @@
     "EntityList":{
       "type":"list",
       "member":{"shape":"EntityItem"},
-      "max":100,
       "min":0
     },
     "EntityReference":{
@@ -1618,7 +1592,7 @@
         "principal":{"shape":"EntityIdentifier"},
         "action":{"shape":"ActionIdentifier"},
         "resource":{"shape":"EntityIdentifier"},
-        "context":{"shape":"Context"},
+        "context":{"shape":"ContextDefinition"},
         "entities":{"shape":"EntitiesDefinition"}
       }
     },
@@ -1634,7 +1608,7 @@
         "principal":{"shape":"EntityIdentifier"},
         "action":{"shape":"ActionIdentifier"},
         "resource":{"shape":"EntityIdentifier"},
-        "context":{"shape":"Context"},
+        "context":{"shape":"ContextDefinition"},
         "entities":{"shape":"EntitiesDefinition"}
       }
     },
@@ -1673,7 +1647,7 @@
         "accessToken":{"shape":"Token"},
         "action":{"shape":"ActionIdentifier"},
         "resource":{"shape":"EntityIdentifier"},
-        "context":{"shape":"Context"},
+        "context":{"shape":"ContextDefinition"},
         "entities":{"shape":"EntitiesDefinition"}
       }
     },
@@ -2177,11 +2151,11 @@
       "type":"structure",
       "required":[
         "policyStoreId",
-        "schema"
+        "definition"
       ],
       "members":{
         "policyStoreId":{"shape":"PolicyStoreId"},
-        "schema":{"shape":"SchemaDefinition"}
+        "definition":{"shape":"SchemaDefinition"}
       }
     },
     "PutSchemaOutput":{
@@ -2252,7 +2226,7 @@
     "SchemaDefinition":{
       "type":"structure",
       "members":{
-        "json":{"shape":"SchemaJson"}
+        "cedarJson":{"shape":"SchemaJson"}
       },
       "union":true
     },

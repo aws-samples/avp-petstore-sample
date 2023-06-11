@@ -25,7 +25,7 @@ exports.handler = async (event) => {
     from application context of environment in addition to user/groups data from user's security token.
     */
     let entities = {
-                      "entities" : [
+                      "entityList" : [
                         {
                           "identifier": {
                             "entityType": "MyApplication::Action",
@@ -134,7 +134,7 @@ exports.handler = async (event) => {
           }
         
         groups.forEach((group) => {
-          entities.entities.push(
+          entities.entityList.push(
             {
               "identifier": {
                 "entityType": "MyApplication::Group",
@@ -149,7 +149,7 @@ exports.handler = async (event) => {
             }
           );
         });
-        entities.entities.push(userEntity);
+        entities.entityList.push(userEntity);
     } catch(err) {
         console.log(err)
         return buildResponse(403, "Error while verifying token: "+err);
@@ -160,11 +160,11 @@ exports.handler = async (event) => {
        addResourceEntities(entities, actionMap[event.httpMethod + event.resource], event.pathParameters);
        
         let authQuery = {
-            policyStoreId: policyStoreId, 
+            policyStoreId, 
             principal: {"entityType": "MyApplication::User", "entityId": payload["cognito:username"]},
             action: {"actionType": "MyApplication::Action", "actionId": actionMap[event.httpMethod + event.resource]},
             resource: buildResource(actionMap[event.httpMethod + event.resource], event.pathParameters), 
-            entities: entities
+            entities
         };
         
         console.log(authQuery);
@@ -189,7 +189,7 @@ function addResourceEntities(entities, action, pathParams) {
   
   if( ["UpdatePet", "DeletePet"].contains(action) ){ //pet related action
   
-    entities.entities.push ({
+    entities.entityList.push ({
       "identifier": {
         "entityType": "MyApplication::Pet", 
         "entityId": pathParams.petId
@@ -201,7 +201,7 @@ function addResourceEntities(entities, action, pathParams) {
       }
     });
   } else if( ["GetOrder", "CancelOrder"].contains(action) ){ //order related action
-    entities.entities.push ({
+    entities.entityList.push ({
         "identifier": {
             "entityType": "MyApplication::Order", 
             "entityId": pathParams.orderNumber
@@ -219,7 +219,7 @@ function addResourceEntities(entities, action, pathParams) {
       }
     });
   } else //application related action
-    entities.entities.push ({ 
+    entities.entityList.push ({ 
       "identifier": {
         "entityType": "MyApplication::Application",
         "entityId": "PetStore"
