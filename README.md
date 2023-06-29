@@ -183,7 +183,7 @@ permit (
     principal in MyApplication::Group::"Store-Owner-Role",
     action in [
         MyApplication::Action::"GetStoreInventory",
-        MyApplication:: Action::"ListOrders"
+        MyApplication::Action::"ListOrders"
     ],
     resource 
 );
@@ -229,7 +229,7 @@ You can review the backend lambda code by visiting [Petstoresample...] lamdba fu
         principal in MyApplication::Group::"Store-Owner-Role",
         action in [
             MyApplication::Action::"GetStoreInventory",
-            MyApplication:: Action::"ListOrders"
+            MyApplication::Action::"ListOrders"
         ],
         resource)
     when { principal.employmentStoreCode == resource.storeId };
