@@ -40,7 +40,8 @@ exports.handler = async (event) => {
         var userEntity =  {
             "identifier": {
               "entityType": "MyApplication::User",
-              "entityId": payload["cognito:username"]
+              // "entityId": payload["cognito:username"]
+              "entityId": payload["cognito:username"] || payload["username"]
             },
             "attributes": {
               "employmentStoreCode" : {
