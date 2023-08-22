@@ -235,3 +235,13 @@ You can review the backend lambda code by visiting [Petstoresample...] lamdba fu
     when { principal.employmentStoreCode == resource.storeId };
     ```
     Now when you try the application, if you put “petstore-austin” in the prompt box you will get a Deny and if you put “petstore-london” in the prompt box you will get an Allow. This is because the application is leveraging the “storeowner” attribute passed in the JWT to limit their access in accordance to the more restrictive Policy that identifies the specific store location the persona manages.
+   
+## Clean Up:
+You can clean up the sample application from the account by deleting the Verified Permissions policy store and the Amplify Application.
+
+Steps 
+1. You can delete the policy store by visting the Verified Permissions console, navigating to the setting tab and clicking "Delete this Policy Store"
+![Update](static/delete%20policy%20store.JPG)
+3. You can delete the Amplify application by navigating to Amplify and clicking "Delete App" in the Actions dropdown
+   
+![Update](static/delete%20Amplify%20App.JPG)
