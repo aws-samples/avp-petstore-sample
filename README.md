@@ -9,6 +9,9 @@ The first step to test this sample application is to login to your AWS console t
 
 After successful deployment of the sample application, follow the steps below to create users, groups and authorization policies and test authorization scenarios.
 
+### Note on enhanced version of the sample application
+You can also explore enhanced version of this sample application, checkout the repo [avp-petstore-sample-v2](https://github.com/aws-samples/avp-petstore-sample-v2). The enhanced version introduces franchise and multi-store owner using relationships and hierarchies, automated provisioning of Amazon Verified Permissions policy store, schema, and policies.
+
 ### Managing users and groups in Amazon Cognito:
 In this section, you will create users and groups, add custom attributes to the users and assign users to their groups to simulate customer and store owner personas.
 
