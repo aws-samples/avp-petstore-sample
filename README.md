@@ -18,7 +18,7 @@ In this section, you will create users and groups, add custom attributes to the 
 1. Navigate to Amazon Cognito service in the AWS Console
 2. Search for the [petstoresample...] Cognito User Pool that was created by Amplify, navigate to the Users tab and click on Create user button
 3. We need to create 3 users to fully test the functionality of this application, a customer account, a store owner account and "abhi" who represents a customer with an existing order.
-    1. First lets create “abhi”. This will be used to test Customer-GetOrders policy which we will cover later in the Verified Permissions section of the setup guide. This username is hard coded as the order owner in Lambda code for demonestration purposes, so you need to create the user with the exact username.
+    1. First lets create “abhi”. This will be used to test Customer-GetOrders policy which we will cover later in the Verified Permissions section of the setup guide. This username is hard coded as the order owner in Lambda code for demonstration purposes, so you need to create the user with the exact username.
     Create the user as explained in the screenshot below
     ![CUP User Creation](static/PetStore-02.png)
   
