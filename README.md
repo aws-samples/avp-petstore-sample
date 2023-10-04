@@ -1,9 +1,9 @@
 [![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/aws-samples/avp-petstore-sample)
 
 # Introduction
-This sample web application demonstrates authentication and policy-based authorization of diffrent user types to an imaginary Pet Store web app. This application uses Amazon Cognito for authentication and uses Amazon Verified Permissions for policy-based authorization, the application uses Amplify platform to accelerate deployment and provisioning of backend resources. For a full walkthrough of the application, please see the presentation: https://www.youtube.com/watch?v=D8IQJaCIuwg&ab_channel=AmazonWebServices.
+This sample web application demonstrates authentication and policy-based authorization of different user types to an imaginary Pet Store web app. This application uses Amazon Cognito for authentication and uses Amazon Verified Permissions for policy-based authorization, the application uses Amplify platform to accelerate deployment and provisioning of backend resources. For a full walkthrough of the application, please see the presentation: https://www.youtube.com/watch?v=D8IQJaCIuwg&ab_channel=AmazonWebServices.
 
-The first step to test this sample application is to login to your AWS console then click the link above to deploy this sample application in your AWS account using Amplify hosting. This will also create backend resources needed for the application like Amazon Cognito user pool, API Gateway project and Lambda function to simulate backend service. Application will go through provision, build and deploy stages and might take several minutes to complete.
+The first step to test this sample application is to login to your AWS console then click the link above to deploy this sample application in your AWS account using Amplify hosting. This will also create backend resources needed for the application like Amazon Cognito user pool, API Gateway project, and Lambda function to simulate backend service. Application will go through provision, build and deploy stages and might take several minutes to complete.
 
 ![Update](static/PetStore-deploy.gif)
 
@@ -18,7 +18,7 @@ In this section, you will create users and groups, add custom attributes to the 
 1. Navigate to Amazon Cognito service in the AWS Console
 2. Search for the [petstoresample...] Cognito User Pool that was created by Amplify, navigate to the Users tab and click on Create user button
 3. We need to create 3 users to fully test the functionality of this application, a customer account, a store owner account and "abhi" who represents a customer with an existing order.
-    1. First lets create “abhi”. This will be used to test Customer-GetOrders policy which we will cover later in the Verified Permissions section of the setup guide. This username is hard coded as the order owner in Lambda code for demonestration purposes, so you need to create the user with the exact username.
+    1. First lets create “abhi”. This will be used to test Customer-GetOrders policy which we will cover later in the Verified Permissions section of the setup guide. This username is hard coded as the order owner in Lambda code for demonstration purposes, so you need to create the user with the exact username.
     Create the user as explained in the screenshot below
     ![CUP User Creation](static/PetStore-02.png)
   
